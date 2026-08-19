@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+/*
+  Brand tokens for 순전한 재단 / MERE FOUNDATION.
+  Keep the palette restrained: white / ivory / sand / forest / charcoal,
+  with muted gold reserved for thin rules, numerals and small accents only.
+*/
+:root {
+  --color-pure-white: #ffffff;
+  --color-warm-ivory: #f7f4ee;
+  --color-sand-beige: #e7dfd1;
+  --color-forest: #29463a;
+  --color-forest-dark: #1d332a;
+  --color-charcoal: #252525;
+  --color-gold: #b8a071;
+
+  --background: var(--color-pure-white);
+  --foreground: var(--color-charcoal);
+
+  --font-display: var(--font-fraunces), "Times New Roman", serif;
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", system-ui,
+    sans-serif;
+}
+
+@theme inline {
+  --color-pure-white: var(--color-pure-white);
+  --color-warm-ivory: var(--color-warm-ivory);
+  --color-sand-beige: var(--color-sand-beige);
+  --color-forest: var(--color-forest);
+  --color-forest-dark: var(--color-forest-dark);
+  --color-charcoal: var(--color-charcoal);
+  --color-gold: var(--color-gold);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* Reveal-on-scroll utility, driven by the Reveal client component
+   toggling data-revealed via IntersectionObserver. Kept to opacity/translate
+   only -- no bounce, no scale, no 3D. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+[data-reveal="fade"] {
+  transform: none;
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-copy {
+  animation: hero-fade-up 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy {
+    animation: none;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--color-forest);
+  color: var(--color-pure-white);
+  padding: 0.75rem 1.25rem;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
