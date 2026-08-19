@@ -25,6 +25,36 @@ npm run lint     # ESLint
 npm run start    # serve the production build
 ```
 
+## Deploying to Cloudflare Pages
+
+This site has no API routes, middleware, or server actions — everything is
+static or SSG (`generateStaticParams`) — so `next.config.ts` sets
+`output: "export"` and it deploys as a plain static site via **Cloudflare
+Pages** (no Workers/OpenNext adapter needed).
+
+1. In the Cloudflare dashboard: **Workers & Pages → Create → Pages → Connect
+   to Git**, and pick this repository.
+2. Build settings:
+   - **Framework preset**: Next.js (Static HTML Export) — or set manually:
+   - **Build command**: `npm run build`
+   - **Build output directory**: `out`
+   - **Root directory**: `/` (repo root)
+3. Environment: no environment variables are required for the build.
+   Node 18+ is fine (Cloudflare Pages' default works).
+4. Once a custom production domain is decided, update `siteUrl` in
+   `data/site.ts` (currently a placeholder) — it feeds `metadataBase`, the
+   sitemap, and Open Graph URLs in `app/layout.tsx`.
+
+Local sanity check before pushing a change that touches routing/data
+fetching: `rm -rf .next out && npm run build` should finish with no errors
+and produce a populated `out/` directory (`out/index.html`,
+`out/sitemap.xml`, `out/robots.txt`, etc.).
+
+If server-side features are ever needed later (a real payment webhook, a
+contact-form API route, etc.), switch to the
+[`@opennextjs/cloudflare`](https://opennext.js.org/cloudflare) adapter and
+deploy via **Cloudflare Workers** instead of Pages static export.
+
 ## How a non-developer admin edits content
 
 **All editable content lives under `/data/*.ts`.** Each file starts with a
