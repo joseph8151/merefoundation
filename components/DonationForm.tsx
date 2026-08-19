@@ -13,9 +13,12 @@ import { useState, type FormEvent } from "react";
  * webhook if MERE prefers manual processing at launch). Never store card
  * details on this client-side form.
  */
+const MONTHLY_AMOUNT_PRESETS = [30000, 50000, 100000];
+
 export default function DonationForm() {
   const [submitted, setSubmitted] = useState(false);
   const [frequency, setFrequency] = useState<"regular" | "onetime">("regular");
+  const [amount, setAmount] = useState<number | "">("");
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -95,18 +98,45 @@ export default function DonationForm() {
         />
       </label>
 
-      <label className="flex flex-col gap-2 text-sm font-semibold text-charcoal">
-        후원 금액 (원)
+      <div className="flex flex-col gap-3">
+        <span className="text-sm font-semibold text-charcoal">
+          후원 금액 (원)
+        </span>
+
+        {frequency === "regular" && (
+          <div className="flex flex-wrap gap-3" role="group" aria-label="월 정기후원 금액 선택">
+            {MONTHLY_AMOUNT_PRESETS.map((preset) => (
+              <button
+                key={preset}
+                type="button"
+                onClick={() => setAmount(preset)}
+                aria-pressed={amount === preset}
+                className={`flex-1 min-w-[6.5rem] border px-4 py-3 text-center text-sm font-medium transition-colors ${
+                  amount === preset
+                    ? "border-forest bg-forest text-pure-white"
+                    : "border-sand-beige text-charcoal/70 hover:border-forest/50"
+                }`}
+              >
+                월 {(preset / 10000).toLocaleString()}만원
+              </button>
+            ))}
+          </div>
+        )}
+
         <input
           required
           type="number"
           min={1000}
           step={1000}
           name="amount"
-          placeholder="10000"
+          placeholder="직접 입력 (원)"
+          value={amount}
+          onChange={(e) =>
+            setAmount(e.target.value === "" ? "" : Number(e.target.value))
+          }
           className="border border-sand-beige bg-pure-white px-4 py-3 text-sm font-normal text-charcoal placeholder:text-charcoal/30 focus:border-forest"
         />
-      </label>
+      </div>
 
       <label className="flex flex-col gap-2 text-sm font-semibold text-charcoal">
         연락처 (선택)
