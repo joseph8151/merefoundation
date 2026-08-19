@@ -1,0 +1,12 @@
+{
+  // This project has no Worker script -- it's a static site (Next.js
+  // `output: "export"`, built into ./out by `npm run build`). This config
+  // just tells Cloudflare's Workers-with-static-assets deploy where to find
+  // the built files. See README.md for the full deploy setup.
+  "name": "merefoundation",
+  "compatibility_date": "2026-08-15",
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  }
+}

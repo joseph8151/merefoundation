@@ -25,12 +25,16 @@ npm run lint     # ESLint
 npm run start    # serve the production build
 ```
 
-## Deploying to Cloudflare Pages
+## Deploying to Cloudflare
 
 This site has no API routes, middleware, or server actions — everything is
 static or SSG (`generateStaticParams`) — so `next.config.ts` sets
-`output: "export"` and it deploys as a plain static site via **Cloudflare
-Pages** (no Workers/OpenNext adapter needed).
+`output: "export"` and it deploys as a plain static site (no
+Workers/OpenNext adapter needed).
+
+Cloudflare's Git integration now has two flavors, and both work here:
+
+### Option A — Cloudflare Pages (classic, "Pages" project type)
 
 1. In the Cloudflare dashboard: **Workers & Pages → Create → Pages → Connect
    to Git**, and pick this repository.
@@ -39,11 +43,35 @@ Pages** (no Workers/OpenNext adapter needed).
    - **Build command**: `npm run build`
    - **Build output directory**: `out`
    - **Root directory**: `/` (repo root)
-3. Environment: no environment variables are required for the build.
-   Node 18+ is fine (Cloudflare Pages' default works).
-4. Once a custom production domain is decided, update `siteUrl` in
-   `data/site.ts` (currently a placeholder) — it feeds `metadataBase`, the
-   sitemap, and Open Graph URLs in `app/layout.tsx`.
+3. No environment variables are required for the build.
+
+### Option B — Cloudflare Workers (newer unified "Workers" project type)
+
+If you connected the repo under **Workers & Pages → Create → Workers →
+Import a repository** instead, Cloudflare's deploy step runs
+`npx wrangler versions upload`, which needs a `wrangler.jsonc` telling it
+where the static assets live — this repo already includes one at the root:
+
+```jsonc
+{
+  "name": "merefoundation",
+  "compatibility_date": "2026-08-15",
+  "assets": { "directory": "./out", "not_found_handling": "404-page" }
+}
+```
+
+Build settings in this mode:
+
+- **Build command**: `npm run build`
+- **Deploy command**: `npx wrangler versions upload` (Cloudflare sets this
+  automatically for a Workers project — leave it as-is)
+
+Either option serves the same static `out/` directory; pick whichever
+project type you already created in the Cloudflare dashboard.
+
+Once a custom production domain is decided, update `siteUrl` in
+`data/site.ts` (currently a placeholder) — it feeds `metadataBase`, the
+sitemap, and Open Graph URLs in `app/layout.tsx`.
 
 Local sanity check before pushing a change that touches routing/data
 fetching: `rm -rf .next out && npm run build` should finish with no errors
