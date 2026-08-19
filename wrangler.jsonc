@@ -3,6 +3,13 @@
   // `output: "export"`, built into ./out by `npm run build`). This config
   // just tells Cloudflare's Workers-with-static-assets deploy where to find
   // the built files. See README.md for the full deploy setup.
+  //
+  // Cloudflare project "Build" settings must have:
+  //   Build command:  npm run build
+  //   Deploy command: npx wrangler deploy
+  // (a build that has no Build command never produces ./out, so
+  // wrangler deploy/versions upload then fails with "assets.directory ...
+  // does not exist").
   "name": "merefoundation",
   "compatibility_date": "2026-08-15",
   "assets": {
