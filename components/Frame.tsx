@@ -70,6 +70,13 @@ export default function Frame({
   );
 }
 
+/**
+ * A small brand illustration (cupped hands holding a heart, with a few
+ * gentle light marks above) standing in for a photo that hasn't been
+ * uploaded yet. Deliberately a finished little scene -- warm and
+ * intentional -- rather than a generic "broken photo" glyph, so an empty
+ * slot still reads as considered design.
+ */
 function PhotoPendingIllustration() {
   return (
     <div
@@ -77,28 +84,56 @@ function PhotoPendingIllustration() {
       className="absolute inset-0 flex items-center justify-center bg-sand-beige"
     >
       <svg
-        viewBox="0 0 120 90"
-        className="h-1/3 max-h-24 w-1/3 max-w-32 min-h-12 min-w-16"
+        viewBox="0 0 160 160"
+        className="h-2/5 max-h-40 w-2/5 max-w-40 min-h-20 min-w-20"
         fill="none"
       >
-        <rect
-          x="4"
-          y="4"
-          width="112"
-          height="82"
-          rx="2"
-          stroke="var(--color-forest)"
-          strokeOpacity="0.35"
-          strokeWidth="2"
+        <circle
+          cx="80"
+          cy="80"
+          r="70"
+          fill="var(--color-warm-ivory)"
+          stroke="var(--color-gold)"
+          strokeOpacity="0.45"
+          strokeWidth="1.5"
         />
-        <circle cx="34" cy="30" r="9" stroke="var(--color-gold)" strokeWidth="2" />
+
+        {/* gentle light marks */}
         <path
-          d="M4 68 L38 44 L64 62 L84 40 L116 66"
+          d="M80 32v10M56 40l6 8M104 40l-6 8"
+          stroke="var(--color-gold)"
+          strokeOpacity="0.7"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+
+        {/* heart */}
+        <path
+          d="M80 96c-16-11-27-20-27-32a15 15 0 0 1 27-9 15 15 0 0 1 27 9c0 12-11 21-27 32Z"
+          fill="var(--color-forest)"
+          fillOpacity="0.16"
           stroke="var(--color-forest)"
-          strokeOpacity="0.35"
-          strokeWidth="2"
+          strokeWidth="2.5"
+          strokeLinejoin="round"
+        />
+
+        {/* cupped hands */}
+        <path
+          d="M34 118c6-16 20-26 46-26s40 10 46 26c-10 8-24 13-46 13s-36-5-46-13Z"
+          fill="var(--color-forest)"
+          fillOpacity="0.08"
+          stroke="var(--color-forest)"
+          strokeOpacity="0.75"
+          strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
+        />
+        <path
+          d="M34 118c-4-9-4-19 2-27M126 118c4-9 4-19-2-27"
+          stroke="var(--color-forest)"
+          strokeOpacity="0.75"
+          strokeWidth="2.5"
+          strokeLinecap="round"
         />
       </svg>
     </div>
