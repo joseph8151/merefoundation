@@ -213,7 +213,7 @@ export default function DonationForm() {
             {CMS_DAYS.map((day) => (
               <label
                 key={day}
-                className={`flex-1 cursor-pointer border px-4 py-3 text-center text-sm font-medium transition-colors ${
+                className={`flex-1 cursor-pointer whitespace-nowrap border px-2 py-3 text-center text-sm font-medium transition-colors ${
                   cmsDay === day
                     ? "border-forest bg-forest text-pure-white"
                     : "border-sand-beige text-charcoal/70"
