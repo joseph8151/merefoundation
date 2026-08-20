@@ -93,9 +93,14 @@ need to touch any component or page file to update text, images, or numbers
 | File | Controls |
 | --- | --- |
 | `data/site.ts` | Org name, tagline, address/phone/email/bank account/registration numbers, main navigation, footer links, SNS links |
-| `data/programs.ts` | The 6 "우리가 하는 일" program areas (title, description, photo, bullet lines) shown on the homepage and `/what-we-do` |
+| `data/programs.ts` | The 6 "WHAT WE DO" program areas (title, description, photo, bullet lines) shown on the homepage and `/what-we-do` |
 | `data/impactStats.ts` | The 4 "MERE Impact" counters |
-| `data/stories.ts` | "MERE STORIES" articles (index + detail pages) |
+| `data/footprint.ts` | The "OUR FOOTPRINT" numbers (27 countries / 45 regions) and their basis-year caption, shown on the homepage |
+| `data/footprintCountries.ts` | Country markers shown on the homepage "LOVE ACROSS BORDERS" world map (`components/GlobalMap.tsx`) |
+| `data/fieldStories.ts` | The 3 real "STORIES FROM THE FIELD" case studies (Guatemala / Myanmar / Kazakhstan) on the homepage |
+| `data/stories.ts` | "MERE STORIES" articles (index + detail pages), including the real "One Box, Many Hearts" clothing-donation story |
+| `data/archive.ts` | Newsletter/소식지 editions shown on `/archive` and the homepage ARCHIVE teaser |
+| `data/currentProjects.ts` | The homepage "CURRENT PROJECTS" list -- currently empty (renders a "준비 중" panel until entries are added) |
 | `data/partnership.ts` | The 6 partnership types shown on the homepage and `/together` |
 | `data/transparency.ts` | The transparency/report list on the homepage and `/transparency` |
 | `data/news.ts` | "MERE NEWS" articles (index + detail pages) |
@@ -166,17 +171,44 @@ still unconfirmed — flip between the two as facts get confirmed.
 `data/videos.ts` lists YouTube videos embedded on the About page — each
 entry is just the video's 11-character YouTube id plus a caption.
 
+### Real photos still needed (local placeholder paths)
+
+The sections below are tied to specific real, confirmed events/partners (per
+the client's 2024 활동자료 and printed 정기후원 신청서), so — unlike the
+site's other decorative Unsplash photography — they intentionally do **not**
+use stock photos standing in for real documentation. Each points at a local
+path under `public/images/archive/` that does not yet contain a file; until
+a real photo is uploaded there, `components/Frame.tsx`'s Sand Beige backdrop
+covers the gap and a "준비 중" badge marks the spot as pending. Drop the real
+photo in at the exact path below (same filename) and it appears automatically
+— no code changes needed.
+
+| Path | Used for |
+| --- | --- |
+| `public/images/archive/guatemala-01.jpg` | STORIES FROM THE FIELD — Guatemala / 글로벌선진학교 case (`data/fieldStories.ts`) |
+| `public/images/archive/myanmar-01.jpg` | STORIES FROM THE FIELD — Myanmar mission support case (`data/fieldStories.ts`) |
+| `public/images/archive/kazakhstan-01.jpg` | STORIES FROM THE FIELD — Kazakhstan Central Asia mission case (`data/fieldStories.ts`) |
+| `public/images/archive/clothing-support-01.jpg` | "ONE BOX, MANY HEARTS" clothing-donation story (homepage + `data/stories.ts` → `one-box-many-hearts`) |
+| `public/images/archive/well-international-01.jpg` | "PARTNERS IN CHANGE" — WELL International partner card (homepage) |
+| `public/images/archive/newsletter-2024-01-cover.jpg` | "2024 순전한재단 나눔 제01호" newsletter cover (`data/archive.ts`, `/archive` + homepage teaser) |
+
 ## Known placeholders still needed before launch
 
 - Business registration number / corporation registration number (`data/site.ts`)
 - Organization chart / board & office structure details (`app/about/page.tsx`, "조직 및 운영")
 - Map embed for "오시는 길" (`app/about/page.tsx`) — address/phone are already real
-- Real impact numbers (`data/impactStats.ts`)
+- Real impact numbers (`data/impactStats.ts`) — note this is separate from the
+  now-confirmed "OUR FOOTPRINT" numbers (`data/footprint.ts`, 27 countries /
+  45 regions per the 2024 활동자료)
 - Real transparency reports/PDFs (`data/transparency.ts`)
 - SNS links (Instagram/YouTube/Blog) (`data/site.ts`)
 - Payment gateway integration for `/donate` (`components/DonationForm.tsx` — currently a non-functional intent form)
 - Contact form backend for `/contact` (`components/ContactForm.tsx` — currently client-side only)
 - Final legal review of `/privacy` and `/terms` (currently template placeholders)
+- The 6 real photos listed above under "Real photos still needed"
+- Real downloadable PDF for "2024 순전한재단 나눔 제01호" (`data/archive.ts` → `downloadUrl`; the edition's title/description are confirmed real, only the file itself is pending)
+- `/archive` sub-sections still fully "준비 중": 활동보고, 나눔 이야기, 해외 활동, 재정보고, 후원금 사용내역
+- Real "CURRENT PROJECTS" entries (`data/currentProjects.ts` — intentionally empty for now)
 
 ## Project structure
 

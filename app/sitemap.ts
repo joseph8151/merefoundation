@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/stories",
     "/together",
     "/news",
+    "/archive",
     "/donate",
     "/transparency",
     "/contact",

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Frame from "@/components/Frame";
 import Reveal from "@/components/Reveal";
+import { PlaceholderBadge } from "@/components/PlaceholderNote";
 import type { Story } from "@/data/stories";
 
 export default function StoryCard({ story }: { story: Story }) {
@@ -11,7 +12,13 @@ export default function StoryCard({ story }: { story: Story }) {
           src={story.image}
           alt={story.imageAlt}
           className="aspect-[4/3] w-full transition-opacity duration-500 group-hover:opacity-90"
-        />
+        >
+          {story.imagePending ? (
+            <div className="absolute left-3 top-3">
+              <PlaceholderBadge className="bg-pure-white/90" />
+            </div>
+          ) : null}
+        </Frame>
         <div className="flex flex-col gap-3">
           <span className="eyebrow text-[11px] text-gold">{story.category}</span>
           <h3 className="font-display text-xl font-medium leading-snug text-charcoal">

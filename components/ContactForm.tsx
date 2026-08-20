@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 
 /**
  * Client-side only contact form. No backend is wired up yet.
@@ -10,9 +10,44 @@ import { useState, type FormEvent } from "react";
  * service (Resend, SendGrid, AWS SES, ...) or forwards to a CRM/Slack
  * webhook. Right now submitting only shows a local confirmation message;
  * nothing is sent anywhere.
+ *
+ * 문의유형 preselect: other pages can link here as `/contact?type=csr`
+ * (etc.) to preselect an inquiry type. Since this site is a fully static
+ * export with no server-rendered query handling, the param is read
+ * client-side on mount rather than via useSearchParams/searchParams props.
  */
+const INQUIRY_TYPES = [
+  { value: "general", label: "일반 문의" },
+  { value: "partnership", label: "파트너십 문의" },
+  { value: "donation", label: "후원 문의" },
+  { value: "volunteer", label: "자원봉사 문의" },
+  { value: "church", label: "교회 협력 문의" },
+  { value: "csr", label: "기업 CSR 문의" },
+  { value: "institution", label: "기관 Partnership 문의" },
+  { value: "support", label: "지원 문의" },
+  { value: "referral", label: "도움이 필요한 이웃 추천" },
+  { value: "press", label: "언론 문의" },
+  { value: "etc", label: "기타" },
+] as const;
+
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [type, setType] = useState<string>("general");
+
+  useEffect(() => {
+    // Intentionally reads the query string post-mount rather than via a
+    // lazy useState initializer: this is a static export with no server
+    // to read the request URL, so the first client render must match the
+    // static "general" markup exactly (avoiding a hydration mismatch) and
+    // only then adopt the ?type= preselect.
+    const params = new URLSearchParams(window.location.search);
+    const requested = params.get("type");
+    if (requested && INQUIRY_TYPES.some((t) => t.value === requested)) {
+      // Single one-time sync from the URL on mount, not a render loop.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setType(requested);
+    }
+  }, []);
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -63,15 +98,15 @@ export default function ContactForm() {
         문의유형
         <select
           name="type"
-          defaultValue="general"
+          value={type}
+          onChange={(e) => setType(e.target.value)}
           className="border border-sand-beige bg-pure-white px-4 py-3 text-sm font-normal text-charcoal focus:border-forest"
         >
-          <option value="general">일반 문의</option>
-          <option value="partnership">파트너십 문의</option>
-          <option value="donation">후원 문의</option>
-          <option value="volunteer">자원봉사 문의</option>
-          <option value="press">언론 문의</option>
-          <option value="etc">기타</option>
+          {INQUIRY_TYPES.map((t) => (
+            <option key={t.value} value={t.value}>
+              {t.label}
+            </option>
+          ))}
         </select>
       </label>
 

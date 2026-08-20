@@ -2,28 +2,59 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
 import DonationForm from "@/components/DonationForm";
+import CopyButton from "@/components/CopyButton";
 import { PlaceholderBadge } from "@/components/PlaceholderNote";
 import { orgInfo } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "후원",
-  description: "정기후원과 일시후원으로 순전한 재단 MERE와 함께해주세요.",
+  description: "정기후원과 일시후원으로 순전한재단 MERE와 함께해주세요.",
 };
+
+const donationTypes = [
+  "정기후원",
+  "일시후원",
+  "분기후원",
+  "해외선교 지정후원",
+  "교육지원",
+  "긴급구호",
+  "기업·기관 후원",
+  "물품후원",
+];
 
 export default function DonatePage() {
   return (
     <>
       <PageHeader
         eyebrow="DONATE"
-        titleKo="후원"
-        titleEn="GIVE TO MERE"
-        description="당신의 순전한 마음이 누군가의 내일이 됩니다. 한 번의 나눔도, 오랜 시간 이어지는 동행도 변화의 시작이 될 수 있습니다."
+        titleKo="당신의 순전한 마음이 누군가의 내일을 바꿉니다."
+        titleEn="GIVE WITH MERE"
+        description="한 번의 나눔도, 오랜 시간 이어지는 동행도 변화의 시작이 될 수 있습니다."
       />
 
       <div className="mx-auto max-w-[1400px] px-6 py-16 md:px-10 md:py-24">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
           <div className="flex flex-col gap-16">
             <Reveal>
+              <h2 className="font-display text-2xl font-medium text-charcoal md:text-3xl">
+                후원 유형
+              </h2>
+              <p className="mt-4 text-[15px] leading-relaxed text-charcoal/70">
+                순전한재단은 다음과 같은 방식의 나눔을 지원합니다. 아래
+                후원신청 양식에서 원하시는 후원 방식과 목적을 선택하실 수
+                있습니다.
+              </p>
+              <ul className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-sand-beige pt-6 text-sm text-charcoal/75 sm:grid-cols-4">
+                {donationTypes.map((type) => (
+                  <li key={type} className="flex gap-2">
+                    <span aria-hidden className="text-gold">·</span>
+                    {type}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+
+            <Reveal delay={60}>
               <h2 className="font-display text-2xl font-medium text-charcoal md:text-3xl">
                 정기후원
               </h2>
@@ -37,12 +68,12 @@ export default function DonatePage() {
 
             <Reveal delay={80}>
               <h2 className="font-display text-2xl font-medium text-charcoal md:text-3xl">
-                일시후원
+                일시후원 · 분기후원
               </h2>
               <p className="mt-4 text-[15px] leading-relaxed text-charcoal/70">
-                긴급한 상황이나 특정 프로젝트를 위한 한 번의 나눔도 소중한
-                변화의 시작이 됩니다. 원하시는 사업이나 목적을 지정하여
-                후원하실 수 있습니다.
+                긴급한 상황이나 특정 프로젝트를 위한 한 번의 나눔, 혹은
+                분기마다 이어가는 나눔도 소중한 변화의 시작이 됩니다.
+                원하시는 사업이나 목적을 지정하여 후원하실 수 있습니다.
               </p>
             </Reveal>
 
@@ -65,14 +96,25 @@ export default function DonatePage() {
               <h2 className="font-display text-2xl font-medium text-charcoal md:text-3xl">
                 후원 계좌 안내
               </h2>
-              <div className="mt-4 flex items-center gap-3 border border-sand-beige bg-warm-ivory px-5 py-4">
+              <div className="mt-4 flex flex-wrap items-center gap-4 border border-sand-beige bg-warm-ivory px-5 py-5">
                 <div className="text-sm text-charcoal/70">
-                  <p>{orgInfo.bankAccount.value.bank} {orgInfo.bankAccount.value.number}</p>
-                  <p className="mt-1 text-charcoal/50">예금주: {orgInfo.bankAccount.value.holder}</p>
+                  <p className="font-display text-lg text-charcoal">
+                    {orgInfo.bankAccount.value.bank} {orgInfo.bankAccount.value.number}
+                  </p>
+                  <p className="mt-1 text-charcoal/50">
+                    예금주: {orgInfo.bankAccount.value.holder}
+                  </p>
                 </div>
-                {orgInfo.bankAccount.isPlaceholder && (
-                  <PlaceholderBadge className="ml-auto shrink-0" />
-                )}
+                <div className="ml-auto flex items-center gap-3">
+                  {orgInfo.bankAccount.isPlaceholder ? (
+                    <PlaceholderBadge className="shrink-0" />
+                  ) : (
+                    <CopyButton
+                      value={orgInfo.bankAccount.value.number}
+                      label="계좌번호 복사"
+                    />
+                  )}
+                </div>
               </div>
             </Reveal>
           </div>

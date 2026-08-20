@@ -9,17 +9,25 @@ import StoryCard from "@/components/StoryCard";
 import NewsCard from "@/components/NewsCard";
 import ImpactStats from "@/components/ImpactStats";
 import TransparencyList from "@/components/TransparencyList";
+import GlobalMap from "@/components/GlobalMap";
+import FieldCaseCard from "@/components/FieldCaseCard";
+import CountUp from "@/components/CountUp";
+import { PlaceholderBadge, PlaceholderPanel } from "@/components/PlaceholderNote";
 import { programs } from "@/data/programs";
 import { stories } from "@/data/stories";
 import { newsItems } from "@/data/news";
 import { partnershipTypes } from "@/data/partnership";
 import { transparencyItems } from "@/data/transparency";
+import { footprintStats, footprintBasisLabel } from "@/data/footprint";
+import { fieldStories } from "@/data/fieldStories";
+import { currentProjects } from "@/data/currentProjects";
+import { archiveEditions } from "@/data/archive";
 import { orgInfo } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "순전한 마음에서 변화는 시작됩니다",
   description:
-    "순전한 재단 MERE는 도움이 필요한 이웃의 오늘을 함께하고 더 나은 내일을 만들어가는 비영리재단입니다.",
+    "순전한재단 MERE는 도움이 필요한 이웃의 오늘을 함께하고 더 나은 내일을 만들어가는 비영리재단입니다.",
 };
 
 const philosophy = [
@@ -43,13 +51,139 @@ const philosophy = [
   },
 ];
 
+const ourValues = [
+  {
+    mark: "01",
+    en: "FAITH",
+    ko: "신앙",
+    line: "예수 그리스도를 중심으로 모든 사업을 진행하며 그리스도의 사랑과 가르침을 따릅니다.",
+  },
+  {
+    mark: "02",
+    en: "SERVING",
+    ko: "섬김",
+    line: "예수님의 모범을 따라 서로를 섬기며 사랑으로 행동합니다.",
+  },
+  {
+    mark: "03",
+    en: "HOPE",
+    ko: "희망",
+    line: "희망의 메시지를 전하고 세상에 새로운 가능성을 심습니다.",
+  },
+  {
+    mark: "04",
+    en: "TRUST",
+    ko: "믿음",
+    line: "하나님의 뜻을 향해 믿음으로 나아가며 세상을 변화시키는 일에 참여합니다.",
+  },
+  {
+    mark: "05",
+    en: "LOVE",
+    ko: "사랑",
+    line: "모든 사람을 사랑으로 대하고 사랑이 있는 세상을 만들기 위해 노력합니다.",
+  },
+];
+
+const churchBusinessNodes = [
+  { en: "CHURCH", ko: "사랑과 섬김" },
+  { en: "BUSINESS", ko: "자원과 전문성" },
+  { en: "MERE FOUNDATION", ko: "연결과 실행" },
+];
+
+const wellProgramAreas = ["의료사업", "교육사업", "보건·위생사업", "긴급구호·봉사단 파견", "기관협력"];
+
+const latestArchiveEdition = archiveEditions[0];
+
 export default function HomePage() {
   return (
     <>
       <Hero />
 
-      {/* 2. Our Belief */}
+      {/* MERE Philosophy */}
+      <section className="bg-warm-ivory px-6 py-24 md:px-10 md:py-32">
+        <div className="mx-auto max-w-3xl text-center">
+          <Reveal>
+            <Eyebrow className="text-center">MERE FOUNDATION</Eyebrow>
+            <h2 className="mt-6 text-balance font-display text-3xl font-medium leading-tight tracking-tight text-charcoal md:text-5xl">
+              순전한 마음에서
+              <br />
+              변화는 시작됩니다.
+            </h2>
+            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.22em] text-forest md:text-sm">
+              PURE LOVE. REAL CHANGE.
+            </p>
+            <div className="mx-auto mt-10 flex max-w-xl flex-col gap-5 text-[15px] leading-relaxed text-charcoal/75 md:text-base">
+              <p>
+                순전한재단은 예수 그리스도의 사랑과 가르침을 바탕으로 세상을
+                변화시키는 미션을 가지고 있습니다.
+              </p>
+              <p>
+                &ldquo;너희가 거저 받았으니 거저 주라&rdquo;는 말씀을 따라
+                기독교적인 가치와 이념을 바탕으로, 교회와 기업이 함께 손을
+                맞잡고 선교와 사회봉사를 실천하는 모범이 되고자 합니다.
+              </p>
+            </div>
+            <div className="mx-auto mt-12 max-w-xl border-t border-gold/40 pt-10">
+              <p className="font-display text-2xl italic leading-relaxed text-forest md:text-3xl">
+                &ldquo;{orgInfo.verse.text}&rdquo;
+              </p>
+              <p className="mt-3 text-xs tracking-[0.14em] text-charcoal/45">
+                {orgInfo.verse.reference}
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Our Footprint */}
+      <section className="bg-forest px-6 py-24 text-pure-white md:px-10 md:py-32">
+        <div className="mx-auto max-w-[1400px]">
+          <Reveal>
+            <Eyebrow tone="light">OUR FOOTPRINT</Eyebrow>
+            <h2 className="mt-6 max-w-2xl text-balance font-display text-3xl font-medium leading-tight tracking-tight md:text-5xl">
+              작은 나눔이 세계 곳곳의 삶에 닿았습니다.
+            </h2>
+          </Reveal>
+
+          <div className="mt-16 grid gap-12 border-t border-pure-white/15 pt-12 sm:grid-cols-2 sm:gap-10">
+            {footprintStats.map((stat, i) => (
+              <Reveal key={stat.id} delay={i * 100}>
+                <p className="font-display text-5xl font-semibold tracking-tight text-gold md:text-7xl">
+                  <CountUp
+                    value={stat.value.value}
+                    isPlaceholder={stat.value.isPlaceholder}
+                  />
+                </p>
+                <p className="mt-2 text-sm font-semibold uppercase tracking-[0.14em] text-pure-white/85">
+                  {stat.unitEn}
+                </p>
+                <p className="mt-1 text-sm text-pure-white/65">{stat.label}</p>
+                <p className="mt-4 text-[11px] uppercase tracking-[0.1em] text-pure-white/40">
+                  {footprintBasisLabel}
+                </p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Global Map */}
       <section className="bg-pure-white px-6 py-24 md:px-10 md:py-32">
+        <div className="mx-auto max-w-[1200px]">
+          <Reveal className="max-w-2xl">
+            <Eyebrow>LOVE ACROSS BORDERS</Eyebrow>
+            <h2 className="mt-6 font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
+              국경을 넘어 이어지는 순전한 마음
+            </h2>
+          </Reveal>
+          <Reveal delay={100} className="mt-12">
+            <GlobalMap />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Our Belief */}
+      <section className="bg-warm-ivory px-6 py-24 md:px-10 md:py-32">
         <div className="mx-auto grid max-w-[1400px] gap-12 md:grid-cols-2 md:gap-20">
           <Reveal className="flex flex-col justify-center">
             <Eyebrow>OUR BELIEF</Eyebrow>
@@ -61,8 +195,8 @@ export default function HomePage() {
             <div className="mt-8 flex flex-col gap-5 text-[15px] leading-relaxed text-charcoal/75 md:text-base">
               <p>
                 한 사람, 한 아이, 한 가정의 삶은 통계 속 숫자가 아니라 저마다의
-                이름과 이야기를 가진 소중한 존재입니다. 순전한 재단 MERE는
-                그 한 사람에게 진심으로 다가가는 것에서부터 변화가 시작된다고
+                이름과 이야기를 가진 소중한 존재입니다. 순전한재단 MERE는 그
+                한 사람에게 진심으로 다가가는 것에서부터 변화가 시작된다고
                 믿습니다.
               </p>
               <p>
@@ -83,8 +217,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. Why MERE */}
-      <section className="bg-warm-ivory px-6 py-24 md:px-10 md:py-32">
+      {/* Why MERE */}
+      <section className="bg-pure-white px-6 py-24 md:px-10 md:py-32">
         <div className="mx-auto max-w-[1400px]">
           <Reveal className="max-w-2xl">
             <Eyebrow>OUR PHILOSOPHY</Eyebrow>
@@ -120,14 +254,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. What We Do */}
-      <section className="bg-pure-white px-6 py-20 md:px-10 md:py-28">
+      {/* What We Do */}
+      <section className="bg-warm-ivory px-6 py-20 md:px-10 md:py-28">
         <div className="mx-auto max-w-[1400px]">
           <Reveal className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
             <div>
-              <Eyebrow>OUR WORK</Eyebrow>
+              <Eyebrow>WHAT WE DO</Eyebrow>
               <h2 className="mt-6 font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
-                우리가 하는 일
+                사랑을 말하는 것에서 멈추지 않습니다.
               </h2>
             </div>
             <Link
@@ -151,62 +285,256 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. MERE Impact */}
-      <ImpactStats />
-
-      {/* 6. MERE Stories */}
+      {/* Stories from the Field */}
       <section className="bg-pure-white px-6 py-24 md:px-10 md:py-32">
         <div className="mx-auto max-w-[1400px]">
-          <Reveal className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-            <div>
-              <Eyebrow>MERE STORIES</Eyebrow>
-              <h2 className="mt-6 font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
-                숫자 너머, 사람의 이야기
-              </h2>
-            </div>
-            <Link
-              href="/stories"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-forest hover:text-gold"
-            >
-              모든 이야기 보기 <span aria-hidden>→</span>
-            </Link>
+          <Reveal className="max-w-2xl">
+            <Eyebrow>STORIES FROM THE FIELD</Eyebrow>
+            <h2 className="mt-6 font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
+              우리의 이야기는 현장에서 시작됩니다.
+            </h2>
           </Reveal>
 
           <div className="mt-14 grid gap-12 md:grid-cols-3 md:gap-10">
-            {stories.slice(0, 3).map((story) => (
-              <StoryCard key={story.slug} story={story} />
+            {fieldStories.map((story, i) => (
+              <FieldCaseCard key={story.id} story={story} delay={i * 100} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* 7. Faith & Mission */}
+      {/* One Box, Many Hearts */}
+      <section className="bg-warm-ivory px-6 py-24 md:px-10 md:py-32">
+        <div className="mx-auto grid max-w-[1400px] gap-12 md:grid-cols-2 md:items-center md:gap-20">
+          <Reveal delay={100} className="order-1 md:order-2">
+            <div className="relative">
+              <Frame
+                src="/images/archive/clothing-support-01.jpg"
+                alt="선교 현장에 전달된 의류와 생활물품 (실제 활동사진 교체 예정)"
+                className="aspect-[4/5] w-full"
+              />
+              <div className="absolute left-4 top-4">
+                <PlaceholderBadge className="bg-pure-white/90" />
+              </div>
+            </div>
+            <p className="mt-3 text-[11px] text-charcoal/40">실제 활동사진 교체 예정</p>
+          </Reveal>
+          <Reveal className="order-2 flex flex-col justify-center md:order-1">
+            <Eyebrow>ONE BOX, MANY HEARTS</Eyebrow>
+            <h2 className="mt-6 text-balance font-display text-3xl font-medium leading-tight tracking-tight text-charcoal md:text-4xl">
+              하나의 옷이 누군가에게는 사랑이 됩니다.
+            </h2>
+            <p className="mt-8 font-display text-xl italic leading-relaxed text-forest md:text-2xl">
+              &ldquo;이 옷은 단순한 의류가 아니라
+              <br />
+              한국 교회의 따뜻한 사랑의 손길이었습니다.&rdquo;
+            </p>
+            <div className="mt-8 flex flex-col gap-4 text-[15px] leading-relaxed text-charcoal/75">
+              <p>
+                추운 지역의 선교 현장으로 전달된 의류와 생활물품은 단순한
+                물건에 그치지 않았습니다.
+              </p>
+              <p>
+                필요한 이웃에게는 따뜻한 겨울을 보낼 수 있는 힘이 되었고,
+                멀리 떨어진 누군가가 자신을 기억하고 있다는 위로가 되었습니다.
+              </p>
+              <p>
+                순전한재단은 물품 하나를 전달하는 일에서도 사람과 사람을
+                연결하고, 사랑이 실제 삶에 닿도록 노력합니다.
+              </p>
+            </div>
+            <Link
+              href="/stories/one-box-many-hearts"
+              className="mt-8 inline-flex w-fit items-center gap-2 text-sm font-semibold text-forest hover:text-gold"
+            >
+              나눔 이야기 더보기 <span aria-hidden>→</span>
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Our Values */}
+      <section className="bg-forest-dark px-6 py-24 text-pure-white md:px-10 md:py-32">
+        <div className="mx-auto max-w-[1400px]">
+          <Reveal className="max-w-2xl">
+            <Eyebrow tone="light">OUR VALUES</Eyebrow>
+            <h2 className="mt-6 font-display text-3xl font-medium tracking-tight md:text-5xl">
+              우리가 어떤 마음으로 일하는지가 중요합니다.
+            </h2>
+          </Reveal>
+
+          <div className="mt-16 flex flex-col divide-y divide-pure-white/10 border-y border-pure-white/10">
+            {ourValues.map((v, i) => (
+              <Reveal
+                key={v.mark}
+                delay={i * 70}
+                className="grid gap-2 py-8 sm:grid-cols-[100px_220px_1fr] sm:items-baseline sm:gap-6"
+              >
+                <span className="font-display text-3xl font-semibold text-gold">
+                  {v.mark}
+                </span>
+                <h3 className="font-display text-xl font-medium">
+                  {v.en} <span className="text-pure-white/60">{v.ko}</span>
+                </h3>
+                <p className="text-sm leading-relaxed text-pure-white/70">
+                  {v.line}
+                </p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Faith & Mission */}
       <section className="bg-warm-ivory px-6 py-24 md:px-10 md:py-32">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
-            <Eyebrow tone="gold">FAITH IN ACTION / LOVE IN ACTION</Eyebrow>
+            <Eyebrow tone="gold" className="text-center">
+              FAITH IN ACTION / LOVE IN ACTION
+            </Eyebrow>
             <h2 className="mt-6 text-balance font-display text-3xl font-medium leading-tight tracking-tight text-charcoal md:text-4xl">
               사랑은 말이 아니라
-              <br />삶으로 이어져야 합니다.
+              <br />
+              삶으로 이어져야 합니다.
             </h2>
             <p className="mx-auto mt-8 max-w-xl text-[15px] leading-relaxed text-charcoal/75 md:text-base">
-              순전한 재단 MERE는 기독교 정신에 바탕을 두고, 모든 사람이 있는
+              순전한재단 MERE는 기독교 정신에 바탕을 두고, 모든 사람이 있는
               모습 그대로 존중받아야 할 존재라고 믿습니다. 우리는 사랑과
               섬김이 말이 아닌 삶으로 드러나야 한다고 믿으며, 돕는 사람과
               도움을 받는 사람이라는 구분 없이, 함께 살아가는 이웃으로서
               서로를 마주합니다.
             </p>
-            <p className="mx-auto mt-10 max-w-xl font-display text-xl italic leading-relaxed text-forest md:text-2xl">
-              &ldquo;{orgInfo.verse.text}&rdquo;
-            </p>
-            <p className="mt-3 text-xs tracking-[0.14em] text-charcoal/45">
-              {orgInfo.verse.reference}
-            </p>
           </Reveal>
         </div>
       </section>
 
-      {/* 8. Partnership */}
+      {/* Church x Business x MERE */}
+      <section className="bg-pure-white px-6 py-24 md:px-10 md:py-32">
+        <div className="mx-auto max-w-[1400px]">
+          <Reveal className="max-w-2xl">
+            <Eyebrow>CHURCH × BUSINESS × MERE</Eyebrow>
+            <h2 className="mt-6 font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
+              선한 마음과 전문성이 만나면
+              <br />
+              더 큰 변화가 시작됩니다.
+            </h2>
+            <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-charcoal/75 md:text-base">
+              순전한재단은 교회와 기업, 전문기관이 각자의 강점을 나누어 더
+              지속적이고 실제적인 사회적 변화를 만들어갈 수 있도록 연결합니다.
+            </p>
+          </Reveal>
+
+          <Reveal delay={100} className="mt-16 flex flex-col items-center gap-6">
+            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8">
+              {churchBusinessNodes.map((node, i) => (
+                <div key={node.en} className="flex items-center gap-4 md:gap-8">
+                  <div className="flex h-32 w-32 flex-col items-center justify-center rounded-full border border-forest/30 bg-warm-ivory text-center md:h-40 md:w-40">
+                    <span className="font-display text-sm font-semibold text-forest md:text-base">
+                      {node.en}
+                    </span>
+                    <span className="mt-1 px-3 text-xs text-charcoal/60">
+                      {node.ko}
+                    </span>
+                  </div>
+                  {i < churchBusinessNodes.length - 1 ? (
+                    <span aria-hidden className="text-xl text-gold md:text-2xl">
+                      ＋
+                    </span>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+            <span aria-hidden className="text-2xl text-gold">
+              ↓
+            </span>
+            <div className="border border-gold/50 px-8 py-4 text-center">
+              <span className="font-display text-lg font-semibold tracking-tight text-forest md:text-xl">
+                SUSTAINABLE CHANGE
+              </span>
+            </div>
+          </Reveal>
+
+          <Reveal delay={160} className="mt-14 flex flex-wrap justify-center gap-4">
+            <Link
+              href="/contact?type=church"
+              className="inline-flex items-center gap-2 border border-forest px-6 py-3.5 text-sm font-semibold tracking-wide text-forest hover:bg-forest hover:text-pure-white"
+            >
+              교회 협력 문의
+            </Link>
+            <Link
+              href="/contact?type=csr"
+              className="inline-flex items-center gap-2 border border-forest px-6 py-3.5 text-sm font-semibold tracking-wide text-forest hover:bg-forest hover:text-pure-white"
+            >
+              기업 CSR 문의
+            </Link>
+            <Link
+              href="/contact?type=institution"
+              className="inline-flex items-center gap-2 border border-forest px-6 py-3.5 text-sm font-semibold tracking-wide text-forest hover:bg-forest hover:text-pure-white"
+            >
+              기관 Partnership 문의
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Partners in Change -- WELL International */}
+      <section className="bg-warm-ivory px-6 py-24 md:px-10 md:py-32">
+        <div className="mx-auto max-w-[1400px]">
+          <Reveal className="max-w-2xl">
+            <Eyebrow>PARTNERS IN CHANGE</Eyebrow>
+            <h2 className="mt-6 font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
+              혼자보다 함께할 때
+              <br />
+              더 멀리 갈 수 있습니다.
+            </h2>
+            <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-charcoal/75 md:text-base">
+              순전한재단은 전문성을 가진 국내외 선교·의료·교육 기관과
+              협력하여 필요한 곳에 더욱 효과적인 도움을 연결합니다.
+            </p>
+          </Reveal>
+
+          <Reveal
+            delay={100}
+            className="mt-14 grid gap-10 border-t border-sand-beige pt-12 md:grid-cols-[1fr_1.2fr] md:gap-16"
+          >
+            <div className="relative">
+              <Frame
+                src="/images/archive/well-international-01.jpg"
+                alt="WELL International 협력 활동 사진 (실제 활동사진 교체 예정)"
+                className="aspect-[4/3] w-full"
+              />
+              <div className="absolute left-4 top-4">
+                <PlaceholderBadge className="bg-pure-white/90" />
+              </div>
+            </div>
+            <div className="flex flex-col gap-5">
+              <p className="eyebrow text-xs text-gold">협력기관 · PARTNER ORGANIZATION</p>
+              <h3 className="font-display text-2xl font-medium text-charcoal">
+                WELL International
+                <span className="mt-1 block text-base font-medium text-charcoal/60">
+                  영원한 빛과 사랑의 샘 · Well of Eternal Love &amp; Light
+                </span>
+              </h3>
+              <p className="text-[15px] leading-relaxed text-charcoal/75">
+                WELL International은 순전한재단과 협력하는 독립된
+                선교·의료·교육 전문기관입니다. 순전한재단이 직접 운영하는
+                사업이 아니라, 각자의 전문성으로 함께 협력하는 파트너
+                네트워크입니다.
+              </p>
+              <ul className="flex flex-col gap-2 border-t border-sand-beige pt-4 text-sm text-charcoal/70">
+                {wellProgramAreas.map((line) => (
+                  <li key={line} className="flex gap-2">
+                    <span aria-hidden className="text-gold">·</span>
+                    {line}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Together with MERE (existing partnership types) */}
       <section className="bg-pure-white px-6 py-24 md:px-10 md:py-32">
         <div className="mx-auto max-w-[1400px]">
           <Reveal className="max-w-2xl">
@@ -236,7 +564,7 @@ export default function HomePage() {
 
           <Reveal delay={200} className="mt-14 flex flex-wrap gap-4">
             <Link
-              href="/contact"
+              href="/together"
               className="inline-flex items-center gap-2 bg-forest px-6 py-3.5 text-sm font-semibold tracking-wide text-pure-white hover:bg-forest-dark"
             >
               파트너십 문의 <span aria-hidden>→</span>
@@ -251,7 +579,111 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 9. Donation */}
+      {/* Current Projects */}
+      <section className="bg-warm-ivory px-6 py-24 md:px-10 md:py-32">
+        <div className="mx-auto max-w-[1400px]">
+          <Reveal className="max-w-2xl">
+            <Eyebrow>CURRENT PROJECTS</Eyebrow>
+            <h2 className="mt-6 font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
+              지금 진행 중인 프로젝트
+            </h2>
+          </Reveal>
+
+          <Reveal delay={100} className="mt-12">
+            {currentProjects.length > 0 ? (
+              <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+                {currentProjects.map((p) => (
+                  <div key={p.id} className="flex flex-col gap-4">
+                    <Frame src={p.image} alt={p.imageAlt} className="aspect-[4/3] w-full" />
+                    <h3 className="font-display text-lg text-charcoal">{p.titleKo}</h3>
+                    <p className="text-sm text-charcoal/65">{p.summary}</p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <PlaceholderPanel
+                title="현재 준비 중인 프로젝트 소식을 이 영역에 안내드릴 예정입니다."
+                description="새로운 프로젝트가 확정되는 대로 이 자리에 안내해드리겠습니다."
+              />
+            )}
+          </Reveal>
+        </div>
+      </section>
+
+      {/* MERE Stories */}
+      <section className="bg-pure-white px-6 py-24 md:px-10 md:py-32">
+        <div className="mx-auto max-w-[1400px]">
+          <Reveal className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <Eyebrow>MERE STORIES</Eyebrow>
+              <h2 className="mt-6 font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
+                숫자 너머, 사람의 이야기
+              </h2>
+            </div>
+            <Link
+              href="/stories"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-forest hover:text-gold"
+            >
+              모든 이야기 보기 <span aria-hidden>→</span>
+            </Link>
+          </Reveal>
+
+          <div className="mt-14 grid gap-12 md:grid-cols-3 md:gap-10">
+            {stories.slice(0, 3).map((story) => (
+              <StoryCard key={story.slug} story={story} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Archive teaser */}
+      <section className="bg-warm-ivory px-6 py-24 md:px-10 md:py-32">
+        <div className="mx-auto max-w-[1400px]">
+          <Reveal className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <Eyebrow>ARCHIVE</Eyebrow>
+              <h2 className="mt-6 font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
+                순전한재단의 기록
+              </h2>
+            </div>
+            <Link
+              href="/archive"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-forest hover:text-gold"
+            >
+              아카이브 전체 보기 <span aria-hidden>→</span>
+            </Link>
+          </Reveal>
+
+          {latestArchiveEdition ? (
+            <Reveal
+              delay={100}
+              className="mt-12 grid gap-8 border border-sand-beige bg-pure-white p-6 sm:grid-cols-[180px_1fr] sm:items-center md:p-10"
+            >
+              <Frame
+                src={latestArchiveEdition.coverImage}
+                alt={latestArchiveEdition.coverImageAlt}
+                className="aspect-[3/4] w-full"
+              />
+              <div className="flex flex-col gap-3">
+                <p className="font-display text-xl text-charcoal">
+                  {latestArchiveEdition.title.value}
+                </p>
+                <p className="text-sm leading-relaxed text-charcoal/65">
+                  {latestArchiveEdition.description.value}
+                </p>
+                <Link
+                  href="/archive#newsletter"
+                  className="mt-2 inline-flex w-fit items-center gap-2 text-sm font-semibold text-forest hover:text-gold"
+                >
+                  {latestArchiveEdition.year} 활동 이야기 보기 <span aria-hidden>→</span>
+                </Link>
+              </div>
+            </Reveal>
+          ) : null}
+        </div>
+      </section>
+
+      {/* Give With MERE */}
       <section className="relative flex min-h-[560px] items-center overflow-hidden bg-charcoal px-6 py-28 text-pure-white md:px-10">
         <Frame
           src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=2200&q=80"
@@ -262,10 +694,11 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-charcoal/70" />
         </Frame>
         <Reveal className="relative z-10 mx-auto max-w-2xl text-center">
-          <h2 className="text-balance font-display text-3xl font-medium leading-tight tracking-tight md:text-5xl">
+          <Eyebrow tone="light" className="text-center">GIVE WITH MERE</Eyebrow>
+          <h2 className="mt-6 text-balance font-display text-3xl font-medium leading-tight tracking-tight md:text-5xl">
             당신의 순전한 마음이
             <br />
-            누군가의 내일이 됩니다.
+            누군가의 내일을 바꿉니다.
           </h2>
           <p className="mx-auto mt-6 max-w-lg text-[15px] leading-relaxed text-pure-white/80 md:text-base">
             한 번의 나눔도, 오랜 시간 이어지는 동행도 변화의 시작이 될 수
@@ -294,7 +727,7 @@ export default function HomePage() {
         </Reveal>
       </section>
 
-      {/* 10. Transparency */}
+      {/* Transparency */}
       <section className="bg-warm-ivory px-6 py-24 md:px-10 md:py-32">
         <div className="mx-auto max-w-[1000px]">
           <Reveal>
@@ -317,7 +750,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 11. News */}
+      {/* MERE Impact */}
+      <ImpactStats />
+
+      {/* News */}
       <section className="bg-pure-white px-6 py-24 md:px-10 md:py-32">
         <div className="mx-auto max-w-[1400px]">
           <Reveal className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
@@ -343,31 +779,38 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 12. Final CTA */}
+      {/* Final CTA */}
       <section className="bg-forest-dark px-6 py-28 text-center text-pure-white md:px-10 md:py-36">
         <Reveal className="mx-auto max-w-3xl">
-          <h2 className="font-display text-[12vw] font-semibold leading-[0.95] tracking-tight sm:text-6xl md:text-7xl">
-            BE PART OF
+          <h2 className="font-display text-[11vw] font-semibold leading-[0.95] tracking-tight sm:text-6xl md:text-7xl">
+            A PURE HEART CAN
             <br />
-            SOMETHING MERE.
+            CHANGE A LIFE.
           </h2>
           <p className="mt-6 text-lg text-pure-white/75 md:text-xl">
-            순전한 마음이 세상을 바꿉니다.
+            한 사람을 향한 순전한 마음에서
+            <br className="hidden sm:block" />
+            세상의 변화는 시작됩니다.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-semibold tracking-wide">
             <Link href="/donate" className="underline underline-offset-4 hover:text-gold">
               후원하기
             </Link>
-            <Link href="/together#volunteer" className="underline underline-offset-4 hover:text-gold">
-              자원봉사
-            </Link>
             <Link href="/together" className="underline underline-offset-4 hover:text-gold">
-              파트너십
+              함께하기
             </Link>
-            <Link href="/contact" className="underline underline-offset-4 hover:text-gold">
-              문의하기
+            <Link
+              href="/together#corporate-partnership"
+              className="underline underline-offset-4 hover:text-gold"
+            >
+              기업·기관 Partnership
             </Link>
           </div>
+          <p className="mt-8 text-xs text-pure-white/50">
+            <Link href="/together#help" className="underline underline-offset-4 hover:text-gold">
+              도움이 필요하신가요? 함께 방법을 찾아보겠습니다 →
+            </Link>
+          </p>
         </Reveal>
       </section>
     </>

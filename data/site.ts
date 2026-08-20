@@ -71,6 +71,7 @@ export const mainNav: NavItem[] = [
   { label: "MERE STORIES", href: "/stories" },
   { label: "함께하기", href: "/together" },
   { label: "소식", href: "/news" },
+  { label: "ARCHIVE", href: "/archive" },
   { label: "문의", href: "/contact" },
 ];
 

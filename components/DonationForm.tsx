@@ -12,13 +12,42 @@ import { useState, type FormEvent } from "react";
  * PG such as Toss Payments / KG이니시스 / 카카오페이, or an email/CRM
  * webhook if MERE prefers manual processing at launch). Never store card
  * details on this client-side form.
+ *
+ * IMPORTANT: this form intentionally does NOT collect a resident
+ * registration number (주민등록번호), even though the printed 정기후원
+ * 신청서 has a field for it. Any information needed for donation-receipt
+ * issuance is collected later through a separate, secure process -- see
+ * the notice shown on the confirmation screen below.
  */
 const MONTHLY_AMOUNT_PRESETS = [30000, 50000, 100000];
 
+const PURPOSE_OPTIONS = [
+  { value: "general", label: "일반 후원 (용도 지정 안함)" },
+  { value: "mission", label: "해외선교 지정후원" },
+  { value: "education", label: "교육지원" },
+  { value: "emergency", label: "긴급구호" },
+  { value: "corporate", label: "기업·기관 후원" },
+  { value: "goods", label: "물품후원" },
+];
+
+const CMS_DAYS = [5, 15, 25];
+
+const FREQUENCY_OPTIONS = [
+  { value: "regular", label: "정기후원 (매월)" },
+  { value: "quarterly", label: "분기후원 (분기별)" },
+  { value: "onetime", label: "일시후원 (1회)" },
+] as const;
+
+type Frequency = (typeof FREQUENCY_OPTIONS)[number]["value"];
+
+const inputClass =
+  "border border-sand-beige bg-pure-white px-4 py-3 text-sm font-normal text-charcoal placeholder:text-charcoal/30 focus:border-forest";
+
 export default function DonationForm() {
   const [submitted, setSubmitted] = useState(false);
-  const [frequency, setFrequency] = useState<"regular" | "onetime">("regular");
+  const [frequency, setFrequency] = useState<Frequency>("regular");
   const [amount, setAmount] = useState<number | "">("");
+  const [cmsDay, setCmsDay] = useState<number>(25);
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -38,6 +67,10 @@ export default function DonationForm() {
           시스템 연동 완료 후 안내드릴 예정이며, 남겨주신 정보는 저장되지
           않았습니다.
         </p>
+        <p className="mt-5 border-t border-forest/15 pt-5 text-xs leading-relaxed text-charcoal/50">
+          기부금영수증 발급을 위한 추가정보는 별도의 안전한 절차를 통해
+          안내드립니다.
+        </p>
       </div>
     );
   }
@@ -48,54 +81,87 @@ export default function DonationForm() {
         <legend className="mb-1 text-sm font-semibold text-charcoal">
           후원 방식
         </legend>
-        <div className="flex gap-3">
-          <label
-            className={`flex-1 cursor-pointer border px-4 py-3 text-center text-sm font-medium transition-colors ${
-              frequency === "regular"
-                ? "border-forest bg-forest text-pure-white"
-                : "border-sand-beige text-charcoal/70"
-            }`}
-          >
-            <input
-              type="radio"
-              name="frequency"
-              value="regular"
-              checked={frequency === "regular"}
-              onChange={() => setFrequency("regular")}
-              className="sr-only"
-            />
-            정기후원 (매월)
-          </label>
-          <label
-            className={`flex-1 cursor-pointer border px-4 py-3 text-center text-sm font-medium transition-colors ${
-              frequency === "onetime"
-                ? "border-forest bg-forest text-pure-white"
-                : "border-sand-beige text-charcoal/70"
-            }`}
-          >
-            <input
-              type="radio"
-              name="frequency"
-              value="onetime"
-              checked={frequency === "onetime"}
-              onChange={() => setFrequency("onetime")}
-              className="sr-only"
-            />
-            일시후원 (1회)
-          </label>
+        <div className="flex flex-wrap gap-3">
+          {FREQUENCY_OPTIONS.map((opt) => (
+            <label
+              key={opt.value}
+              className={`min-w-[8.5rem] flex-1 cursor-pointer border px-4 py-3 text-center text-sm font-medium transition-colors ${
+                frequency === opt.value
+                  ? "border-forest bg-forest text-pure-white"
+                  : "border-sand-beige text-charcoal/70"
+              }`}
+            >
+              <input
+                type="radio"
+                name="frequency"
+                value={opt.value}
+                checked={frequency === opt.value}
+                onChange={() => setFrequency(opt.value)}
+                className="sr-only"
+              />
+              {opt.label}
+            </label>
+          ))}
         </div>
       </fieldset>
 
       <label className="flex flex-col gap-2 text-sm font-semibold text-charcoal">
-        이름
+        성명
         <input
           required
           type="text"
           name="name"
           autoComplete="name"
           placeholder="홍길동"
-          className="border border-sand-beige bg-pure-white px-4 py-3 text-sm font-normal text-charcoal placeholder:text-charcoal/30 focus:border-forest"
+          className={inputClass}
         />
+      </label>
+
+      <div className="grid gap-6 sm:grid-cols-2">
+        <label className="flex flex-col gap-2 text-sm font-semibold text-charcoal">
+          휴대전화
+          <input
+            required
+            type="tel"
+            name="phone"
+            autoComplete="tel"
+            placeholder="010-0000-0000"
+            className={inputClass}
+          />
+        </label>
+        <label className="flex flex-col gap-2 text-sm font-semibold text-charcoal">
+          이메일
+          <input
+            required
+            type="email"
+            name="email"
+            autoComplete="email"
+            placeholder="you@example.com"
+            className={inputClass}
+          />
+        </label>
+      </div>
+
+      <label className="flex flex-col gap-2 text-sm font-semibold text-charcoal">
+        주소
+        <input
+          type="text"
+          name="address"
+          autoComplete="street-address"
+          placeholder="주소를 입력해주세요"
+          className={inputClass}
+        />
+      </label>
+
+      <label className="flex flex-col gap-2 text-sm font-semibold text-charcoal">
+        후원 목적 (선택)
+        <select name="purpose" defaultValue="general" className={inputClass}>
+          {PURPOSE_OPTIONS.map((p) => (
+            <option key={p.value} value={p.value}>
+              {p.label}
+            </option>
+          ))}
+        </select>
       </label>
 
       <div className="flex flex-col gap-3">
@@ -134,19 +200,53 @@ export default function DonationForm() {
           onChange={(e) =>
             setAmount(e.target.value === "" ? "" : Number(e.target.value))
           }
-          className="border border-sand-beige bg-pure-white px-4 py-3 text-sm font-normal text-charcoal placeholder:text-charcoal/30 focus:border-forest"
+          className={inputClass}
         />
       </div>
 
-      <label className="flex flex-col gap-2 text-sm font-semibold text-charcoal">
-        연락처 (선택)
+      {frequency !== "onetime" && (
+        <fieldset className="flex flex-col gap-3">
+          <legend className="mb-1 text-sm font-semibold text-charcoal">
+            CMS 희망 납부일
+          </legend>
+          <div className="flex gap-3">
+            {CMS_DAYS.map((day) => (
+              <label
+                key={day}
+                className={`flex-1 cursor-pointer border px-4 py-3 text-center text-sm font-medium transition-colors ${
+                  cmsDay === day
+                    ? "border-forest bg-forest text-pure-white"
+                    : "border-sand-beige text-charcoal/70"
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="cmsDay"
+                  value={day}
+                  checked={cmsDay === day}
+                  onChange={() => setCmsDay(day)}
+                  className="sr-only"
+                />
+                매월 {day}일
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      )}
+
+      <label className="flex items-start gap-3 text-sm leading-relaxed text-charcoal/70">
         <input
-          type="tel"
-          name="phone"
-          autoComplete="tel"
-          placeholder="010-0000-0000"
-          className="border border-sand-beige bg-pure-white px-4 py-3 text-sm font-normal text-charcoal placeholder:text-charcoal/30 focus:border-forest"
+          required
+          type="checkbox"
+          name="privacyAgree"
+          className="mt-0.5 h-4 w-4 shrink-0 accent-forest"
         />
+        <span>
+          개인정보 수집 및 이용에 동의합니다.{" "}
+          <span className="text-charcoal/45">
+            (후원 의사 확인 및 연락 목적, 필수)
+          </span>
+        </span>
       </label>
 
       <button

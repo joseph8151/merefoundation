@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
@@ -7,7 +8,7 @@ import { orgInfo } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "문의",
-  description: "순전한 재단 MERE에 대한 문의는 아래 양식을 이용해주세요.",
+  description: "순전한재단 MERE에 대한 문의는 아래 양식을 이용해주세요.",
 };
 
 export default function ContactPage() {
@@ -21,6 +22,29 @@ export default function ContactPage() {
       />
 
       <div className="mx-auto max-w-[1400px] px-6 py-16 md:px-10 md:py-24">
+        {/* Mobile-friendly quick actions -- real tel:/mailto: links, tappable
+            immediately without going through the form. */}
+        <Reveal className="mb-14 grid gap-3 sm:grid-cols-3">
+          <a
+            href={`tel:${orgInfo.phone.value.replace(/-/g, "")}`}
+            className="flex items-center justify-between gap-3 border border-forest bg-forest px-5 py-4 text-sm font-semibold text-pure-white transition-colors hover:bg-forest-dark"
+          >
+            전화하기 <span aria-hidden>→</span>
+          </a>
+          <a
+            href={`mailto:${orgInfo.email.value}`}
+            className="flex items-center justify-between gap-3 border border-forest px-5 py-4 text-sm font-semibold text-forest transition-colors hover:bg-forest hover:text-pure-white"
+          >
+            이메일 보내기 <span aria-hidden>→</span>
+          </a>
+          <Link
+            href="/donate"
+            className="flex items-center justify-between gap-3 border border-sand-beige px-5 py-4 text-sm font-semibold text-charcoal transition-colors hover:border-forest hover:text-forest"
+          >
+            후원하기 <span aria-hidden>→</span>
+          </Link>
+        </Reveal>
+
         <div className="grid gap-16 lg:grid-cols-[1fr_1.3fr] lg:gap-20">
           <Reveal className="flex flex-col gap-8">
             <div>
@@ -36,14 +60,18 @@ export default function ContactPage() {
                 <div>
                   <dt className="text-charcoal/45">대표전화</dt>
                   <dd className="mt-1 flex items-center gap-2 text-charcoal/80">
-                    {orgInfo.phone.value}
+                    <a href={`tel:${orgInfo.phone.value.replace(/-/g, "")}`} className="hover:text-forest">
+                      {orgInfo.phone.value}
+                    </a>
                     {orgInfo.phone.isPlaceholder && <PlaceholderBadge />}
                   </dd>
                 </div>
                 <div>
                   <dt className="text-charcoal/45">이메일</dt>
                   <dd className="mt-1 flex items-center gap-2 text-charcoal/80">
-                    {orgInfo.email.value}
+                    <a href={`mailto:${orgInfo.email.value}`} className="hover:text-forest">
+                      {orgInfo.email.value}
+                    </a>
                     {orgInfo.email.isPlaceholder && <PlaceholderBadge />}
                   </dd>
                 </div>

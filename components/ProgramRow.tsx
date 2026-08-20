@@ -49,14 +49,16 @@ export default function ProgramRow({
         <p className="text-[15px] leading-relaxed text-charcoal/75">
           {program.summary}
         </p>
-        <ul className="flex flex-col gap-2 border-t border-sand-beige pt-4 text-sm text-charcoal/70">
-          {program.lines.map((line) => (
-            <li key={line} className="flex gap-2">
-              <span aria-hidden className="text-gold">·</span>
-              {line}
-            </li>
-          ))}
-        </ul>
+        {program.lines.length > 0 ? (
+          <ul className="flex flex-col gap-2 border-t border-sand-beige pt-4 text-sm text-charcoal/70">
+            {program.lines.map((line) => (
+              <li key={line} className="flex gap-2">
+                <span aria-hidden className="text-gold">·</span>
+                {line}
+              </li>
+            ))}
+          </ul>
+        ) : null}
         {linkTo ? (
           <Link
             href={linkTo}
