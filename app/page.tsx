@@ -589,8 +589,47 @@ export default function HomePage() {
             </h2>
           </Reveal>
 
-          <Reveal delay={100} className="mt-12">
-            {currentProjects.length > 0 ? (
+          {currentProjects.length === 0 ? (
+            <Reveal delay={100} className="mt-12">
+              <PlaceholderPanel
+                title="현재 준비 중인 프로젝트 소식을 이 영역에 안내드릴 예정입니다."
+                description="새로운 프로젝트가 확정되는 대로 이 자리에 안내해드리겠습니다."
+              />
+            </Reveal>
+          ) : currentProjects.length === 1 ? (
+            (() => {
+              const p = currentProjects[0];
+              return (
+                <Reveal delay={100} className="mt-14 grid gap-12 md:grid-cols-2 md:gap-16 md:items-center">
+                  <Frame src={p.image} alt={p.imageAlt} className="aspect-[4/3] w-full" />
+                  <div>
+                    <p className="eyebrow text-xs text-gold">{p.titleEn}</p>
+                    <h3 className="mt-3 font-display text-2xl font-medium text-charcoal md:text-3xl">
+                      {p.titleKo}
+                    </h3>
+                    <div className="mt-6 flex flex-col gap-4 text-[15px] leading-relaxed text-charcoal/75">
+                      {(p.body ?? [p.summary]).map((paragraph, i) => (
+                        <p key={i}>{paragraph}</p>
+                      ))}
+                    </div>
+                    {p.highlights && p.highlights.length > 0 && (
+                      <div className="mt-8 flex flex-col gap-2 border-t border-sand-beige pt-6">
+                        {p.highlights.map((h) => (
+                          <p
+                            key={h}
+                            className="text-sm font-semibold tracking-tight text-forest"
+                          >
+                            {h}
+                          </p>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </Reveal>
+              );
+            })()
+          ) : (
+            <Reveal delay={100} className="mt-12">
               <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
                 {currentProjects.map((p) => (
                   <div key={p.id} className="flex flex-col gap-4">
@@ -600,13 +639,15 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-            ) : (
-              <PlaceholderPanel
-                title="현재 준비 중인 프로젝트 소식을 이 영역에 안내드릴 예정입니다."
-                description="새로운 프로젝트가 확정되는 대로 이 자리에 안내해드리겠습니다."
-              />
-            )}
-          </Reveal>
+            </Reveal>
+          )}
+
+          {currentProjects.length > 0 && (
+            <Reveal delay={160} className="mt-12 text-sm text-charcoal/50">
+              새로운 프로젝트와 현지 지원 소식은 이곳을 통해 지속적으로
+              안내해드리겠습니다.
+            </Reveal>
+          )}
         </div>
       </section>
 
