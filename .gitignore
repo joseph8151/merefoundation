@@ -40,5 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# local-only QA helper (session-specific paths, not part of the app)
+# local-only QA helpers (session-specific paths, not part of the app)
 /qa-screenshot.mjs
+/qa-screenshot-v2.mjs
+/qa-home-scroll.mjs

@@ -172,7 +172,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1200px]">
           <Reveal className="max-w-2xl">
             <Eyebrow>LOVE ACROSS BORDERS</Eyebrow>
-            <h2 className="mt-6 font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
+            <h2 className="mt-6 text-balance font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
               국경을 넘어 이어지는 순전한 마음
             </h2>
           </Reveal>
@@ -222,7 +222,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1400px]">
           <Reveal className="max-w-2xl">
             <Eyebrow>OUR PHILOSOPHY</Eyebrow>
-            <h2 className="mt-6 font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
+            <h2 className="mt-6 text-balance font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
               Why MERE?
             </h2>
             <p className="mt-6 text-[15px] leading-relaxed text-charcoal/75 md:text-base">
@@ -260,7 +260,7 @@ export default function HomePage() {
           <Reveal className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
             <div>
               <Eyebrow>WHAT WE DO</Eyebrow>
-              <h2 className="mt-6 font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
+              <h2 className="mt-6 text-balance font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
                 사랑을 말하는 것에서 멈추지 않습니다.
               </h2>
             </div>
@@ -290,7 +290,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1400px]">
           <Reveal className="max-w-2xl">
             <Eyebrow>STORIES FROM THE FIELD</Eyebrow>
-            <h2 className="mt-6 font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
+            <h2 className="mt-6 text-balance font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
               우리의 이야기는 현장에서 시작됩니다.
             </h2>
           </Reveal>
@@ -413,9 +413,9 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1400px]">
           <Reveal className="max-w-2xl">
             <Eyebrow>CHURCH × BUSINESS × MERE</Eyebrow>
-            <h2 className="mt-6 font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
-              선한 마음과 전문성이 만나면
-              <br />
+            <h2 className="mt-6 text-balance font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
+              선한 마음과 전문성이 만나면{" "}
+              <br className="hidden md:block" />
               더 큰 변화가 시작됩니다.
             </h2>
             <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-charcoal/75 md:text-base">
@@ -482,7 +482,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1400px]">
           <Reveal className="max-w-2xl">
             <Eyebrow>PARTNERS IN CHANGE</Eyebrow>
-            <h2 className="mt-6 font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
+            <h2 className="mt-6 text-balance font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
               혼자보다 함께할 때
               <br />
               더 멀리 갈 수 있습니다.
@@ -539,7 +539,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1400px]">
           <Reveal className="max-w-2xl">
             <Eyebrow>TOGETHER WITH MERE</Eyebrow>
-            <h2 className="mt-6 font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
+            <h2 className="mt-6 text-balance font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
               더 큰 변화는
               <br />
               함께할 때 가능합니다.
@@ -584,7 +584,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1400px]">
           <Reveal className="max-w-2xl">
             <Eyebrow>CURRENT PROJECTS</Eyebrow>
-            <h2 className="mt-6 font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
+            <h2 className="mt-6 text-balance font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
               지금 진행 중인 프로젝트
             </h2>
           </Reveal>
@@ -657,7 +657,7 @@ export default function HomePage() {
           <Reveal className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
             <div>
               <Eyebrow>MERE STORIES</Eyebrow>
-              <h2 className="mt-6 font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
+              <h2 className="mt-6 text-balance font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
                 숫자 너머, 사람의 이야기
               </h2>
             </div>
@@ -683,7 +683,7 @@ export default function HomePage() {
           <Reveal className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
             <div>
               <Eyebrow>ARCHIVE</Eyebrow>
-              <h2 className="mt-6 font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
+              <h2 className="mt-6 text-balance font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
                 순전한재단의 기록
               </h2>
             </div>
@@ -773,7 +773,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1000px]">
           <Reveal>
             <Eyebrow>TRANSPARENCY</Eyebrow>
-            <h2 className="mt-6 font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
+            <h2 className="mt-6 text-balance font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
               신뢰할 수 있는 나눔을 위해
             </h2>
           </Reveal>
@@ -800,7 +800,7 @@ export default function HomePage() {
           <Reveal className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
             <div>
               <Eyebrow>MERE NEWS</Eyebrow>
-              <h2 className="mt-6 font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
+              <h2 className="mt-6 text-balance font-display text-3xl font-medium tracking-tight text-charcoal md:text-5xl">
                 소식
               </h2>
             </div>
@@ -829,7 +829,7 @@ export default function HomePage() {
             CHANGE A LIFE.
           </h2>
           <p className="mt-6 text-lg text-pure-white/75 md:text-xl">
-            한 사람을 향한 순전한 마음에서
+            한 사람을 향한 순전한 마음에서{" "}
             <br className="hidden sm:block" />
             세상의 변화는 시작됩니다.
           </p>
