@@ -1,15 +1,18 @@
 "use client";
 
 import { useEffect, useState, type FormEvent } from "react";
+import { orgInfo } from "@/data/site";
 
 /**
- * Client-side only contact form. No backend is wired up yet.
+ * Client-side only contact form. No backend is wired up yet, so submitting
+ * builds a mailto: draft addressed to the foundation's real inbox instead --
+ * the visitor still has to press send in their own mail app, but the
+ * message reaches someone rather than vanishing.
  *
- * TODO (backend): wire this up to a real endpoint before launch -- e.g. an
- * app/api/contact/route.ts that sends an email via a transactional email
- * service (Resend, SendGrid, AWS SES, ...) or forwards to a CRM/Slack
- * webhook. Right now submitting only shows a local confirmation message;
- * nothing is sent anywhere.
+ * TODO (backend): replace the mailto: handoff with a real endpoint before
+ * launch -- e.g. an app/api/contact/route.ts that sends via a transactional
+ * email service (Resend, SendGrid, AWS SES, ...) or forwards to a CRM/Slack
+ * webhook.
  *
  * 문의유형 preselect: other pages can link here as `/contact?type=csr`
  * (etc.) to preselect an inquiry type. Since this site is a fully static
@@ -33,6 +36,7 @@ const INQUIRY_TYPES = [
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [mailtoHref, setMailtoHref] = useState("");
   const [type, setType] = useState<string>("general");
 
   useEffect(() => {
@@ -52,18 +56,42 @@ export default function ContactForm() {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // TODO: replace with a real fetch("/api/contact", { method: "POST", ... })
+    // TODO (backend): replace this mailto: handoff with a real
+    // fetch("/api/contact", { method: "POST", ... }) once one exists.
+    const form = new FormData(e.currentTarget);
+    const name = String(form.get("name") ?? "");
+    const email = String(form.get("email") ?? "");
+    const message = String(form.get("message") ?? "");
+    const typeLabel = INQUIRY_TYPES.find((t) => t.value === type)?.label ?? type;
+
+    const subject = `[MERE 문의] ${typeLabel} - ${name}`;
+    const body = [`이름: ${name}`, `이메일: ${email}`, `문의유형: ${typeLabel}`, "", message].join(
+      "\n"
+    );
+    setMailtoHref(
+      `mailto:${orgInfo.email.value}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    );
     setSubmitted(true);
   }
 
   if (submitted) {
     return (
       <div className="border border-forest/30 bg-warm-ivory p-8 text-center">
-        <p className="font-display text-xl text-forest">문의가 접수되었습니다.</p>
+        <p className="font-display text-xl text-forest">문의 내용이 준비되었습니다.</p>
         <p className="mt-3 text-sm leading-relaxed text-charcoal/60">
-          현재 문의 접수 시스템은 준비 중입니다. 빠른 시일 내 담당자가 회신
-          드릴 수 있도록 시스템을 정비하고 있으며, 남겨주신 내용은 저장되지
-          않았습니다. 급한 문의는 이메일로 직접 연락해주세요.
+          현재 온라인 접수 시스템은 준비 중입니다. 아래 버튼을 누르면 작성하신
+          내용이 담긴 이메일이 열립니다 -- 이메일 앱에서 보내기를 눌러주셔야
+          실제로 접수됩니다.
+        </p>
+        <a
+          href={mailtoHref}
+          className="mt-6 inline-flex items-center justify-center gap-2 bg-forest px-6 py-4 text-sm font-semibold tracking-wide text-pure-white hover:bg-forest-dark"
+        >
+          이메일 앱에서 보내기 <span aria-hidden>→</span>
+        </a>
+        <p className="mt-4 text-xs leading-relaxed text-charcoal/45">
+          이메일 앱이 자동으로 열리지 않으면 {orgInfo.email.value} 로 직접
+          보내주세요.
         </p>
       </div>
     );
@@ -129,7 +157,8 @@ export default function ContactForm() {
         문의 보내기 <span aria-hidden>→</span>
       </button>
       <p className="text-xs leading-relaxed text-charcoal/45">
-        ※ 현재는 백엔드 연동 전 단계로, 실제로 문의가 전송되지 않습니다.
+        ※ 현재는 온라인 접수 시스템 연동 전 단계로, 제출 시 작성하신 내용이
+        담긴 이메일이 열립니다. 이메일 앱에서 보내기를 눌러야 접수됩니다.
       </p>
     </form>
   );

@@ -205,12 +205,17 @@ export default function AboutPage() {
                   오시는 길
                 </h2>
                 <div className="mt-8 grid gap-8 md:grid-cols-[1fr_1fr]">
-                  <div
-                    aria-hidden
-                    className="flex aspect-[4/3] w-full flex-col items-center justify-center gap-2 border border-dashed border-gold/50 bg-sand-beige text-charcoal/40"
-                  >
-                    <span className="text-sm">지도 영역 (준비 중)</span>
-                    <span className="text-xs">실제 지도 embed로 교체 예정</span>
+                  <div className="aspect-[4/3] w-full overflow-hidden border border-sand-beige bg-sand-beige">
+                    <iframe
+                      title={`${orgInfo.nameKo} 위치 지도`}
+                      src={`https://maps.google.com/maps?q=${encodeURIComponent(
+                        orgInfo.address.value
+                      )}&output=embed`}
+                      className="h-full w-full grayscale-[15%]"
+                      style={{ border: 0 }}
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
                   </div>
                   <div className="flex flex-col justify-center gap-3">
                     <p className="eyebrow text-xs text-gold">ADDRESS</p>
@@ -220,6 +225,16 @@ export default function AboutPage() {
                     <p className="text-sm text-charcoal/60">
                       Tel. {orgInfo.phone.value}
                     </p>
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                        orgInfo.address.value
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-forest underline decoration-gold/50 underline-offset-4 hover:text-gold"
+                    >
+                      지도 앱에서 크게 보기 →
+                    </a>
                   </div>
                 </div>
               </Reveal>

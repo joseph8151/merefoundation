@@ -1,16 +1,17 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { orgInfo } from "@/data/site";
 
 /**
  * Donation *intent* form only. There is no payment gateway wired up yet --
- * this simply captures the visitor's intent locally so the layout/UX is
- * ready for a real integration later.
+ * submitting builds a mailto: draft addressed to the foundation's real
+ * inbox so the intent actually reaches someone, rather than a real
+ * transfer/payment flow.
  *
- * TODO (backend/payments): replace the onSubmit handler below with a real
+ * TODO (backend/payments): replace the mailto: handoff below with a real
  * call to a payment gateway (e.g. an app/api/donate route that talks to a
- * PG such as Toss Payments / KG이니시스 / 카카오페이, or an email/CRM
- * webhook if MERE prefers manual processing at launch). Never store card
+ * PG such as Toss Payments / KG이니시스 / 카카오페이). Never store card
  * details on this client-side form.
  *
  * IMPORTANT: this form intentionally does NOT collect a resident
@@ -45,14 +46,40 @@ const inputClass =
 
 export default function DonationForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [mailtoHref, setMailtoHref] = useState("");
   const [frequency, setFrequency] = useState<Frequency>("regular");
   const [amount, setAmount] = useState<number | "">("");
   const [cmsDay, setCmsDay] = useState<number>(25);
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // TODO: send to a real backend / payment gateway. For now we only
-    // acknowledge the intent locally -- nothing is transmitted anywhere.
+    // TODO (backend/payments): replace this mailto: handoff with a real
+    // payment-gateway call once one exists.
+    const form = new FormData(e.currentTarget);
+    const name = String(form.get("name") ?? "");
+    const phone = String(form.get("phone") ?? "");
+    const email = String(form.get("email") ?? "");
+    const address = String(form.get("address") ?? "");
+    const purposeValue = String(form.get("purpose") ?? "general");
+    const purposeLabel = PURPOSE_OPTIONS.find((p) => p.value === purposeValue)?.label ?? purposeValue;
+    const frequencyLabel = FREQUENCY_OPTIONS.find((f) => f.value === frequency)?.label ?? frequency;
+
+    const subject = `[MERE 후원의사] ${frequencyLabel} - ${name}`;
+    const body = [
+      `후원 방식: ${frequencyLabel}`,
+      `성명: ${name}`,
+      `휴대전화: ${phone}`,
+      `이메일: ${email}`,
+      address ? `주소: ${address}` : null,
+      `후원 목적: ${purposeLabel}`,
+      `희망 금액: ${amount === "" ? "(미입력)" : `${Number(amount).toLocaleString()}원`}`,
+      frequency !== "onetime" ? `CMS 희망 납부일: 매월 ${cmsDay}일` : null,
+    ]
+      .filter(Boolean)
+      .join("\n");
+    setMailtoHref(
+      `mailto:${orgInfo.email.value}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    );
     setSubmitted(true);
   }
 
@@ -60,12 +87,22 @@ export default function DonationForm() {
     return (
       <div className="border border-forest/30 bg-warm-ivory p-8 text-center">
         <p className="font-display text-xl text-forest">
-          후원 의사를 남겨주셔서 감사합니다.
+          후원 의사가 준비되었습니다.
         </p>
         <p className="mt-3 text-sm leading-relaxed text-charcoal/60">
-          현재 온라인 결제 시스템은 준비 중입니다. 실제 후원 절차는 결제
-          시스템 연동 완료 후 안내드릴 예정이며, 남겨주신 정보는 저장되지
-          않았습니다.
+          현재 온라인 결제 시스템은 준비 중입니다. 아래 버튼을 누르면 작성하신
+          내용이 담긴 이메일이 열립니다 -- 이메일 앱에서 보내기를 눌러주셔야
+          담당자에게 실제로 전달됩니다.
+        </p>
+        <a
+          href={mailtoHref}
+          className="mt-6 inline-flex items-center justify-center gap-2 bg-forest px-6 py-4 text-sm font-semibold tracking-wide text-pure-white hover:bg-forest-dark"
+        >
+          이메일 앱에서 보내기 <span aria-hidden>→</span>
+        </a>
+        <p className="mt-4 text-xs leading-relaxed text-charcoal/45">
+          이메일 앱이 자동으로 열리지 않으면 {orgInfo.email.value} 로 직접
+          보내주세요.
         </p>
         <p className="mt-5 border-t border-forest/15 pt-5 text-xs leading-relaxed text-charcoal/50">
           기부금영수증 발급을 위한 추가정보는 별도의 안전한 절차를 통해
@@ -257,7 +294,8 @@ export default function DonationForm() {
       </button>
       <p className="text-xs leading-relaxed text-charcoal/45">
         ※ 현재는 결제 시스템 연동 전 단계로, 실제 결제가 진행되지 않습니다.
-        본 폼은 향후 결제 시스템(PG) 연동을 위한 레이아웃입니다.
+        제출 시 작성하신 내용이 담긴 이메일이 열리며, 이메일 앱에서 보내기를
+        눌러야 담당자에게 전달됩니다.
       </p>
     </form>
   );
