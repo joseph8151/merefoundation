@@ -96,7 +96,7 @@ need to touch any component or page file to update text, images, or numbers
 | `data/programs.ts` | The 6 "WHAT WE DO" program areas (title, description, photo, bullet lines) shown on the homepage and `/what-we-do` |
 | `data/impactStats.ts` | The 4 "MERE Impact" counters |
 | `data/footprint.ts` | The "OUR FOOTPRINT" numbers (27 countries / 45 regions) and their basis-year caption, shown on the homepage |
-| `data/footprintCountries.ts` | Country markers shown on the homepage "LOVE ACROSS BORDERS" world map (`components/GlobalMap.tsx`) |
+| `data/footprintCountries.ts` | Country markers shown on the homepage "LOVE ACROSS BORDERS" world map (`components/GlobalMap.tsx`). The land outline itself is real geography (Natural Earth data), pre-generated into `lib/worldMapPath.ts` -- see `scripts/generate-world-map-path.mjs` if it ever needs regenerating. |
 | `data/fieldStories.ts` | The 3 real "STORIES FROM THE FIELD" case studies (Guatemala / Myanmar / Kazakhstan) on the homepage |
 | `data/stories.ts` | "MERE STORIES" articles (index + detail pages), including the real "One Box, Many Hearts" clothing-donation story |
 | `data/archive.ts` | Newsletter/소식지 editions shown on `/archive` and the homepage ARCHIVE teaser |

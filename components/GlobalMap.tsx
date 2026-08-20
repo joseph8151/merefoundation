@@ -3,11 +3,17 @@
 import { useState } from "react";
 import { cn } from "@/lib/cn";
 import { footprintCountries } from "@/data/footprintCountries";
+import { worldMapPath } from "@/lib/worldMapPath";
 
 /**
- * Lightweight, brand-styled world map. No external map library/tiles --
- * just a hand-simplified continent silhouette (inline SVG) plus markers
- * positioned with a simple equirectangular projection:
+ * Lightweight, brand-styled world map. No map library/tiles/runtime
+ * dependency -- the land outline is a real geography path (Natural Earth
+ * 110m land data via world-atlas, public domain) pre-generated at dev time
+ * with d3-geo (see scripts/generate-world-map-path.mjs) and pasted into
+ * lib/worldMapPath.ts as a plain string, so nothing extra ships to the
+ * browser. It's projected with the same simple equirectangular projection
+ * fitted to a 1000x500 box, so it lines up exactly with the marker formula
+ * used below:
  *   x = (lng + 180) / 360 * width
  *   y = (90 - lat) / 180 * height
  *
@@ -28,17 +34,13 @@ export default function GlobalMap() {
           aria-hidden
           className="absolute inset-0 h-full w-full"
         >
-          {/* Stylized, simplified continent silhouettes -- not intended to
-              be cartographically precise, matching the simplified world-map
-              aesthetic already used in the foundation's printed materials. */}
-          <g fill="var(--color-sand-beige)" stroke="var(--color-pure-white)" strokeWidth="2">
-            <path d="M120,50 C180,35 240,45 265,80 C290,115 280,150 255,175 Q230,200 195,195 C165,190 140,175 120,150 C100,120 90,80 120,50 Z" />
-            <path d="M235,230 C270,220 300,240 310,280 C320,330 315,380 290,420 C270,445 240,440 225,405 C210,365 210,300 220,260 C225,248 230,238 235,230 Z" />
-            <path d="M470,60 C510,45 550,55 565,80 C575,100 560,120 530,120 C500,120 470,105 465,85 C463,75 465,68 470,60 Z" />
-            <path d="M480,150 C530,140 575,160 595,210 C615,270 605,330 575,375 C550,410 510,405 490,365 C468,320 460,240 470,180 C473,170 476,160 480,150 Z" />
-            <path d="M560,35 C660,15 790,25 870,70 C920,100 925,150 890,180 C830,220 720,215 650,190 C600,170 570,130 560,90 C555,70 555,50 560,35 Z" />
-            <path d="M790,330 C835,318 880,330 900,360 C912,382 895,405 860,408 C825,410 795,392 788,365 C785,352 786,340 790,330 Z" />
-          </g>
+          <path
+            d={worldMapPath}
+            fill="var(--color-sand-beige)"
+            stroke="var(--color-pure-white)"
+            strokeWidth="0.75"
+            strokeLinejoin="round"
+          />
         </svg>
 
         {footprintCountries.map((c) => {
