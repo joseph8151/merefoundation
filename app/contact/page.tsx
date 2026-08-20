@@ -29,19 +29,22 @@ export default function ContactPage() {
                 <div>
                   <dt className="text-charcoal/45">주소</dt>
                   <dd className="mt-1 flex items-center gap-2 text-charcoal/80">
-                    {orgInfo.address.value} <PlaceholderBadge />
+                    {orgInfo.address.value}
+                    {orgInfo.address.isPlaceholder && <PlaceholderBadge />}
                   </dd>
                 </div>
                 <div>
                   <dt className="text-charcoal/45">대표전화</dt>
                   <dd className="mt-1 flex items-center gap-2 text-charcoal/80">
-                    {orgInfo.phone.value} <PlaceholderBadge />
+                    {orgInfo.phone.value}
+                    {orgInfo.phone.isPlaceholder && <PlaceholderBadge />}
                   </dd>
                 </div>
                 <div>
                   <dt className="text-charcoal/45">이메일</dt>
                   <dd className="mt-1 flex items-center gap-2 text-charcoal/80">
-                    {orgInfo.email.value} <PlaceholderBadge />
+                    {orgInfo.email.value}
+                    {orgInfo.email.isPlaceholder && <PlaceholderBadge />}
                   </dd>
                 </div>
               </dl>

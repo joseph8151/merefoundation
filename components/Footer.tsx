@@ -72,11 +72,6 @@ export default function Footer() {
           <div className="flex flex-col gap-3">
             <p className="eyebrow text-xs text-gold">ORGANIZATION</p>
             <InfoRow
-              label="대표자"
-              value={orgInfo.representativeName.value}
-              isPlaceholder={orgInfo.representativeName.isPlaceholder}
-            />
-            <InfoRow
               label="사업자등록번호"
               value={orgInfo.businessRegistrationNumber.value}
               isPlaceholder={orgInfo.businessRegistrationNumber.isPlaceholder}

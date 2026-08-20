@@ -70,7 +70,9 @@ export default function DonatePage() {
                   <p>{orgInfo.bankAccount.value.bank} {orgInfo.bankAccount.value.number}</p>
                   <p className="mt-1 text-charcoal/50">예금주: {orgInfo.bankAccount.value.holder}</p>
                 </div>
-                <PlaceholderBadge className="ml-auto shrink-0" />
+                {orgInfo.bankAccount.isPlaceholder && (
+                  <PlaceholderBadge className="ml-auto shrink-0" />
+                )}
               </div>
             </Reveal>
           </div>

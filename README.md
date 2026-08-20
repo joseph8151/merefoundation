@@ -157,18 +157,20 @@ just make sure the image host is added to `remotePatterns` in
 ### Replacing placeholder org info
 
 `data/site.ts` → `orgInfo` holds the foundation's address, phone, email,
-business/corporation registration numbers, representative name, and bank
-account. Update each `value` and flip `isPlaceholder` to `false` once
-confirmed.
+business/corporation registration numbers, and bank account. Each field is
+wrapped with `confirmed(...)` once it's real, or `placeholder(...)` while
+still unconfirmed — flip between the two as facts get confirmed.
+
+### Videos
+
+`data/videos.ts` lists YouTube videos embedded on the About page — each
+entry is just the video's 11-character YouTube id plus a caption.
 
 ## Known placeholders still needed before launch
 
-- Organization address, phone, fax, email (`data/site.ts`)
 - Business registration number / corporation registration number (`data/site.ts`)
-- Representative (대표자) name and the 대표인사말 greeting letter + photo (`app/about/page.tsx`)
 - Organization chart / board & office structure details (`app/about/page.tsx`, "조직 및 운영")
-- Map/address for "오시는 길" (`app/about/page.tsx`)
-- Donation bank account details (`data/site.ts`)
+- Map embed for "오시는 길" (`app/about/page.tsx`) — address/phone are already real
 - Real impact numbers (`data/impactStats.ts`)
 - Real transparency reports/PDFs (`data/transparency.ts`)
 - SNS links (Instagram/YouTube/Blog) (`data/site.ts`)

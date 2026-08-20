@@ -9,29 +9,33 @@
 // 절대로 실제처럼 보이는 가짜 숫자/주소/사업자번호를 입력하지 마세요.
 // ---------------------------------------------------------------------------
 
-import { placeholder, type Placeholder } from "@/lib/types";
+import { placeholder, confirmed, type MaybePlaceholder } from "@/lib/types";
 
 export const orgInfo = {
   nameKo: "순전한 재단",
   nameEn: "MERE FOUNDATION",
   mark: "MERE",
   tagline: "For People. For Communities. For Tomorrow.",
+  // 마태복음 10:8 -- 재단 슬로건으로 사용
+  verse: {
+    text: "너희가 거저 받았으니 거저 주라",
+    reference: "마태복음 10:8",
+  },
 
-  address: placeholder("재단 주소를 입력해주세요 (예: 서울특별시 OO구 OO로 00, 0층)"),
+  address: confirmed("경기도 성남시 분당구 이매로 132, 3교육관 1층 순전한 재단"),
   addressEn: placeholder("Foundation address to be added"),
-  phone: placeholder("000-0000-0000"),
+  phone: confirmed("031-789-8840"),
   fax: placeholder("000-0000-0000"),
-  email: placeholder("info@merefoundation.example"),
+  email: confirmed("jesus_mere@naver.com"),
 
-  // 사업자등록번호 / 고유번호 등 법인 관련 정보
+  // 사업자등록번호 / 고유번호 등 법인 관련 정보 -- 후원 신청서에는 없어 아직 placeholder
   businessRegistrationNumber: placeholder("000-00-00000"),
   corporationRegistrationNumber: placeholder("000000-0000000"),
-  representativeName: placeholder("[대표자 성함]"),
 
-  bankAccount: placeholder({
-    bank: "은행명 입력",
-    number: "000-0000-0000-00",
-    holder: "순전한재단",
+  bankAccount: confirmed({
+    bank: "수협은행",
+    number: "1010-2749-9731",
+    holder: "순전한 재단",
   }),
 
   sns: {
@@ -44,15 +48,15 @@ export const orgInfo = {
   nameEn: string;
   mark: string;
   tagline: string;
-  address: Placeholder<string>;
-  addressEn: Placeholder<string>;
-  phone: Placeholder<string>;
-  fax: Placeholder<string>;
-  email: Placeholder<string>;
-  businessRegistrationNumber: Placeholder<string>;
-  corporationRegistrationNumber: Placeholder<string>;
-  representativeName: Placeholder<string>;
-  bankAccount: Placeholder<{ bank: string; number: string; holder: string }>;
+  verse: { text: string; reference: string };
+  address: MaybePlaceholder<string>;
+  addressEn: MaybePlaceholder<string>;
+  phone: MaybePlaceholder<string>;
+  fax: MaybePlaceholder<string>;
+  email: MaybePlaceholder<string>;
+  businessRegistrationNumber: MaybePlaceholder<string>;
+  corporationRegistrationNumber: MaybePlaceholder<string>;
+  bankAccount: MaybePlaceholder<{ bank: string; number: string; holder: string }>;
   sns: { instagram: string; youtube: string; blog: string };
 };
 

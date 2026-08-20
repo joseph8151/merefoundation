@@ -14,6 +14,7 @@ import { stories } from "@/data/stories";
 import { newsItems } from "@/data/news";
 import { partnershipTypes } from "@/data/partnership";
 import { transparencyItems } from "@/data/transparency";
+import { orgInfo } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "순전한 마음에서 변화는 시작됩니다",
@@ -194,6 +195,12 @@ export default function HomePage() {
               섬김이 말이 아닌 삶으로 드러나야 한다고 믿으며, 돕는 사람과
               도움을 받는 사람이라는 구분 없이, 함께 살아가는 이웃으로서
               서로를 마주합니다.
+            </p>
+            <p className="mx-auto mt-10 max-w-xl font-display text-xl italic leading-relaxed text-forest md:text-2xl">
+              &ldquo;{orgInfo.verse.text}&rdquo;
+            </p>
+            <p className="mt-3 text-xs tracking-[0.14em] text-charcoal/45">
+              {orgInfo.verse.reference}
             </p>
           </Reveal>
         </div>

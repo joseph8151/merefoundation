@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
 import InPageNav from "@/components/InPageNav";
 import Reveal from "@/components/Reveal";
-import Frame from "@/components/Frame";
-import { PlaceholderBadge, PlaceholderPanel } from "@/components/PlaceholderNote";
+import VideoEmbed from "@/components/VideoEmbed";
 import { orgInfo } from "@/data/site";
+import { videos } from "@/data/videos";
 
 export const metadata: Metadata = {
   title: "재단소개",
@@ -14,9 +14,9 @@ export const metadata: Metadata = {
 
 const sections = [
   { id: "founding", label: "설립취지" },
+  { id: "videos", label: "영상으로 만나는 MERE" },
   { id: "mission-vision", label: "Mission & Vision" },
   { id: "core-values", label: "핵심가치" },
-  { id: "greeting", label: "대표인사말" },
   { id: "organization", label: "조직 및 운영" },
   { id: "location", label: "오시는 길" },
 ];
@@ -66,6 +66,25 @@ export default function AboutPage() {
                   </p>
                 </div>
               </Reveal>
+            </section>
+
+            {/* 영상으로 만나는 MERE */}
+            <section id="videos" className="scroll-mt-28">
+              <Reveal>
+                <h2 className="font-display text-2xl font-medium text-charcoal md:text-3xl">
+                  영상으로 만나는 MERE
+                </h2>
+                <p className="mt-4 text-[15px] leading-relaxed text-charcoal/70">
+                  순전한 재단 MERE의 이야기를 영상으로도 만나보세요.
+                </p>
+              </Reveal>
+              <div className="mt-8 grid gap-8 md:grid-cols-2">
+                {videos.map((video, i) => (
+                  <Reveal key={video.youtubeId} delay={i * 80}>
+                    <VideoEmbed video={video} />
+                  </Reveal>
+                ))}
+              </div>
             </section>
 
             {/* Mission & Vision */}
@@ -120,44 +139,6 @@ export default function AboutPage() {
               </div>
             </section>
 
-            {/* 대표인사말 */}
-            <section id="greeting" className="scroll-mt-28">
-              <Reveal>
-                <h2 className="font-display text-2xl font-medium text-charcoal md:text-3xl">
-                  대표인사말
-                </h2>
-              </Reveal>
-              <Reveal delay={80} className="mt-8 grid gap-10 md:grid-cols-[280px_1fr]">
-                <Frame
-                  src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=80"
-                  alt="대표자 인물 사진 (준비 중 — 실제 사진으로 교체 필요)"
-                  className="aspect-[4/5] w-full max-w-[280px]"
-                />
-                <div>
-                  <PlaceholderBadge className="mb-4" />
-                  <div className="flex flex-col gap-4 text-[15px] leading-relaxed text-charcoal/75">
-                    <p>
-                      안녕하십니까. 순전한 재단 MERE를 찾아주신 여러분께
-                      깊이 감사드립니다.
-                    </p>
-                    <p>
-                      우리 재단은 순전한 마음으로 이웃의 오늘을 함께하고,
-                      더 나은 내일을 만들어가고자 하는 뜻으로 시작되었습니다.
-                      앞으로도 한 사람 한 사람을 소중히 여기는 마음으로
-                      걸어가겠습니다. 많은 관심과 동행 부탁드립니다.
-                    </p>
-                    <p className="text-charcoal/50">
-                      [대표자 성함] 드림
-                    </p>
-                  </div>
-                  <p className="mt-4 text-xs text-charcoal/40">
-                    ※ 위 인사말은 예시 템플릿입니다. 대표자 확정 및 검수 후
-                    실제 인사말과 성함, 사진으로 교체해주세요.
-                  </p>
-                </div>
-              </Reveal>
-            </section>
-
             {/* 조직 및 운영 */}
             <section id="organization" className="scroll-mt-28">
               <Reveal>
@@ -195,11 +176,14 @@ export default function AboutPage() {
                     <span className="text-sm">지도 영역 (준비 중)</span>
                     <span className="text-xs">실제 지도 embed로 교체 예정</span>
                   </div>
-                  <div className="flex flex-col justify-center gap-4">
-                    <PlaceholderPanel
-                      title={orgInfo.address.value}
-                      description="정확한 주소가 확정되는 대로 이 영역을 실제 주소와 지도로 교체해주세요."
-                    />
+                  <div className="flex flex-col justify-center gap-3">
+                    <p className="eyebrow text-xs text-gold">ADDRESS</p>
+                    <p className="font-display text-lg text-charcoal">
+                      {orgInfo.address.value}
+                    </p>
+                    <p className="text-sm text-charcoal/60">
+                      Tel. {orgInfo.phone.value}
+                    </p>
                   </div>
                 </div>
               </Reveal>
