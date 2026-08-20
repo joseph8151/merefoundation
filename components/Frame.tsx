@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
@@ -17,9 +20,11 @@ type FrameProps = {
 
 /**
  * Wraps every editorial photo in a Sand Beige backdrop so that a failed
- * remote image load (Unsplash placeholder swapped out later, network
- * hiccup, etc.) never breaks the layout -- the frame simply shows as a
- * warm neutral panel instead of a broken-image icon.
+ * image load (a local placeholder path with no file uploaded yet, an
+ * Unsplash URL swapped out, a network hiccup) never shows the browser's
+ * broken-image icon -- it falls back to a quiet line-art illustration
+ * instead, so an unfilled photo slot still reads as an intentional design
+ * choice rather than something broken.
  */
 export default function Frame({
   src,
@@ -32,9 +37,13 @@ export default function Frame({
   priority = false,
   children,
 }: FrameProps) {
+  const [failed, setFailed] = useState(false);
+
   return (
     <div className={cn("relative overflow-hidden bg-sand-beige", className)}>
-      {fill ? (
+      {failed ? (
+        <PhotoPendingIllustration />
+      ) : fill ? (
         <Image
           src={src}
           alt={alt}
@@ -42,6 +51,7 @@ export default function Frame({
           sizes={sizes}
           className="object-cover"
           priority={priority}
+          onError={() => setFailed(true)}
         />
       ) : (
         <Image
@@ -52,9 +62,45 @@ export default function Frame({
           sizes={sizes}
           className="h-full w-full object-cover"
           priority={priority}
+          onError={() => setFailed(true)}
         />
       )}
       {children}
+    </div>
+  );
+}
+
+function PhotoPendingIllustration() {
+  return (
+    <div
+      aria-hidden
+      className="absolute inset-0 flex items-center justify-center bg-sand-beige"
+    >
+      <svg
+        viewBox="0 0 120 90"
+        className="h-1/3 max-h-24 w-1/3 max-w-32 min-h-12 min-w-16"
+        fill="none"
+      >
+        <rect
+          x="4"
+          y="4"
+          width="112"
+          height="82"
+          rx="2"
+          stroke="var(--color-forest)"
+          strokeOpacity="0.35"
+          strokeWidth="2"
+        />
+        <circle cx="34" cy="30" r="9" stroke="var(--color-gold)" strokeWidth="2" />
+        <path
+          d="M4 68 L38 44 L64 62 L84 40 L116 66"
+          stroke="var(--color-forest)"
+          strokeOpacity="0.35"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
     </div>
   );
 }
