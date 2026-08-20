@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local-only QA helper (session-specific paths, not part of the app)
+/qa-screenshot.mjs
