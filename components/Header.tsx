@@ -113,7 +113,7 @@ export default function Header() {
       <div
         id="mobile-menu"
         className={cn(
-          "fixed inset-0 top-0 z-40 flex flex-col bg-forest text-pure-white transition-opacity duration-300 lg:hidden",
+          "fixed inset-0 top-0 z-40 flex flex-col overflow-y-auto bg-forest text-pure-white transition-opacity duration-300 lg:hidden",
           menuOpen
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"

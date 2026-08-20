@@ -55,13 +55,18 @@ export default function GlobalMap() {
               onClick={() => setActiveId(isActive ? null : c.id)}
               aria-pressed={isActive}
               aria-label={`${c.nameKo} (${c.nameEn})`}
-              className={cn(
-                "absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-2 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold",
-                isActive
-                  ? "h-4 w-4 border-gold bg-gold shadow-[0_0_0_6px_rgba(184,160,113,0.25)]"
-                  : "h-3 w-3 border-forest bg-forest hover:h-3.5 hover:w-3.5 hover:border-gold hover:bg-gold"
-              )}
-            />
+              className="group absolute flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+            >
+              <span
+                aria-hidden
+                className={cn(
+                  "rounded-full border-2 transition-all duration-300",
+                  isActive
+                    ? "h-4 w-4 border-gold bg-gold shadow-[0_0_0_6px_rgba(184,160,113,0.25)]"
+                    : "h-3 w-3 border-forest bg-forest group-hover:h-3.5 group-hover:w-3.5 group-hover:border-gold group-hover:bg-gold"
+                )}
+              />
+            </button>
           );
         })}
       </div>
