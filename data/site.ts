@@ -26,10 +26,11 @@ export const orgInfo = {
   addressEn: placeholder("Foundation address to be added"),
   phone: confirmed("031-789-8840"),
   fax: placeholder("000-0000-0000"),
-  email: confirmed("jesus_mere@naver.com"),
+  email: confirmed("sunjeonhan.foundation@gmail.com"),
 
-  // 사업자등록번호 / 고유번호 등 법인 관련 정보 -- 후원 신청서에는 없어 아직 placeholder
-  businessRegistrationNumber: placeholder("000-00-00000"),
+  // 국세청 고유번호 (비영리단체용, 사업자등록번호 아님) -- 고유번호증 확인됨
+  businessRegistrationNumber: confirmed("310-82-78207"),
+  // 법인등록번호는 고유번호증만으로는 확인되지 않아 아직 placeholder
   corporationRegistrationNumber: placeholder("000000-0000000"),
 
   bankAccount: confirmed({

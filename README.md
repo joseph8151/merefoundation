@@ -194,7 +194,9 @@ photo in at the exact path below (same filename) and it appears automatically
 
 ## Known placeholders still needed before launch
 
-- Business registration number / corporation registration number (`data/site.ts`)
+- Corporation registration number (`data/site.ts`) — the 고유번호 (National Tax
+  Service unique number for non-profits, 310-82-78207) is now confirmed; the
+  separate 법인등록번호 is still unconfirmed
 - Organization chart / board & office structure details (`app/about/page.tsx`, "조직 및 운영")
 - Map embed for "오시는 길" (`app/about/page.tsx`) — address/phone are already real
 - Real impact numbers (`data/impactStats.ts`) — note this is separate from the
