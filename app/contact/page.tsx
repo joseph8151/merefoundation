@@ -9,6 +9,7 @@ import { orgInfo } from "@/data/site";
 export const metadata: Metadata = {
   title: "문의",
   description: "순전한재단 MERE에 대한 문의는 아래 양식을 이용해주세요.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {

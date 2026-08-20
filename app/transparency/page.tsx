@@ -7,6 +7,7 @@ import { transparencyItems } from "@/data/transparency";
 export const metadata: Metadata = {
   title: "투명성",
   description: "신뢰할 수 있는 나눔을 위한 순전한 재단 MERE의 투명성 자료.",
+  alternates: { canonical: "/transparency" },
 };
 
 export default function TransparencyPage() {

@@ -7,6 +7,7 @@ import { partnershipTypes } from "@/data/partnership";
 export const metadata: Metadata = {
   title: "함께하기",
   description: "개인, 기업, 교회·기관 — 각자의 자리에서 MERE와 함께하는 방법.",
+  alternates: { canonical: "/together" },
 };
 
 const audiences = [

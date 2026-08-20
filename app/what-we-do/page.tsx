@@ -9,6 +9,7 @@ import { programs } from "@/data/programs";
 export const metadata: Metadata = {
   title: "우리가 하는 일",
   description: "순전한재단 MERE의 6가지 사업 영역을 소개합니다.",
+  alternates: { canonical: "/what-we-do" },
 };
 
 export default function WhatWeDoPage() {

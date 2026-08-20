@@ -112,6 +112,7 @@ export default function Header() {
       {/* Mobile full-screen menu overlay */}
       <div
         id="mobile-menu"
+        inert={menuOpen ? undefined : true}
         className={cn(
           "fixed inset-0 top-0 z-40 flex flex-col overflow-y-auto bg-forest text-pure-white transition-opacity duration-300 lg:hidden",
           menuOpen

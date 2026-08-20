@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "재단소개",
   description:
     "순전한 재단 MERE의 설립취지, Mission & Vision, 핵심가치와 조직 소개.",
+  alternates: { canonical: "/about" },
 };
 
 const sections = [

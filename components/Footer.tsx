@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { orgInfo, footerLinks, mainNav } from "@/data/site";
 import { PlaceholderBadge } from "@/components/PlaceholderNote";
 
@@ -19,6 +20,49 @@ function InfoRow({
       </span>
       {isPlaceholder ? <PlaceholderBadge className="border-gold/40 bg-transparent text-gold" /> : null}
     </div>
+  );
+}
+
+/**
+ * SNS 링크가 아직 확정되지 않은 경우("#") 클릭해도 아무 일도 일어나지 않는
+ * 죽은 링크로 보이지 않도록, 실제 URL이 채워지기 전까지는 비활성 상태의
+ * <span>으로 렌더링한다.
+ */
+function SnsIcon({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: ReactNode;
+}) {
+  const isReady = href !== "#";
+  const className =
+    "flex h-9 w-9 items-center justify-center border border-pure-white/25 text-xs text-pure-white/80";
+
+  if (!isReady) {
+    return (
+      <span
+        aria-label={`${label} (준비 중)`}
+        aria-disabled="true"
+        className={`${className} cursor-default opacity-50`}
+      >
+        {children}
+      </span>
+    );
+  }
+
+  return (
+    <a
+      href={href}
+      aria-label={label}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`${className} hover:border-gold hover:text-gold`}
+    >
+      {children}
+    </a>
   );
 }
 
@@ -47,27 +91,15 @@ export default function Footer() {
               <Link href="/what-we-do" className="hover:text-gold">GO</Link>
             </div>
             <div className="mt-6 flex gap-4">
-              <a
-                href={orgInfo.sns.instagram}
-                aria-label="Instagram (준비 중)"
-                className="flex h-9 w-9 items-center justify-center border border-pure-white/25 text-xs text-pure-white/80 hover:border-gold hover:text-gold"
-              >
+              <SnsIcon href={orgInfo.sns.instagram} label="Instagram">
                 IG
-              </a>
-              <a
-                href={orgInfo.sns.youtube}
-                aria-label="YouTube (준비 중)"
-                className="flex h-9 w-9 items-center justify-center border border-pure-white/25 text-xs text-pure-white/80 hover:border-gold hover:text-gold"
-              >
+              </SnsIcon>
+              <SnsIcon href={orgInfo.sns.youtube} label="YouTube">
                 YT
-              </a>
-              <a
-                href={orgInfo.sns.blog}
-                aria-label="블로그 (준비 중)"
-                className="flex h-9 w-9 items-center justify-center border border-pure-white/25 text-xs text-pure-white/80 hover:border-gold hover:text-gold"
-              >
+              </SnsIcon>
+              <SnsIcon href={orgInfo.sns.blog} label="블로그">
                 BL
-              </a>
+              </SnsIcon>
             </div>
           </div>
 

@@ -12,7 +12,10 @@
   --color-forest: #29463a;
   --color-forest-dark: #1d332a;
   --color-charcoal: #252525;
-  --color-gold: #b8a071;
+  /* Deepened from #b8a071 to meet WCAG AA (4.5:1) for gold text on white/ivory --
+     the original shade sat around 2.5:1, too light for small text like eyebrow
+     labels. Still muted gold; only the depth changed. */
+  --color-gold: #827150;
 
   --background: var(--color-pure-white);
   --foreground: var(--color-charcoal);

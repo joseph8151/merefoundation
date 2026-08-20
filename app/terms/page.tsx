@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "이용약관",
   description: "순전한 재단 MERE 이용약관 (준비 중).",
   robots: { index: false, follow: true },
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {

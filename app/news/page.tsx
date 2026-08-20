@@ -6,6 +6,7 @@ import { newsItems } from "@/data/news";
 export const metadata: Metadata = {
   title: "소식",
   description: "순전한 재단 MERE의 활동소식, 공지사항, 언론보도를 전합니다.",
+  alternates: { canonical: "/news" },
 };
 
 export default function NewsPage() {

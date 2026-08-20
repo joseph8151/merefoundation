@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "아카이브",
   description:
     "순전한재단이 걸어온 활동의 기록 -- 활동보고, 나눔 이야기, 해외 활동, 소식지, 재정보고, 후원금 사용내역.",
+  alternates: { canonical: "/archive" },
 };
 
 const sections = [

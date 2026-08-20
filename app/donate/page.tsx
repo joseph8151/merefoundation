@@ -9,6 +9,7 @@ import { orgInfo } from "@/data/site";
 export const metadata: Metadata = {
   title: "후원",
   description: "정기후원과 일시후원으로 순전한재단 MERE와 함께해주세요.",
+  alternates: { canonical: "/donate" },
 };
 
 const donationTypes = [

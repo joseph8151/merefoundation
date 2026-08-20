@@ -6,6 +6,7 @@ import { stories } from "@/data/stories";
 export const metadata: Metadata = {
   title: "MERE STORIES",
   description: "순전한 재단 MERE가 함께한 사람들의 이야기.",
+  alternates: { canonical: "/stories" },
 };
 
 export default function StoriesPage() {

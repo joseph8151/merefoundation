@@ -32,6 +32,7 @@ export const metadata: Metadata = {
   title: "순전한 마음에서 변화는 시작됩니다",
   description:
     "순전한재단 MERE는 도움이 필요한 이웃의 오늘을 함께하고 더 나은 내일을 만들어가는 비영리재단입니다.",
+  alternates: { canonical: "/" },
 };
 
 const philosophy = [
