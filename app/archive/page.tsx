@@ -4,6 +4,7 @@ import InPageNav from "@/components/InPageNav";
 import Reveal from "@/components/Reveal";
 import Frame from "@/components/Frame";
 import { PlaceholderPanel, PlaceholderBadge } from "@/components/PlaceholderNote";
+import { pendingArtFor } from "@/components/PendingIllustrations";
 import { archiveEditions } from "@/data/archive";
 
 export const metadata: Metadata = {
@@ -97,11 +98,17 @@ export default function ArchivePage() {
                     delay={i * 80}
                     className="flex flex-col border border-sand-beige"
                   >
-                    <Frame
-                      src={edition.coverImage}
-                      alt={edition.coverImageAlt}
-                      className="aspect-[3/4] w-full"
-                    />
+                    <div className="relative">
+                      <Frame
+                        src={edition.coverImage}
+                        alt={edition.coverImageAlt}
+                        className="aspect-[3/4] w-full"
+                        pendingArt={pendingArtFor("newsletter")}
+                      />
+                      <div className="absolute left-4 top-4">
+                        <PlaceholderBadge className="bg-pure-white/90" />
+                      </div>
+                    </div>
                     <div className="flex flex-1 flex-col gap-3 p-6">
                       <p className="font-display text-lg text-charcoal">
                         {edition.title.value}

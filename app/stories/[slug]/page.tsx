@@ -6,6 +6,7 @@ import Reveal from "@/components/Reveal";
 import Eyebrow from "@/components/Eyebrow";
 import StoryCard from "@/components/StoryCard";
 import { PlaceholderBadge } from "@/components/PlaceholderNote";
+import { pendingArtFor } from "@/components/PendingIllustrations";
 import { stories } from "@/data/stories";
 
 type Params = { slug: string };
@@ -48,7 +49,12 @@ export default async function StoryDetailPage({
   return (
     <article>
       <div className="relative h-[56vh] min-h-[380px] w-full overflow-hidden bg-sand-beige">
-        <Frame src={story.image} alt={story.imageAlt} className="absolute inset-0" />
+        <Frame
+          src={story.image}
+          alt={story.imageAlt}
+          className="absolute inset-0"
+          pendingArt={pendingArtFor(story.theme)}
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/10 to-transparent" />
         {story.imagePending ? (
           <div className="absolute right-4 top-4 z-10 sm:right-6 sm:top-6">

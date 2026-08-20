@@ -15,6 +15,7 @@ import CountUp from "@/components/CountUp";
 import ScriptureMoment from "@/components/ScriptureMoment";
 import PrayAcknowledgeButton from "@/components/PrayAcknowledgeButton";
 import { PlaceholderBadge, PlaceholderPanel } from "@/components/PlaceholderNote";
+import { pendingArtFor } from "@/components/PendingIllustrations";
 import { programs } from "@/data/programs";
 import { stories } from "@/data/stories";
 import { newsItems } from "@/data/news";
@@ -504,6 +505,7 @@ export default function HomePage() {
                 src="/images/archive/clothing-support-01.jpg"
                 alt="선교 현장에 전달된 의류와 생활물품 (실제 활동사진 교체 예정)"
                 className="aspect-[4/5] w-full"
+                pendingArt={pendingArtFor("clothing")}
               />
               <div className="absolute left-4 top-4">
                 <PlaceholderBadge className="bg-pure-white/90" />
@@ -830,6 +832,7 @@ export default function HomePage() {
                 src="/images/archive/well-international-01.jpg"
                 alt="WELL International 협력 활동 사진 (실제 활동사진 교체 예정)"
                 className="aspect-[4/3] w-full"
+                pendingArt={pendingArtFor("partnership")}
               />
               <div className="absolute left-4 top-4">
                 <PlaceholderBadge className="bg-pure-white/90" />
@@ -960,7 +963,17 @@ export default function HomePage() {
               const p = currentProjects[0];
               return (
                 <Reveal delay={100} className="mt-14 grid gap-12 md:grid-cols-2 md:gap-16 md:items-center">
-                  <Frame src={p.image} alt={p.imageAlt} className="aspect-[4/3] w-full" />
+                  <div className="relative">
+                    <Frame
+                      src={p.image}
+                      alt={p.imageAlt}
+                      className="aspect-[4/3] w-full"
+                      pendingArt={pendingArtFor(p.theme)}
+                    />
+                    <div className="absolute left-4 top-4">
+                      <PlaceholderBadge className="bg-pure-white/90" />
+                    </div>
+                  </div>
                   <div>
                     <p className="eyebrow text-xs text-gold">{p.titleEn}</p>
                     <h3 className="mt-3 font-display text-2xl font-medium text-charcoal md:text-3xl">
@@ -992,7 +1005,17 @@ export default function HomePage() {
               <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
                 {currentProjects.map((p) => (
                   <div key={p.id} className="flex flex-col gap-4">
-                    <Frame src={p.image} alt={p.imageAlt} className="aspect-[4/3] w-full" />
+                    <div className="relative">
+                      <Frame
+                        src={p.image}
+                        alt={p.imageAlt}
+                        className="aspect-[4/3] w-full"
+                        pendingArt={pendingArtFor(p.theme)}
+                      />
+                      <div className="absolute left-4 top-4">
+                        <PlaceholderBadge className="bg-pure-white/90" />
+                      </div>
+                    </div>
                     <h3 className="font-display text-lg text-charcoal">{p.titleKo}</h3>
                     <p className="text-sm text-charcoal/65">{p.summary}</p>
                   </div>
@@ -1108,6 +1131,7 @@ export default function HomePage() {
                 src={latestArchiveEdition.coverImage}
                 alt={latestArchiveEdition.coverImageAlt}
                 className="aspect-[3/4] w-full"
+                pendingArt={pendingArtFor("newsletter")}
               />
               <div className="flex flex-col gap-3">
                 <p className="font-display text-xl text-charcoal">

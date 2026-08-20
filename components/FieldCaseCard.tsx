@@ -1,6 +1,7 @@
 import Frame from "@/components/Frame";
 import Reveal from "@/components/Reveal";
 import { PlaceholderBadge } from "@/components/PlaceholderNote";
+import { pendingArtFor } from "@/components/PendingIllustrations";
 import type { FieldStory } from "@/data/fieldStories";
 
 export default function FieldCaseCard({
@@ -13,7 +14,12 @@ export default function FieldCaseCard({
   return (
     <Reveal delay={delay} className="flex flex-col">
       <div className="relative">
-        <Frame src={story.image} alt={story.imageAlt} className="aspect-[4/5] w-full" />
+        <Frame
+          src={story.image}
+          alt={story.imageAlt}
+          className="aspect-[4/5] w-full"
+          pendingArt={pendingArtFor(story.theme)}
+        />
         <div className="absolute left-4 top-4">
           <PlaceholderBadge className="bg-pure-white/90" />
         </div>

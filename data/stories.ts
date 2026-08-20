@@ -41,6 +41,8 @@ export type Story = {
     change: string;
   };
   imagePending?: boolean;
+  /** Themed stand-in illustration shown while the real photo is pending -- see components/PendingIllustrations.tsx */
+  theme?: "education" | "mission" | "network" | "relief" | "clothing" | "partnership" | "newsletter";
 };
 
 export const stories: Story[] = [
@@ -109,6 +111,7 @@ export const stories: Story[] = [
     image: "/images/archive/clothing-support-01.jpg",
     imageAlt: "선교 현장에 전달된 의류와 생활물품 (실제 활동사진 교체 예정)",
     imagePending: true,
+    theme: "clothing",
     body: [
       "추운 지역의 선교 현장으로 전달된 의류와 생활물품은 단순한 물건에 그치지 않았습니다.",
       "필요한 이웃에게는 따뜻한 겨울을 보낼 수 있는 힘이 되었고, 멀리 떨어진 누군가가 자신을 기억하고 있다는 위로가 되었습니다.",
@@ -139,6 +142,7 @@ export const stories: Story[] = [
     image: "/images/archive/clothing-support-01.jpg",
     imageAlt: "선교 현장으로 전달을 위해 포장된 상자와 물품 (실제 활동사진 교체 예정)",
     imagePending: true,
+    theme: "clothing",
     body: [
       "이 이야기는 순전한재단의 실제 의류·생활물품 지원 활동(One Box, Many Hearts)을 간증의 시선으로 다시 나눈 이야기입니다.",
       "한국에서 준비된 옷과 생활용품이 멀리 떨어진 한 마을에 도착했습니다.",

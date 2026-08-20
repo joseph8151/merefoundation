@@ -16,6 +16,12 @@ type FrameProps = {
   priority?: boolean;
   /** Optional overlay content rendered above the image (e.g. a dark scrim). */
   children?: ReactNode;
+  /**
+   * Themed illustration to show instead of the generic PhotoPendingIllustration
+   * when the image fails to load (see components/PendingIllustrations.tsx).
+   * Falls back to the generic illustration when omitted.
+   */
+  pendingArt?: ReactNode;
 };
 
 /**
@@ -36,13 +42,14 @@ export default function Frame({
   sizes = "(min-width: 1024px) 50vw, 100vw",
   priority = false,
   children,
+  pendingArt,
 }: FrameProps) {
   const [failed, setFailed] = useState(false);
 
   return (
     <div className={cn("relative overflow-hidden bg-sand-beige", className)}>
       {failed ? (
-        <PhotoPendingIllustration />
+        (pendingArt ?? <PhotoPendingIllustration />)
       ) : fill ? (
         <Image
           src={src}

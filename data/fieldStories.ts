@@ -20,6 +20,8 @@ export type FieldStory = {
   footerCaption: string;
   image: string;
   imageAlt: string;
+  /** Themed stand-in illustration shown while the real photo is pending -- see components/PendingIllustrations.tsx */
+  theme: "education" | "mission" | "network";
 };
 
 export const fieldStories: FieldStory[] = [
@@ -35,6 +37,7 @@ export const fieldStories: FieldStory[] = [
     footerCaption: "Guatemala · Education · Next Generation",
     image: "/images/archive/guatemala-01.jpg",
     imageAlt: "과테말라 현지 교육 활동 사진 (실제 활동사진 교체 예정)",
+    theme: "education",
   },
   {
     id: "myanmar",
@@ -48,6 +51,7 @@ export const fieldStories: FieldStory[] = [
     footerCaption: "Myanmar · Mission · Community",
     image: "/images/archive/myanmar-01.jpg",
     imageAlt: "미얀마 현지 선교 지원 활동 사진 (실제 활동사진 교체 예정)",
+    theme: "mission",
   },
   {
     id: "kazakhstan",
@@ -60,5 +64,6 @@ export const fieldStories: FieldStory[] = [
     footerCaption: "Kazakhstan · Church · Mission Network",
     image: "/images/archive/kazakhstan-01.jpg",
     imageAlt: "카자흐스탄 중앙아시아 선교 네트워크 활동 사진 (실제 활동사진 교체 예정)",
+    theme: "network",
   },
 ];
