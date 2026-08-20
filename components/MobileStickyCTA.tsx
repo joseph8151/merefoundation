@@ -36,6 +36,13 @@ export default function MobileStickyCTA() {
               자원봉사 <span aria-hidden>→</span>
             </Link>
             <Link
+              href="/contact?type=prayer"
+              className="flex items-center justify-between border border-charcoal/15 px-4 py-3 text-sm font-semibold text-charcoal"
+              onClick={() => setOpen(false)}
+            >
+              기도로 함께하기 <span aria-hidden>→</span>
+            </Link>
+            <Link
               href="/contact"
               className="flex items-center justify-between border border-charcoal/15 px-4 py-3 text-sm font-semibold text-charcoal"
               onClick={() => setOpen(false)}

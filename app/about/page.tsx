@@ -16,6 +16,7 @@ const sections = [
   { id: "founding", label: "설립취지" },
   { id: "videos", label: "영상으로 만나는 MERE" },
   { id: "mission-vision", label: "Mission & Vision" },
+  { id: "statement-of-faith", label: "우리가 믿는 것" },
   { id: "core-values", label: "핵심가치" },
   { id: "organization", label: "조직 및 운영" },
   { id: "location", label: "오시는 길" },
@@ -109,6 +110,40 @@ export default function AboutPage() {
                   </p>
                 </Reveal>
               </div>
+            </section>
+
+            {/* What We Believe (Statement of Faith) */}
+            <section id="statement-of-faith" className="scroll-mt-28">
+              <Reveal>
+                <h2 className="font-display text-2xl font-medium text-charcoal md:text-3xl">
+                  WHAT WE BELIEVE
+                  <span className="ml-3 text-lg font-medium text-charcoal/50">
+                    우리가 믿는 것
+                  </span>
+                </h2>
+                <div className="mt-6 flex flex-col gap-4 text-[15px] leading-relaxed text-charcoal/75 md:text-base">
+                  <p>
+                    우리는 하나님께서 세상을 사랑하시며 모든 사람이 존엄하고
+                    소중한 존재라고 믿습니다.
+                  </p>
+                  <p>
+                    우리는 예수 그리스도의 사랑과 섬김을 따라 도움이 필요한
+                    이웃을 조건 없이 사랑하고 섬기는 것이 우리에게 주어진
+                    부르심이라고 믿습니다.
+                  </p>
+                  <p>
+                    우리는 기도와 믿음에서 시작된 작은 행동이 가정과 공동체
+                    그리고 다음세대의 삶을 변화시킬 수 있다고 믿습니다.
+                  </p>
+                  <p>
+                    그리고 교회와 하나님의 사람들이 함께할 때 그 사랑이
+                    국경을 넘어 더 멀리 흘러갈 수 있다고 믿습니다.
+                  </p>
+                </div>
+                <p className="mt-8 border-t border-sand-beige pt-8 text-sm font-semibold uppercase tracking-[0.18em] text-forest md:text-base">
+                  LOVE GOD. LOVE PEOPLE. SERVE THE WORLD.
+                </p>
+              </Reveal>
             </section>
 
             {/* 핵심가치 */}

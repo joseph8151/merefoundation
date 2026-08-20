@@ -21,6 +21,7 @@ const INQUIRY_TYPES = [
   { value: "partnership", label: "파트너십 문의" },
   { value: "donation", label: "후원 문의" },
   { value: "volunteer", label: "자원봉사 문의" },
+  { value: "prayer", label: "기도 요청/참여" },
   { value: "church", label: "교회 협력 문의" },
   { value: "csr", label: "기업 CSR 문의" },
   { value: "institution", label: "기관 Partnership 문의" },

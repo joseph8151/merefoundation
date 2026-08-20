@@ -104,6 +104,8 @@ need to touch any component or page file to update text, images, or numbers
 | `data/partnership.ts` | The 6 partnership types shown on the homepage and `/together` |
 | `data/transparency.ts` | The transparency/report list on the homepage and `/transparency` |
 | `data/news.ts` | "MERE NEWS" articles (index + detail pages) |
+| `data/weeklyPrayer.ts` | The homepage "THIS WEEK WE PRAY FOR" region + prayer points -- defaults to placeholder (renders a "준비 중" panel) until an admin fills in a real weekly focus |
+| `data/monthlyMission.ts` | The homepage "ONE MONTH. ONE MISSION." project title + progress (current/target) -- defaults to placeholder (renders a "준비 중" panel) until an admin fills in a real monthly project |
 
 ### Example: adding a new story
 
@@ -140,6 +142,58 @@ Once the real number is confirmed, set `value` to the real number and
 change `isPlaceholder` to `false`. Placeholder stats render as `00+` on the
 site; once `isPlaceholder` is `false`, the number animates (counts up) into
 view as visitors scroll to it.
+
+### Example: filling in this week's prayer focus
+
+Open `data/weeklyPrayer.ts`. It currently looks like:
+
+```ts
+export const weeklyPrayer = placeholder({ region: "", points: [] });
+```
+
+To publish a real weekly focus, replace it with `confirmed(...)`:
+
+```ts
+export const weeklyPrayer = confirmed({
+  region: "MYANMAR",
+  points: [
+    "현지 교회와 사역자들의 안전을 위해",
+    "이번 주 전달될 물품이 필요한 가정에 잘 닿도록",
+    "다음세대를 위한 교육 사역이 계속되도록",
+  ],
+});
+```
+
+Do this every week (or whenever the focus changes) -- switch it back to
+`placeholder({ region: "", points: [] })` between updates rather than
+leaving an old week's focus displayed as if it were current.
+
+### Example: filling in this month's mission
+
+Open `data/monthlyMission.ts`. It currently looks like:
+
+```ts
+export const monthlyMission = placeholder({
+  titleEn: "", titleKo: "", unit: "", target: 0, current: 0,
+});
+```
+
+To publish a real monthly project with a real, currently-countable target
+and progress, replace it with `confirmed(...)`:
+
+```ts
+export const monthlyMission = confirmed({
+  titleEn: "FILL 500 BOXES WITH HOPE",
+  titleKo: "희망을 담은 상자 500개 채우기",
+  unit: "BOXES",
+  target: 500,
+  current: 128,
+});
+```
+
+Update `current` as real progress comes in. **Never invent `current` or
+`target` numbers** -- leave it as `placeholder(...)` until there is a real
+count to report.
 
 ### Placeholder / "준비 중" fields
 

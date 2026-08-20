@@ -37,6 +37,15 @@ export default function Footer() {
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-pure-white/60">
               {orgInfo.tagline}
             </p>
+            <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-pure-white/45">
+              <Link href="/donate" className="hover:text-gold">GIVE</Link>
+              <span aria-hidden>·</span>
+              <Link href="/together#volunteer" className="hover:text-gold">SERVE</Link>
+              <span aria-hidden>·</span>
+              <Link href="/contact?type=prayer" className="hover:text-gold">PRAY</Link>
+              <span aria-hidden>·</span>
+              <Link href="/what-we-do" className="hover:text-gold">GO</Link>
+            </div>
             <div className="mt-6 flex gap-4">
               <a
                 href={orgInfo.sns.instagram}
