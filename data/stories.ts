@@ -19,9 +19,8 @@
 // 지역만 사용하고, 확인되지 않은 세부 사실(실명, 정확한 금액 등)은
 // 넣지 마세요.
 //
-// imagePending: 실제 사진이 아직 준비되지 않아 /images/archive/... 자리
-// 표시자 경로를 쓰는 경우 true 로 설정하세요 -- 카드/상세 페이지에 "준비
-// 중" 배지가 함께 표시됩니다.
+// theme: 실제 사진이 없는 이야기에는 테마별 일러스트(components/
+// PendingIllustrations.tsx)가 카드/상세 페이지 이미지 자리에 표시됩니다.
 // ---------------------------------------------------------------------------
 
 export type Story = {
@@ -40,8 +39,7 @@ export type Story = {
     mere: string;
     change: string;
   };
-  imagePending?: boolean;
-  /** Themed stand-in illustration shown while the real photo is pending -- see components/PendingIllustrations.tsx */
+  /** Themed illustration shown in place of a real photo -- see components/PendingIllustrations.tsx */
   theme?: "education" | "mission" | "network" | "relief" | "clothing" | "partnership" | "newsletter";
 };
 
@@ -109,8 +107,7 @@ export const stories: Story[] = [
     quote: "이 옷은 단순한 의류가 아니라 한국 교회의 따뜻한 사랑의 손길이었습니다.",
     date: "2024",
     image: "/images/archive/clothing-support-01.jpg",
-    imageAlt: "선교 현장에 전달된 의류와 생활물품 (실제 활동사진 교체 예정)",
-    imagePending: true,
+    imageAlt: "의류·생활물품 나눔을 상징하는 일러스트",
     theme: "clothing",
     body: [
       "추운 지역의 선교 현장으로 전달된 의류와 생활물품은 단순한 물건에 그치지 않았습니다.",
@@ -140,8 +137,7 @@ export const stories: Story[] = [
     quote: "수천 킬로미터를 건너간 작은 상자",
     date: "2024",
     image: "/images/archive/clothing-support-01.jpg",
-    imageAlt: "선교 현장으로 전달을 위해 포장된 상자와 물품 (실제 활동사진 교체 예정)",
-    imagePending: true,
+    imageAlt: "포장된 상자와 물품 나눔을 상징하는 일러스트",
     theme: "clothing",
     body: [
       "이 이야기는 순전한재단의 실제 의류·생활물품 지원 활동(One Box, Many Hearts)을 간증의 시선으로 다시 나눈 이야기입니다.",

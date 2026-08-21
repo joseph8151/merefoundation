@@ -32,7 +32,7 @@ export type CurrentProject = {
   highlights?: string[];
   image: string;
   imageAlt: string;
-  /** Themed stand-in illustration shown while the real photo is pending -- see components/PendingIllustrations.tsx */
+  /** Themed illustration shown in place of a real photo -- see components/PendingIllustrations.tsx */
   theme?: "education" | "mission" | "network" | "relief" | "clothing" | "partnership" | "newsletter";
 };
 
@@ -56,7 +56,7 @@ export const currentProjects: CurrentProject[] = [
       "지원 준비 → 분류 → 포장 → 해외 운송 → 현지 전달 → 활동 기록",
     ],
     image: "/images/archive/relief-supplies-01.jpg",
-    imageAlt: "전 세계 구호물품 지원 현장 사진 (실제 활동사진 교체 예정)",
+    imageAlt: "전 세계 구호물품 지원 활동을 상징하는 일러스트",
     theme: "relief",
   },
 ];

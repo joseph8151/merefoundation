@@ -1,12 +1,14 @@
 /**
  * Themed line-art illustrations used in place of the generic Frame fallback
- * for photo slots we already know are pending a specific real activity
- * photo (field cases, current projects, partner photos, newsletter cover).
- * Each one always renders alongside the existing "준비 중" badge and
- * "실제 활동사진 교체 예정" caption at its call site -- it is never presented
- * as documentary evidence of the event, only as a themed stand-in until the
- * real photo is uploaded. Same visual grammar as Frame's default fallback:
- * a warm-ivory circle badge with gold accents and forest-green linework.
+ * for photo slots that don't have a real activity photo (field cases,
+ * current projects, partner photos, newsletter cover). Real photos for
+ * these are hard to obtain, so this illustration is the finished, intended
+ * treatment -- not a "coming soon" placeholder -- while still never being
+ * presented as documentary evidence of the event itself. If a real photo
+ * is ever dropped into public/images/archive/ under the matching filename,
+ * Frame's onError fallback means it displays automatically with no code
+ * change. Same visual grammar throughout: a warm-ivory circle badge with
+ * gold accents and forest-green linework.
  */
 import type { ComponentType, ReactNode } from "react";
 

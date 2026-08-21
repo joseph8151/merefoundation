@@ -5,7 +5,6 @@ import Frame from "@/components/Frame";
 import Reveal from "@/components/Reveal";
 import Eyebrow from "@/components/Eyebrow";
 import StoryCard from "@/components/StoryCard";
-import { PlaceholderBadge } from "@/components/PlaceholderNote";
 import { pendingArtFor } from "@/components/PendingIllustrations";
 import { stories } from "@/data/stories";
 
@@ -56,11 +55,6 @@ export default async function StoryDetailPage({
           pendingArt={pendingArtFor(story.theme)}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/10 to-transparent" />
-        {story.imagePending ? (
-          <div className="absolute right-4 top-4 z-10 sm:right-6 sm:top-6">
-            <PlaceholderBadge className="bg-pure-white/90" />
-          </div>
-        ) : null}
         <div className="absolute inset-x-0 bottom-0 mx-auto max-w-[900px] px-6 pb-12 md:px-10">
           <Eyebrow tone="light">{story.category}</Eyebrow>
           <h1 className="mt-4 max-w-3xl text-balance font-display text-3xl font-medium leading-tight text-pure-white md:text-5xl">

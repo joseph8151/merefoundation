@@ -36,7 +36,7 @@ export const archiveEditions: ArchiveEdition[] = [
       "순전한재단이 걸어온 나눔의 현장과 국내외 파트너들의 이야기를 기록합니다."
     ),
     coverImage: "/images/archive/newsletter-2024-01-cover.jpg",
-    coverImageAlt: "2024 순전한재단 나눔 제01호 표지 (실제 표지 이미지 교체 예정)",
+    coverImageAlt: "2024 순전한재단 나눔 제01호를 상징하는 일러스트",
     downloadUrl: placeholder(null),
   },
 ];

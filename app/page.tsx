@@ -702,18 +702,12 @@ export default function HomePage() {
       <section className="bg-warm-ivory px-6 py-24 md:px-10 md:py-32">
         <div className="mx-auto grid max-w-[1400px] gap-12 md:grid-cols-2 md:items-center md:gap-20">
           <Reveal delay={100} className="order-1 md:order-2">
-            <div className="relative">
-              <Frame
-                src="/images/archive/clothing-support-01.jpg"
-                alt="선교 현장에 전달된 의류와 생활물품 (실제 활동사진 교체 예정)"
-                className="aspect-[4/5] w-full"
-                pendingArt={pendingArtFor("clothing")}
-              />
-              <div className="absolute left-4 top-4">
-                <PlaceholderBadge className="bg-pure-white/90" />
-              </div>
-            </div>
-            <p className="mt-3 text-[11px] text-charcoal/40">실제 활동사진 교체 예정</p>
+            <Frame
+              src="/images/archive/clothing-support-01.jpg"
+              alt="의류·생활물품 나눔을 상징하는 일러스트"
+              className="aspect-[4/5] w-full"
+              pendingArt={pendingArtFor("clothing")}
+            />
           </Reveal>
           <Reveal className="order-2 flex flex-col justify-center md:order-1">
             <Eyebrow>ONE BOX, MANY HEARTS</Eyebrow>
@@ -1122,17 +1116,12 @@ export default function HomePage() {
             delay={100}
             className="mt-14 grid gap-10 border-t border-sand-beige pt-12 md:grid-cols-[1fr_1.2fr] md:gap-16"
           >
-            <div className="relative">
-              <Frame
-                src="/images/archive/well-international-01.jpg"
-                alt="WELL International 협력 활동 사진 (실제 활동사진 교체 예정)"
-                className="aspect-[4/3] w-full"
-                pendingArt={pendingArtFor("partnership")}
-              />
-              <div className="absolute left-4 top-4">
-                <PlaceholderBadge className="bg-pure-white/90" />
-              </div>
-            </div>
+            <Frame
+              src="/images/archive/well-international-01.jpg"
+              alt="WELL International 협력 파트너십을 상징하는 일러스트"
+              className="aspect-[4/3] w-full"
+              pendingArt={pendingArtFor("partnership")}
+            />
             <div className="flex flex-col gap-5">
               <p className="eyebrow text-xs text-gold">협력기관 · PARTNER ORGANIZATION</p>
               <h3 className="font-display text-2xl font-medium text-charcoal">
@@ -1332,17 +1321,12 @@ export default function HomePage() {
               const p = currentProjects[0];
               return (
                 <Reveal delay={100} className="mt-14 grid gap-12 md:grid-cols-2 md:gap-16 md:items-center">
-                  <div className="relative">
-                    <Frame
-                      src={p.image}
-                      alt={p.imageAlt}
-                      className="aspect-[4/3] w-full"
-                      pendingArt={pendingArtFor(p.theme)}
-                    />
-                    <div className="absolute left-4 top-4">
-                      <PlaceholderBadge className="bg-pure-white/90" />
-                    </div>
-                  </div>
+                  <Frame
+                    src={p.image}
+                    alt={p.imageAlt}
+                    className="aspect-[4/3] w-full"
+                    pendingArt={pendingArtFor(p.theme)}
+                  />
                   <div>
                     <p className="eyebrow text-xs text-gold">{p.titleEn}</p>
                     <h3 className="mt-3 font-display text-2xl font-medium text-charcoal md:text-3xl">
@@ -1374,17 +1358,12 @@ export default function HomePage() {
               <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
                 {currentProjects.map((p) => (
                   <div key={p.id} className="flex flex-col gap-4">
-                    <div className="relative">
-                      <Frame
-                        src={p.image}
-                        alt={p.imageAlt}
-                        className="aspect-[4/3] w-full"
-                        pendingArt={pendingArtFor(p.theme)}
-                      />
-                      <div className="absolute left-4 top-4">
-                        <PlaceholderBadge className="bg-pure-white/90" />
-                      </div>
-                    </div>
+                    <Frame
+                      src={p.image}
+                      alt={p.imageAlt}
+                      className="aspect-[4/3] w-full"
+                      pendingArt={pendingArtFor(p.theme)}
+                    />
                     <h3 className="font-display text-lg text-charcoal">{p.titleKo}</h3>
                     <p className="text-sm text-charcoal/65">{p.summary}</p>
                   </div>
