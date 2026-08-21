@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fraunces } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -36,9 +36,10 @@ export const metadata: Metadata = {
     title: `${orgInfo.mark} | ${orgInfo.nameKo}`,
     description: "순전한 마음에서 변화는 시작됩니다.",
   },
-  icons: {
-    icon: "/favicon.ico",
-  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#29463a",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

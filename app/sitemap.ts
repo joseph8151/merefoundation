@@ -9,6 +9,9 @@ import { newsItems } from "@/data/news";
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  // /privacy and /terms are intentionally excluded -- both are marked
+  // `robots: { index: false }` in their own metadata (준비 중 content),
+  // so listing them here would contradict that noindex directive.
   const staticRoutes = [
     "",
     "/about",
@@ -20,8 +23,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/donate",
     "/transparency",
     "/contact",
-    "/privacy",
-    "/terms",
   ].map((route) => ({
     url: `${siteUrl}${route}`,
     lastModified: new Date(),
