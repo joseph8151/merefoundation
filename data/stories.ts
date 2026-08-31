@@ -107,7 +107,7 @@ export const stories: Story[] = [
     quote: "이 옷은 단순한 의류가 아니라 한국 교회의 따뜻한 사랑의 손길이었습니다.",
     date: "2024",
     image: "/images/archive/clothing-support-01.jpg",
-    imageAlt: "의류·생활물품 나눔을 상징하는 일러스트",
+    imageAlt: "나눔받은 겉옷을 들고 있는 사람들",
     theme: "clothing",
     body: [
       "추운 지역의 선교 현장으로 전달된 의류와 생활물품은 단순한 물건에 그치지 않았습니다.",
@@ -137,7 +137,7 @@ export const stories: Story[] = [
     quote: "수천 킬로미터를 건너간 작은 상자",
     date: "2024",
     image: "/images/archive/clothing-support-01.jpg",
-    imageAlt: "포장된 상자와 물품 나눔을 상징하는 일러스트",
+    imageAlt: "나눔받은 겉옷을 들고 있는 사람들",
     theme: "clothing",
     body: [
       "이 이야기는 순전한재단의 실제 의류·생활물품 지원 활동(One Box, Many Hearts)을 간증의 시선으로 다시 나눈 이야기입니다.",

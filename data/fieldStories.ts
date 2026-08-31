@@ -6,11 +6,10 @@
 // 클라이언트가 제공한 실제 활동자료를 근거로 한 내용이며, 확인되지 않은
 // 세부 사실(인원수, 금액, 기관명, 날짜 등)을 임의로 추가하지 마세요.
 //
-// image 는 실제 사진 파일이 없어 테마별 일러스트(components/
-// PendingIllustrations.tsx)로 대체되는 경로입니다. 이 일러스트가 현재
-// 확정된 디자인이며, 실제 사진을 구하기 어려운 상황을 고려한 결정입니다.
-// 그래도 나중에 실제 사진 파일을 구하게 되면 public/images/archive/
-// 아래에 같은 파일명으로 저장하세요 -- 코드 수정 없이 자동으로 반영됩니다.
+// image 는 실제 사진 파일이 없는 경우 테마별 일러스트(components/
+// PendingIllustrations.tsx)로 자동 대체됩니다. 실제 사진을 구하게 되면
+// public/images/archive/ 아래에 같은 파일명으로 저장하세요 -- 코드 수정
+// 없이 자동으로 반영됩니다 (카자흐스탄은 이미 실제 사진으로 교체됨).
 // ---------------------------------------------------------------------------
 
 export type FieldStory = {
@@ -65,7 +64,7 @@ export const fieldStories: FieldStory[] = [
     ],
     footerCaption: "Kazakhstan · Church · Mission Network",
     image: "/images/archive/kazakhstan-01.jpg",
-    imageAlt: "카자흐스탄 중앙아시아 선교 네트워크를 상징하는 일러스트",
+    imageAlt: "카자흐스탄 현지 여름 크리스천 캠프에 함께한 아이들과 봉사자들",
     theme: "network",
   },
 ];

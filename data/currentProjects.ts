@@ -56,7 +56,7 @@ export const currentProjects: CurrentProject[] = [
       "지원 준비 → 분류 → 포장 → 해외 운송 → 현지 전달 → 활동 기록",
     ],
     image: "/images/archive/relief-supplies-01.jpg",
-    imageAlt: "전 세계 구호물품 지원 활동을 상징하는 일러스트",
+    imageAlt: "현지 마을 정자에 모여 구호물품을 나누는 주민들과 봉사자들",
     theme: "relief",
   },
 ];

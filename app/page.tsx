@@ -704,7 +704,7 @@ export default function HomePage() {
           <Reveal delay={100} className="order-1 md:order-2">
             <Frame
               src="/images/archive/clothing-support-01.jpg"
-              alt="의류·생활물품 나눔을 상징하는 일러스트"
+              alt="나눔받은 겉옷을 들고 있는 사람들"
               className="aspect-[4/5] w-full"
               pendingArt={pendingArtFor("clothing")}
             />
@@ -1118,7 +1118,7 @@ export default function HomePage() {
           >
             <Frame
               src="/images/archive/well-international-01.jpg"
-              alt="WELL International 협력 파트너십을 상징하는 일러스트"
+              alt="WELL International 사무실에 전시된 세계 선교 활동 지도"
               className="aspect-[4/3] w-full"
               pendingArt={pendingArtFor("partnership")}
             />

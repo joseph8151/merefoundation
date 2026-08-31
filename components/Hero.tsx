@@ -4,8 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
-const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=2400&q=80";
+const HERO_IMAGE = "/images/hero-01.jpg";
 
 export default function Hero() {
   const imgRef = useRef<HTMLDivElement | null>(null);
@@ -37,7 +36,7 @@ export default function Hero() {
       >
         <Image
           src={HERO_IMAGE}
-          alt="함께 모여 이야기를 나누는 다양한 세대와 배경의 사람들"
+          alt="해외 현지 학교 앞에 모인 아이들과 순전한재단 봉사팀"
           fill
           priority
           sizes="100vw"
