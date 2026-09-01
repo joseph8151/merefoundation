@@ -9,7 +9,8 @@
 // image 는 실제 사진 파일이 없는 경우 테마별 일러스트(components/
 // PendingIllustrations.tsx)로 자동 대체됩니다. 실제 사진을 구하게 되면
 // public/images/archive/ 아래에 같은 파일명으로 저장하세요 -- 코드 수정
-// 없이 자동으로 반영됩니다 (카자흐스탄은 이미 실제 사진으로 교체됨).
+// 없이 자동으로 반영됩니다 (과테말라·카자흐스탄은 이미 실제 사진으로
+// 교체됨, 미얀마는 아직 일러스트).
 // ---------------------------------------------------------------------------
 
 export type FieldStory = {
@@ -37,7 +38,7 @@ export const fieldStories: FieldStory[] = [
     ],
     footerCaption: "Guatemala · Education · Next Generation",
     image: "/images/archive/guatemala-01.jpg",
-    imageAlt: "과테말라 교육 지원 활동을 상징하는 일러스트",
+    imageAlt: "과테말라 이글레시아 그라시아 교회에서 아이들과 함께한 순전한재단 봉사팀",
     theme: "education",
   },
   {
