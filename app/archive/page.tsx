@@ -82,7 +82,26 @@ export default function ArchivePage() {
                   </p>
                 </div>
               </Reveal>
-              <Reveal delay={120}>
+              <Reveal
+                delay={100}
+                className="mt-6 grid gap-8 border border-sand-beige sm:grid-cols-[240px_1fr]"
+              >
+                <Frame
+                  src="/images/archive/guatemala-02.jpg"
+                  alt="과테말라 현지 아이들과 함께한 순간"
+                  className="aspect-[4/3] w-full sm:aspect-auto sm:h-full"
+                />
+                <div className="flex flex-col justify-center gap-2 p-6 pt-0 sm:pt-6">
+                  <p className="eyebrow text-xs text-gold">GUATEMALA</p>
+                  <p className="font-display text-lg text-charcoal">
+                    과테말라 현지 아이들과 함께한 순간
+                  </p>
+                  <p className="text-sm leading-relaxed text-charcoal/65">
+                    교실 밖에서도 아이들과 마음을 나누는 시간은 이어집니다.
+                  </p>
+                </div>
+              </Reveal>
+              <Reveal delay={140}>
                 <PlaceholderPanel
                   className="mt-8"
                   title="나눔 이야기 아카이브 준비 중"
