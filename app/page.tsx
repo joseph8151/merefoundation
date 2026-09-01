@@ -426,6 +426,27 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* From the Field -- Guatemala photo banner */}
+      <section className="relative flex h-[420px] items-end overflow-hidden bg-charcoal text-pure-white md:h-[480px]">
+        <Frame
+          src="/images/archive/guatemala-01.jpg"
+          alt="과테말라 이글레시아 그라시아 교회에서 만난 아이들과 순전한재단 봉사팀"
+          className="absolute inset-0"
+          sizes="100vw"
+        >
+          <div className="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/20 to-transparent" />
+        </Frame>
+        <Reveal className="relative z-10 mx-auto w-full max-w-[1400px] px-6 pb-10 md:px-10 md:pb-14">
+          <p className="eyebrow text-xs text-pure-white/70 md:text-sm">
+            FROM THE FIELD · GUATEMALA
+          </p>
+          <p className="mt-3 max-w-xl text-lg font-medium leading-snug text-pure-white md:text-2xl">
+            교육은 한 아이의 미래뿐 아니라 한 지역의 미래를 변화시킬 수
+            있습니다.
+          </p>
+        </Reveal>
+      </section>
+
       {/* How MERE Works */}
       <section className="bg-forest px-6 py-24 text-pure-white md:px-10 md:py-32">
         <div className="mx-auto max-w-[1400px]">

@@ -60,6 +60,29 @@ export default function ArchivePage() {
                   실제 나눔의 현장 이야기는 MERE STORIES 페이지에서도 만나실
                   수 있습니다.
                 </p>
+              </Reveal>
+              <Reveal
+                delay={80}
+                className="mt-8 grid gap-8 border border-sand-beige sm:grid-cols-[240px_1fr]"
+              >
+                <Frame
+                  src="/images/archive/guatemala-01.jpg"
+                  alt="과테말라 이글레시아 그라시아 교회에서 만난 아이들과 순전한재단 봉사팀"
+                  className="aspect-[4/3] w-full sm:aspect-auto sm:h-full"
+                />
+                <div className="flex flex-col justify-center gap-2 p-6 pt-0 sm:pt-6">
+                  <p className="eyebrow text-xs text-gold">GUATEMALA · EDUCATION</p>
+                  <p className="font-display text-lg text-charcoal">
+                    과테말라 이글레시아 그라시아 교회에서 만난 아이들
+                  </p>
+                  <p className="text-sm leading-relaxed text-charcoal/65">
+                    교육은 한 아이의 미래뿐 아니라 한 지역의 미래를 변화시킬
+                    수 있습니다. 순전한재단은 해외 교육 현장과 다음세대를
+                    섬기는 사역자 및 기관들과 함께합니다.
+                  </p>
+                </div>
+              </Reveal>
+              <Reveal delay={120}>
                 <PlaceholderPanel
                   className="mt-8"
                   title="나눔 이야기 아카이브 준비 중"
