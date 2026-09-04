@@ -16,8 +16,8 @@ export default function Hero() {
       raf = requestAnimationFrame(() => {
         const node = imgRef.current;
         if (!node) return;
-        const offset = Math.min(window.scrollY * 0.18, 140);
-        node.style.transform = `translate3d(0, ${offset}px, 0) scale(1.08)`;
+        const offset = Math.min(window.scrollY * 0.06, 40);
+        node.style.transform = `translate3d(0, ${offset}px, 0) scale(1.02)`;
       });
     };
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -32,7 +32,7 @@ export default function Hero() {
       <div
         ref={imgRef}
         className="absolute inset-0 will-change-transform"
-        style={{ transform: "translate3d(0,0,0) scale(1.08)" }}
+        style={{ transform: "translate3d(0,0,0) scale(1.02)" }}
       >
         <Image
           src={HERO_IMAGE}
@@ -40,7 +40,7 @@ export default function Hero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[center_28%]"
+          className="object-cover object-[center_20%]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal/80 via-charcoal/15 to-transparent" />
       </div>
