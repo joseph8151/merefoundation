@@ -28,29 +28,13 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative flex h-[92vh] min-h-[640px] w-full items-start overflow-hidden bg-charcoal text-pure-white md:h-[100vh]">
-      <div
-        ref={imgRef}
-        className="absolute inset-0 will-change-transform"
-        style={{ transform: "translate3d(0,0,0) scale(1.02)" }}
-      >
-        <Image
-          src={HERO_IMAGE}
-          alt="과테말라 현지 아이들과 함께한 순전한재단 봉사팀"
-          fill
-          priority
-          sizes="100vw"
-          className="object-contain object-center"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/80 via-charcoal/15 to-transparent" />
-      </div>
-
-      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 pt-28 md:px-10 md:pt-36">
-        <div className="hero-copy max-w-3xl">
+    <section className="relative flex w-full flex-col overflow-hidden bg-charcoal text-pure-white md:h-[92vh] md:min-h-[640px] md:flex-row lg:h-[100vh]">
+      <div className="relative z-10 order-2 flex w-full flex-col justify-center px-6 py-14 md:order-1 md:w-[46%] md:py-0 md:pl-10 lg:pl-16">
+        <div className="hero-copy max-w-xl">
           <p className="eyebrow mb-6 text-xs text-pure-white/75 md:text-sm">
             MERE FOUNDATION — For People. For Communities. For Tomorrow.
           </p>
-          <h1 className="font-display text-[13vw] font-semibold leading-[0.95] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
+          <h1 className="font-display text-[13vw] font-semibold leading-[0.95] tracking-tight sm:text-6xl md:text-5xl lg:text-7xl">
             PURE LOVE.
             <br />
             REAL CHANGE.
@@ -79,6 +63,24 @@ export default function Hero() {
             </Link>
           </div>
         </div>
+      </div>
+
+      <div className="relative order-1 h-[46vh] min-h-[300px] w-full md:order-2 md:h-auto md:w-[54%]">
+        <div
+          ref={imgRef}
+          className="absolute inset-0 will-change-transform"
+          style={{ transform: "translate3d(0,0,0) scale(1.02)" }}
+        >
+          <Image
+            src={HERO_IMAGE}
+            alt="과테말라 현지 아이들과 함께한 순전한재단 봉사팀"
+            fill
+            priority
+            sizes="(min-width: 768px) 54vw, 100vw"
+            className="object-contain object-center"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-charcoal/40 md:hidden" />
       </div>
 
       <div className="absolute bottom-6 right-6 z-10 hidden text-right text-[11px] uppercase tracking-[0.2em] text-pure-white/60 md:block">
