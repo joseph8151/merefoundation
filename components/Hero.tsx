@@ -40,7 +40,7 @@ export default function Hero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[center_20%]"
+          className="object-contain object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal/80 via-charcoal/15 to-transparent" />
       </div>
