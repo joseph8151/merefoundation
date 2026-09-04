@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
-const HERO_IMAGE = "/images/hero-01.jpg";
+const HERO_IMAGE = "/images/hero-02.jpg";
 
 export default function Hero() {
   const imgRef = useRef<HTMLDivElement | null>(null);
@@ -28,7 +28,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative flex h-[92vh] min-h-[640px] w-full items-end overflow-hidden bg-charcoal text-pure-white md:h-[100vh]">
+    <section className="relative flex h-[92vh] min-h-[640px] w-full items-start overflow-hidden bg-charcoal text-pure-white md:h-[100vh]">
       <div
         ref={imgRef}
         className="absolute inset-0 will-change-transform"
@@ -36,16 +36,16 @@ export default function Hero() {
       >
         <Image
           src={HERO_IMAGE}
-          alt="해외 현지 학교 앞에 모인 아이들과 순전한재단 봉사팀"
+          alt="과테말라 현지 아이들과 함께한 순전한재단 봉사팀"
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="object-cover object-top"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/25 to-charcoal/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/80 via-charcoal/15 to-transparent" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 pb-16 md:px-10 md:pb-24">
+      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 pt-28 md:px-10 md:pt-36">
         <div className="hero-copy max-w-3xl">
           <p className="eyebrow mb-6 text-xs text-pure-white/75 md:text-sm">
             MERE FOUNDATION — For People. For Communities. For Tomorrow.
