@@ -24,6 +24,9 @@ import { worldMapPath } from "@/lib/worldMapPath";
 export default function GlobalMap() {
   const [activeId, setActiveId] = useState<string | null>(null);
   const active = footprintCountries.find((c) => c.id === activeId) ?? null;
+  const sortedNames = [...footprintCountries]
+    .map((c) => c.nameKo)
+    .sort((a, b) => a.localeCompare(b, "ko"));
 
   return (
     <div className="flex flex-col gap-6">
@@ -95,6 +98,20 @@ export default function GlobalMap() {
             지도 위 표시를 선택하면 국가 정보를 확인할 수 있습니다.
           </p>
         )}
+      </div>
+
+      <div className="border border-sand-beige bg-warm-ivory p-6 md:p-8">
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-charcoal/45">
+          사역 국가 · 가나다순 · {footprintCountries.length}개국
+        </p>
+        <ul className="mt-5 grid grid-cols-2 gap-x-6 gap-y-2 text-sm text-charcoal/75 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+          {sortedNames.map((name) => (
+            <li key={name}>{name}</li>
+          ))}
+        </ul>
+        <p className="mt-6 text-[11px] text-charcoal/40">
+          LOVE ACROSS BORDERS 팜플렛 기준
+        </p>
       </div>
     </div>
   );
