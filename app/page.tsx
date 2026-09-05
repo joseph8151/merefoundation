@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import Eyebrow from "@/components/Eyebrow";
 import Reveal from "@/components/Reveal";
 import Frame from "@/components/Frame";
+import Divider from "@/components/Divider";
 import ProgramRow from "@/components/ProgramRow";
 import StoryCard from "@/components/StoryCard";
 import NewsCard from "@/components/NewsCard";
@@ -82,6 +83,10 @@ export default function HomePage() {
 
       {/* Faith Statement */}
       <section className="relative flex min-h-[640px] items-center overflow-hidden bg-charcoal px-6 py-28 text-pure-white md:px-10">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent"
+        />
         <Frame
           src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=2200&q=80"
           alt="아이의 손을 잡고 웃으며 걷는 봉사자"
@@ -118,15 +123,21 @@ export default function HomePage() {
           <div className="mt-9 flex flex-wrap justify-center gap-4">
             <Link
               href="/about#statement-of-faith"
-              className="inline-flex items-center gap-2 bg-pure-white px-6 py-3.5 text-sm font-semibold tracking-wide text-forest transition-colors hover:bg-gold hover:text-pure-white"
+              className="group inline-flex items-center gap-2 bg-pure-white px-6 py-3.5 text-sm font-semibold tracking-wide text-forest transition-colors hover:bg-gold hover:text-pure-white"
             >
-              OUR FAITH <span aria-hidden>→</span>
+              OUR FAITH{" "}
+              <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
             </Link>
             <Link
               href="/together"
-              className="inline-flex items-center gap-2 border border-pure-white/70 px-6 py-3.5 text-sm font-semibold tracking-wide text-pure-white transition-colors hover:border-pure-white hover:bg-pure-white/10"
+              className="group inline-flex items-center gap-2 border border-pure-white/70 px-6 py-3.5 text-sm font-semibold tracking-wide text-pure-white transition-colors hover:border-pure-white hover:bg-pure-white/10"
             >
-              JOIN THE MISSION <span aria-hidden>→</span>
+              JOIN THE MISSION{" "}
+              <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
             </Link>
           </div>
         </Reveal>
@@ -156,8 +167,9 @@ export default function HomePage() {
                 맞잡고 선교와 사회봉사를 실천하는 모범이 되고자 합니다.
               </p>
             </div>
-            <div className="mx-auto mt-12 max-w-xl border-t border-gold/40 pt-10">
-              <p className="font-display text-2xl italic leading-relaxed text-forest md:text-3xl">
+            <div className="mx-auto mt-12 max-w-xl">
+              <Divider />
+              <p className="mt-8 font-display text-2xl italic leading-relaxed text-forest md:text-3xl">
                 &ldquo;{orgInfo.verse.text}&rdquo;
               </p>
               <p className="mt-3 text-xs tracking-[0.14em] text-charcoal/45">
@@ -170,6 +182,10 @@ export default function HomePage() {
 
       {/* From the Field -- Guatemala photo banner */}
       <section className="relative flex h-[420px] items-end overflow-hidden bg-charcoal text-pure-white md:h-[480px]">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent"
+        />
         <Frame
           src="/images/archive/guatemala-01.jpg"
           alt="과테말라 이글레시아 그라시아 교회에서 만난 아이들과 순전한재단 봉사팀"
@@ -193,7 +209,11 @@ export default function HomePage() {
       <ScriptureMoment />
 
       {/* Our Footprint */}
-      <section className="bg-forest px-6 py-24 text-pure-white md:px-10 md:py-32">
+      <section className="relative bg-forest px-6 py-24 text-pure-white md:px-10 md:py-32">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent"
+        />
         <div className="mx-auto max-w-[1400px]">
           <Reveal>
             <Eyebrow tone="light">OUR FOOTPRINT</Eyebrow>
@@ -205,13 +225,14 @@ export default function HomePage() {
           <div className="mt-16 grid gap-12 border-t border-pure-white/15 pt-12 sm:grid-cols-2 sm:gap-10">
             {footprintStats.map((stat, i) => (
               <Reveal key={stat.id} delay={i * 100}>
-                <p className="font-display text-5xl font-semibold tracking-tight text-gold md:text-7xl">
+                <p className="font-display text-5xl font-semibold tracking-tight tabular-nums text-gold md:text-7xl">
                   <CountUp
                     value={stat.value.value}
                     isPlaceholder={stat.value.isPlaceholder}
                   />
                 </p>
-                <p className="mt-2 text-sm font-semibold uppercase tracking-[0.14em] text-pure-white/85">
+                <span aria-hidden className="mt-3 block h-px w-10 bg-gold/40" />
+                <p className="mt-3 text-sm font-semibold uppercase tracking-[0.14em] text-pure-white/85">
                   {stat.unitEn}
                 </p>
                 <p className="mt-1 text-sm text-pure-white/65">{stat.label}</p>
@@ -251,9 +272,12 @@ export default function HomePage() {
             </div>
             <Link
               href="/what-we-do"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-forest hover:text-gold"
+              className="group inline-flex items-center gap-2 text-sm font-semibold text-forest hover:text-gold"
             >
-              전체 사업 보기 <span aria-hidden>→</span>
+              전체 사업 보기{" "}
+              <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
             </Link>
           </Reveal>
 
@@ -291,11 +315,11 @@ export default function HomePage() {
       {/* One Box, Many Hearts */}
       <section className="bg-warm-ivory px-6 py-24 md:px-10 md:py-32">
         <div className="mx-auto grid max-w-[1400px] gap-12 md:grid-cols-2 md:items-center md:gap-20">
-          <Reveal delay={100} className="order-1 md:order-2">
+          <Reveal delay={100} className="group order-1 md:order-2">
             <Frame
               src="/images/archive/clothing-support-01.jpg"
               alt="나눔받은 겉옷을 들고 있는 사람들"
-              className="aspect-[4/5] w-full"
+              className="aspect-[4/5] w-full shadow-[0_30px_60px_-32px_rgba(37,37,37,0.4)]"
               pendingArt={pendingArtFor("clothing")}
             />
           </Reveal>
@@ -325,9 +349,12 @@ export default function HomePage() {
             </div>
             <Link
               href="/stories/one-box-many-hearts"
-              className="mt-8 inline-flex w-fit items-center gap-2 text-sm font-semibold text-forest hover:text-gold"
+              className="group mt-8 inline-flex w-fit items-center gap-2 text-sm font-semibold text-forest hover:text-gold"
             >
-              나눔 이야기 더보기 <span aria-hidden>→</span>
+              나눔 이야기 더보기{" "}
+              <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
             </Link>
           </Reveal>
         </div>
@@ -354,9 +381,12 @@ export default function HomePage() {
                 </p>
                 <Link
                   href={step.href}
-                  className="mt-2 inline-flex w-fit items-center gap-2 text-sm font-semibold tracking-wide text-pure-white hover:text-gold"
+                  className="group mt-2 inline-flex w-fit items-center gap-2 text-sm font-semibold tracking-wide text-pure-white hover:text-gold"
                 >
-                  {step.cta} <span aria-hidden>→</span>
+                  {step.cta}{" "}
+                  <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
                 </Link>
               </Reveal>
             ))}
@@ -395,12 +425,14 @@ export default function HomePage() {
               const p = currentProjects[0];
               return (
                 <Reveal delay={100} className="mt-14 grid gap-12 md:grid-cols-2 md:gap-16 md:items-center">
-                  <Frame
-                    src={p.image}
-                    alt={p.imageAlt}
-                    className="aspect-[4/3] w-full"
-                    pendingArt={pendingArtFor(p.theme)}
-                  />
+                  <div className="group">
+                    <Frame
+                      src={p.image}
+                      alt={p.imageAlt}
+                      className="aspect-[4/3] w-full shadow-[0_30px_60px_-32px_rgba(37,37,37,0.4)]"
+                      pendingArt={pendingArtFor(p.theme)}
+                    />
+                  </div>
                   <div>
                     <p className="eyebrow text-xs text-gold">{p.titleEn}</p>
                     <h3 className="mt-3 font-display text-2xl font-medium text-charcoal md:text-3xl">
@@ -431,11 +463,11 @@ export default function HomePage() {
             <Reveal delay={100} className="mt-12">
               <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
                 {currentProjects.map((p) => (
-                  <div key={p.id} className="flex flex-col gap-4">
+                  <div key={p.id} className="group flex flex-col gap-4">
                     <Frame
                       src={p.image}
                       alt={p.imageAlt}
-                      className="aspect-[4/3] w-full"
+                      className="aspect-[4/3] w-full shadow-[0_24px_50px_-30px_rgba(37,37,37,0.4)]"
                       pendingArt={pendingArtFor(p.theme)}
                     />
                     <h3 className="font-display text-lg text-charcoal">{p.titleKo}</h3>
@@ -473,9 +505,12 @@ export default function HomePage() {
             </div>
             <Link
               href="/stories"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-forest hover:text-gold"
+              className="group inline-flex items-center gap-2 text-sm font-semibold text-forest hover:text-gold"
             >
-              모든 이야기 보기 <span aria-hidden>→</span>
+              모든 이야기 보기{" "}
+              <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
             </Link>
           </Reveal>
 
@@ -488,7 +523,11 @@ export default function HomePage() {
       </section>
 
       {/* This Week We Pray For */}
-      <section className="bg-forest px-6 py-24 text-pure-white md:px-10 md:py-32">
+      <section className="relative bg-forest px-6 py-24 text-pure-white md:px-10 md:py-32">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent"
+        />
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <Eyebrow tone="light" className="text-center">THIS WEEK WE PRAY FOR</Eyebrow>
@@ -538,16 +577,19 @@ export default function HomePage() {
             </div>
             <Link
               href="/archive"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-forest hover:text-gold"
+              className="group inline-flex items-center gap-2 text-sm font-semibold text-forest hover:text-gold"
             >
-              아카이브 전체 보기 <span aria-hidden>→</span>
+              아카이브 전체 보기{" "}
+              <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
             </Link>
           </Reveal>
 
           {latestArchiveEdition ? (
             <Reveal
               delay={100}
-              className="mt-12 grid gap-8 border border-sand-beige bg-pure-white p-6 sm:grid-cols-[180px_1fr] sm:items-center md:p-10"
+              className="group mt-12 grid gap-8 border border-sand-beige bg-pure-white p-6 shadow-[0_30px_70px_-40px_rgba(37,37,37,0.25)] sm:grid-cols-[180px_1fr] sm:items-center md:p-10"
             >
               <Frame
                 src={latestArchiveEdition.coverImage}
@@ -564,9 +606,12 @@ export default function HomePage() {
                 </p>
                 <Link
                   href="/archive#newsletter"
-                  className="mt-2 inline-flex w-fit items-center gap-2 text-sm font-semibold text-forest hover:text-gold"
+                  className="group/link mt-2 inline-flex w-fit items-center gap-2 text-sm font-semibold text-forest hover:text-gold"
                 >
-                  {latestArchiveEdition.year} 활동 이야기 보기 <span aria-hidden>→</span>
+                  {latestArchiveEdition.year} 활동 이야기 보기{" "}
+                  <span aria-hidden className="inline-block transition-transform duration-300 group-hover/link:translate-x-1">
+                    →
+                  </span>
                 </Link>
               </div>
             </Reveal>
@@ -576,6 +621,10 @@ export default function HomePage() {
 
       {/* Give With MERE */}
       <section className="relative flex min-h-[560px] items-center overflow-hidden bg-charcoal px-6 py-28 text-pure-white md:px-10">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent"
+        />
         <Frame
           src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=2200&q=80"
           alt="아침 햇살 속에서 서로를 마주보며 웃는 사람들"
@@ -633,9 +682,12 @@ export default function HomePage() {
           <Reveal delay={150} className="mt-10">
             <Link
               href="/transparency"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-forest hover:text-gold"
+              className="group inline-flex items-center gap-2 text-sm font-semibold text-forest hover:text-gold"
             >
-              투명성 페이지 전체 보기 <span aria-hidden>→</span>
+              투명성 페이지 전체 보기{" "}
+              <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
             </Link>
           </Reveal>
         </div>
@@ -656,9 +708,12 @@ export default function HomePage() {
             </div>
             <Link
               href="/news"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-forest hover:text-gold"
+              className="group inline-flex items-center gap-2 text-sm font-semibold text-forest hover:text-gold"
             >
-              모든 소식 보기 <span aria-hidden>→</span>
+              모든 소식 보기{" "}
+              <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
             </Link>
           </Reveal>
 
@@ -702,8 +757,9 @@ export default function HomePage() {
               </p>
               <p>그 한 사람으로부터 새로운 변화가 시작될 것이라고 믿습니다.</p>
             </div>
-            <div className="mx-auto mt-12 max-w-xl border-t border-gold/40 pt-8">
-              <p className="font-display text-lg font-medium tracking-tight text-forest">
+            <div className="mx-auto mt-12 max-w-xl">
+              <Divider />
+              <p className="mt-8 font-display text-lg font-medium tracking-tight text-forest">
                 {orgInfo.nameEn}
               </p>
               <p className="mt-2 text-xs uppercase tracking-[0.18em] text-charcoal/50">

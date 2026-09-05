@@ -5,7 +5,11 @@ import { impactStats } from "@/data/impactStats";
 
 export default function ImpactStats() {
   return (
-    <section className="bg-forest px-6 py-24 text-pure-white md:px-10 md:py-32">
+    <section className="relative bg-forest px-6 py-24 text-pure-white md:px-10 md:py-32">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent"
+      />
       <div className="mx-auto max-w-[1400px]">
         <Reveal>
           <Eyebrow tone="light">OUR IMPACT</Eyebrow>
@@ -17,13 +21,14 @@ export default function ImpactStats() {
         <div className="mt-16 grid grid-cols-2 gap-8 border-t border-pure-white/15 pt-12 md:grid-cols-4 md:gap-6">
           {impactStats.map((stat, i) => (
             <Reveal key={stat.id} delay={i * 80}>
-              <p className="font-display text-4xl font-semibold tracking-tight text-gold md:text-5xl">
+              <p className="font-display text-4xl font-semibold tracking-tight tabular-nums text-gold md:text-5xl">
                 <CountUp
                   value={stat.value}
                   suffix={stat.suffix}
                   isPlaceholder={stat.isPlaceholder}
                 />
               </p>
+              <span aria-hidden className="mt-3 block h-px w-8 bg-gold/40" />
               <p className="mt-3 text-sm text-pure-white/70">{stat.label}</p>
             </Reveal>
           ))}

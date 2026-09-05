@@ -56,7 +56,7 @@ export default function Frame({
           alt={alt}
           fill
           sizes={sizes}
-          className="object-cover"
+          className="object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.05]"
           priority={priority}
           onError={() => setFailed(true)}
         />
@@ -67,7 +67,7 @@ export default function Frame({
           width={width}
           height={height}
           sizes={sizes}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.05]"
           priority={priority}
           onError={() => setFailed(true)}
         />

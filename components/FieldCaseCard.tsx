@@ -11,11 +11,11 @@ export default function FieldCaseCard({
   delay?: number;
 }) {
   return (
-    <Reveal delay={delay} className="flex flex-col">
+    <Reveal delay={delay} className="group flex flex-col">
       <Frame
         src={story.image}
         alt={story.imageAlt}
-        className="aspect-[4/5] w-full"
+        className="aspect-[4/5] w-full shadow-[0_30px_60px_-32px_rgba(37,37,37,0.4)]"
         pendingArt={pendingArtFor(story.theme)}
       />
       <div className="mt-4 flex flex-1 flex-col gap-3">

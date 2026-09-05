@@ -21,8 +21,11 @@ export default function TransparencyList({
             </div>
             <div className="shrink-0">
               {item.isReady ? (
-                <span className="text-sm font-semibold text-forest">
-                  자료 보기 →
+                <span className="inline-flex items-center gap-2 text-sm font-semibold text-forest">
+                  자료 보기{" "}
+                  <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
                 </span>
               ) : (
                 <PlaceholderBadge />
@@ -34,7 +37,10 @@ export default function TransparencyList({
         return (
           <Reveal as="li" key={item.id} mode="fade">
             {linkToDetail ? (
-              <Link href={`/transparency#${item.id}`} className="block hover:bg-warm-ivory">
+              <Link
+                href={`/transparency#${item.id}`}
+                className="group block transition-colors hover:bg-warm-ivory"
+              >
                 {content}
               </Link>
             ) : (

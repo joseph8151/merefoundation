@@ -10,13 +10,13 @@ export default function NewsCard({ item }: { item: NewsItem }) {
         <Frame
           src={item.image}
           alt={item.imageAlt}
-          className="aspect-[16/10] w-full transition-opacity duration-500 group-hover:opacity-90"
+          className="aspect-[16/10] w-full shadow-[0_24px_50px_-30px_rgba(37,37,37,0.4)]"
         />
         <div className="flex items-center gap-3 text-xs text-charcoal/50">
           <span className="eyebrow text-gold">{item.category}</span>
           <time dateTime={item.date}>{item.date}</time>
         </div>
-        <h3 className="font-display text-lg font-medium leading-snug text-charcoal">
+        <h3 className="font-display text-lg font-medium leading-snug text-charcoal transition-colors group-hover:text-forest">
           {item.title}
         </h3>
         <p className="line-clamp-2 text-sm leading-relaxed text-charcoal/60">

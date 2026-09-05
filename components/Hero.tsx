@@ -51,15 +51,21 @@ export default function Hero() {
           <div className="mt-9 flex flex-wrap gap-4">
             <Link
               href="/about"
-              className="inline-flex items-center gap-2 bg-pure-white px-6 py-3.5 text-sm font-semibold tracking-wide text-forest transition-colors hover:bg-gold hover:text-pure-white"
+              className="group inline-flex items-center gap-2 bg-pure-white px-6 py-3.5 text-sm font-semibold tracking-wide text-forest transition-colors hover:bg-gold hover:text-pure-white"
             >
-              MERE 알아보기 <span aria-hidden>→</span>
+              MERE 알아보기{" "}
+              <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
             </Link>
             <Link
               href="/together"
-              className="inline-flex items-center gap-2 border border-pure-white/70 px-6 py-3.5 text-sm font-semibold tracking-wide text-pure-white transition-colors hover:border-pure-white hover:bg-pure-white/10"
+              className="group inline-flex items-center gap-2 border border-pure-white/70 px-6 py-3.5 text-sm font-semibold tracking-wide text-pure-white transition-colors hover:border-pure-white hover:bg-pure-white/10"
             >
-              함께하기 <span aria-hidden>→</span>
+              함께하기{" "}
+              <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
             </Link>
           </div>
         </div>

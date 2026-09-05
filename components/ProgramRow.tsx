@@ -17,7 +17,7 @@ export default function ProgramRow({
     <div
       id={program.slug}
       className={cn(
-        "grid scroll-mt-28 items-center gap-10 py-14 md:grid-cols-2 md:gap-16 md:py-20",
+        "group grid scroll-mt-28 items-center gap-10 py-14 md:grid-cols-2 md:gap-16 md:py-20",
       )}
     >
       <Reveal
@@ -27,7 +27,7 @@ export default function ProgramRow({
         <Frame
           src={program.image}
           alt={program.imageAlt}
-          className="aspect-[4/5] w-full"
+          className="aspect-[4/5] w-full shadow-[0_30px_60px_-32px_rgba(37,37,37,0.4)]"
         />
       </Reveal>
 
@@ -40,7 +40,7 @@ export default function ProgramRow({
         )}
       >
         <span className="font-display text-sm text-gold">{program.number}</span>
-        <h3 className="font-display text-2xl font-medium tracking-tight text-charcoal md:text-3xl">
+        <h3 className="font-display text-2xl font-medium tracking-tight text-charcoal transition-colors md:text-3xl group-hover:text-forest">
           {program.titleEn}
           <span className="mt-1 block text-base font-medium text-charcoal/60">
             {program.titleKo}
@@ -64,7 +64,10 @@ export default function ProgramRow({
             href={linkTo}
             className="mt-2 inline-flex w-fit items-center gap-2 text-sm font-semibold text-forest hover:text-gold"
           >
-            자세히 보기 <span aria-hidden>→</span>
+            자세히 보기{" "}
+            <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
           </Link>
         ) : null}
       </Reveal>
