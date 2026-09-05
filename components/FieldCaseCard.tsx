@@ -17,7 +17,13 @@ export default function FieldCaseCard({
         alt={story.imageAlt}
         className="aspect-[4/5] w-full shadow-[0_30px_60px_-32px_rgba(37,37,37,0.4)]"
         pendingArt={pendingArtFor(story.theme)}
-      />
+      >
+        {story.imageIsIllustrative ? (
+          <span className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 bg-charcoal/70 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-pure-white backdrop-blur-sm">
+            연출 이미지
+          </span>
+        ) : null}
+      </Frame>
       <div className="mt-4 flex flex-1 flex-col gap-3">
         <span className="eyebrow text-[11px] text-gold">
           {story.caseNumber} · {story.countryEn}

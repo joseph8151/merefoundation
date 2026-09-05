@@ -9,8 +9,12 @@
 // image 는 실제 사진 파일이 없는 경우 테마별 일러스트(components/
 // PendingIllustrations.tsx)로 자동 대체됩니다. 실제 사진을 구하게 되면
 // public/images/archive/ 아래에 같은 파일명으로 저장하세요 -- 코드 수정
-// 없이 자동으로 반영됩니다 (과테말라·카자흐스탄은 이미 실제 사진으로
-// 교체됨, 미얀마는 아직 일러스트).
+// 없이 자동으로 반영됩니다 (과테말라·카자흐스탄은 실제 사진).
+//
+// 미얀마는 실제 현장 사진이 아니라 연출용 AI 생성 이미지입니다.
+// imageIsIllustrative: true 로 표시해 카드에 "연출 이미지" 배지가 뜨도록
+// 하세요 -- 실제 현장 사진처럼 보이지 않게 하기 위함입니다. 실제 사진을
+// 구하게 되면 파일을 교체하고 이 플래그를 제거하세요.
 // ---------------------------------------------------------------------------
 
 export type FieldStory = {
@@ -24,6 +28,8 @@ export type FieldStory = {
   imageAlt: string;
   /** Themed stand-in illustration shown while the real photo is pending -- see components/PendingIllustrations.tsx */
   theme: "education" | "mission" | "network";
+  /** True when `image` is a staged/AI-generated stand-in, not an actual field photo -- renders a disclosure badge. */
+  imageIsIllustrative?: boolean;
 };
 
 export const fieldStories: FieldStory[] = [
@@ -52,8 +58,9 @@ export const fieldStories: FieldStory[] = [
     ],
     footerCaption: "Myanmar · Mission · Community",
     image: "/images/archive/myanmar-01.jpg",
-    imageAlt: "미얀마 현지 선교 지원 활동을 상징하는 일러스트",
+    imageAlt: "미얀마 현지 선교 지원 활동을 표현한 연출 이미지",
     theme: "mission",
+    imageIsIllustrative: true,
   },
   {
     id: "kazakhstan",
