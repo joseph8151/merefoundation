@@ -63,6 +63,19 @@ export default async function NewsDetailPage({
         ))}
       </Reveal>
 
+      {item.gallery && item.gallery.length > 0 ? (
+        <Reveal delay={180} className="mt-10 grid gap-4 sm:grid-cols-2">
+          {item.gallery.map((photo) => (
+            <Frame
+              key={photo.src}
+              src={photo.src}
+              alt={photo.alt}
+              className="aspect-[4/3] w-full"
+            />
+          ))}
+        </Reveal>
+      ) : null}
+
       <Link
         href="/news"
         className="mt-14 inline-flex items-center gap-2 text-sm font-semibold text-forest hover:text-gold"

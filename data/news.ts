@@ -10,10 +10,10 @@
 // 실제 소식이 준비되면 이 배열의 내용을 교체해주세요.
 //
 // nepal-flood-relief-2026: 실제 재난 상황을 다루는 공지입니다. 수치·교회
-// 피해 목록은 재단이 전달한 자료를 그대로 반영했습니다. image는 저작권이
-// 확인되지 않은 재난 보도사진 대신 일부러 비워둔 상태(placeholder 아이콘
-// 자동 표시)이니, 재단이 게재 권한을 가진 실제 사진을 구하면 같은 파일명
-// 으로 public/images/archive/ 아래 추가하세요.
+// 피해 목록은 재단이 전달한 자료를 그대로 반영했습니다. image/gallery의
+// 재난 현장 사진은 재단이 직접 게재를 요청하여 반영했으나, 출처(뉴스/공보
+// 매체 등)와 저작권이 이쪽에서 확인된 상태는 아닙니다 -- 재게재 권한을
+// 재단 측에서 직접 확인해두시길 권장합니다.
 // ---------------------------------------------------------------------------
 
 export type NewsCategory = "활동소식" | "공지사항" | "언론보도" | "행사" | "사업보고";
@@ -27,6 +27,8 @@ export type NewsItem = {
   image: string;
   imageAlt: string;
   body: string[];
+  /** Optional extra photos shown in a grid below the body text. */
+  gallery?: { src: string; alt: string }[];
 };
 
 export const newsItems: NewsItem[] = [
@@ -38,7 +40,17 @@ export const newsItems: NewsItem[] = [
       "8월 26일 네팔 북부 국경지역에서 발생한 대규모 홍수로 수많은 사상자와 이재민이 발생했습니다. 아직 구조와 복구가 진행 중인 네팔을 위해 우리의 기도와 사랑을 전하고자 합니다.",
     date: "2026-09-06",
     image: "/images/archive/nepal-flood-relief-2026-01.jpg",
-    imageAlt: "네팔 홍수로 무너진 건물과 마을의 모습",
+    imageAlt: "네팔 라수와 지역에서 구호물자를 수송하는 네팔군 헬기와 구조대원들",
+    gallery: [
+      {
+        src: "/images/archive/nepal-flood-relief-2026-02.png",
+        alt: "홍수로 무너진 네팔 현지 건물의 모습",
+      },
+      {
+        src: "/images/archive/nepal-flood-relief-2026-03.jpg",
+        alt: "토사와 진흙으로 뒤덮인 마을을 바라보는 아이",
+      },
+    ],
     body: [
       "2026년 8월 26일 오전 8시 40분경, 네팔 북부 국경지역인 라수와(Rasuwa) 지역 보테코시(Bhote Koshi) 강 유역에서 히말라야 빙하호 붕괴와 우기 집중호우로 인한 대규모 토사 유출과 급류가 발생했습니다.",
       "보테코시 → 트리슐리(Trishuli) → 나라야니(Narayani) 수계를 따라 급류와 토석류가 하류 지역을 강타했습니다. 중심 피해지는 네팔-중국 국경 지대인 라수와 지역으로, 라수와가디 국경 세관과 다리가 붕괴되었습니다. 누와콧(Nuwakot) 지역의 트리슐리 강 범람과 마을 수몰, 카트만두 계곡 일대까지 피해가 이어졌습니다.",
