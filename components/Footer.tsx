@@ -100,6 +100,9 @@ export default function Footer() {
               <SnsIcon href={orgInfo.sns.blog} label="블로그">
                 BL
               </SnsIcon>
+              <SnsIcon href={orgInfo.sns.kakao} label="카카오톡 채널">
+                <span className="font-semibold">K</span>
+              </SnsIcon>
             </div>
           </div>
 

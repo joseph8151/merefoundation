@@ -21,6 +21,10 @@
 //
 // theme: 실제 사진이 없는 이야기에는 테마별 일러스트(components/
 // PendingIllustrations.tsx)가 카드/상세 페이지 이미지 자리에 표시됩니다.
+//
+// externalUrl: 카드를 내부 상세 페이지 대신 외부 링크(예: 재단 카카오톡
+// 채널의 소식지 게시물)로 바로 연결하고 싶을 때 채우세요. deungbul-
+// newsletter-2026-no3 가 예시입니다.
 // ---------------------------------------------------------------------------
 
 export type Story = {
@@ -41,9 +45,33 @@ export type Story = {
   };
   /** Themed illustration shown in place of a real photo -- see components/PendingIllustrations.tsx */
   theme?: "education" | "mission" | "network" | "relief" | "clothing" | "partnership" | "newsletter";
+  /**
+   * When set, the story card links straight out to this URL (e.g. a
+   * newsletter post on the foundation's own KakaoTalk channel) instead of
+   * the internal /stories/[slug] detail page. The other fields (body,
+   * pullQuote, beforeAfter) are unused for these entries but still required
+   * by the type -- keep them short and honest (e.g. "전체 내용은 카카오톡
+   * 채널에서 확인하실 수 있습니다").
+   */
+  externalUrl?: string;
 };
 
 export const stories: Story[] = [
+  {
+    slug: "deungbul-newsletter-2026-no3",
+    category: "소식지",
+    title: "사단법인 등불(MERE) 2026년 3호 소식지",
+    excerpt:
+      "순전한재단(사단법인 등불)의 2026년 3호 소식지를 재단 카카오톡 채널에서 확인하실 수 있습니다.",
+    quote: "2026년 3호 소식지",
+    date: "2026",
+    image: "/images/archive/newsletter-deungbul-2026-03-cover.jpg",
+    imageAlt: "사단법인 등불(MERE) 2026년 3호 소식지 표지",
+    theme: "newsletter",
+    externalUrl: "https://pf.kakao.com/_SQlWG/114677866",
+    body: ["이 소식지의 전체 내용은 재단의 카카오톡 채널에서 확인하실 수 있습니다."],
+    pullQuote: "전체 내용은 카카오톡 채널에서 확인해주세요.",
+  },
   {
     slug: "back-to-school",
     category: "아동·다음세대",

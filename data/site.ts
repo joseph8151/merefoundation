@@ -43,6 +43,7 @@ export const orgInfo = {
     instagram: "#",
     youtube: "#",
     blog: "#",
+    kakao: "https://pf.kakao.com/_SQlWG/114677866",
   },
 } satisfies {
   nameKo: string;
@@ -58,7 +59,7 @@ export const orgInfo = {
   businessRegistrationNumber: MaybePlaceholder<string>;
   corporationRegistrationNumber: MaybePlaceholder<string>;
   bankAccount: MaybePlaceholder<{ bank: string; number: string; holder: string }>;
-  sns: { instagram: string; youtube: string; blog: string };
+  sns: { instagram: string; youtube: string; blog: string; kakao: string };
 };
 
 export type NavItem = {

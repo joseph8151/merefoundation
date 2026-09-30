@@ -5,9 +5,14 @@ import { pendingArtFor } from "@/components/PendingIllustrations";
 import type { Story } from "@/data/stories";
 
 export default function StoryCard({ story }: { story: Story }) {
+  const isExternal = Boolean(story.externalUrl);
+  const linkProps = isExternal
+    ? { href: story.externalUrl as string, target: "_blank", rel: "noopener noreferrer" }
+    : { href: `/stories/${story.slug}` };
+
   return (
     <Reveal as="article" className="group flex flex-col">
-      <Link href={`/stories/${story.slug}`} className="flex flex-col gap-5">
+      <Link {...linkProps} className="flex flex-col gap-5">
         <Frame
           src={story.image}
           alt={story.imageAlt}
@@ -23,7 +28,7 @@ export default function StoryCard({ story }: { story: Story }) {
             {story.excerpt}
           </p>
           <span className="inline-flex w-fit items-center gap-2 text-sm font-semibold text-forest">
-            READ STORY{" "}
+            {isExternal ? "카카오톡 채널에서 보기" : "READ STORY"}{" "}
             <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-1">
               →
             </span>
