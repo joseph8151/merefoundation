@@ -10,6 +10,7 @@ import { partnershipTypes } from "@/data/partnership";
 export const metadata: Metadata = {
   title: "함께하기",
   description: "개인, 기업, 교회·기관 — 각자의 자리에서 MERE와 함께하는 방법.",
+  keywords: ["순전한재단 자원봉사", "기업 사회공헌", "교회 선교협력", "재능기부"],
   alternates: { canonical: "/together" },
 };
 

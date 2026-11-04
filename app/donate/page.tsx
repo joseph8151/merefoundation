@@ -12,6 +12,7 @@ import { monthlyMission } from "@/data/monthlyMission";
 export const metadata: Metadata = {
   title: "후원",
   description: "정기후원과 일시후원으로 순전한재단 MERE와 함께해주세요.",
+  keywords: ["순전한재단 후원", "MERE 기부", "정기후원", "일시후원", "해외선교 후원금"],
   alternates: { canonical: "/donate" },
 };
 

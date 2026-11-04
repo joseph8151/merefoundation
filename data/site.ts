@@ -83,4 +83,7 @@ export const footerLinks: NavItem[] = [
   { label: "투명성", href: "/transparency" },
 ];
 
-export const siteUrl = "https://www.merefoundation.example";
+// 실제 배포 도메인. sitemap.xml, robots.txt, canonical URL, OpenGraph 등
+// 모든 SEO 메타데이터가 이 값을 기준으로 생성되므로 실제 배포 도메인과
+// 반드시 일치해야 합니다.
+export const siteUrl = "https://www.sunjeonhan.com";

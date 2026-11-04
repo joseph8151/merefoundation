@@ -22,6 +22,19 @@ export const metadata: Metadata = {
   },
   description:
     "순전한 재단 MERE는 도움이 필요한 이웃의 오늘을 함께하고 더 나은 내일을 만들어가는 비영리재단입니다.",
+  keywords: [
+    "순전한재단",
+    "MERE FOUNDATION",
+    "순전한재단 MERE",
+    "기독교 비영리재단",
+    "기독교 NGO",
+    "해외선교 후원",
+    "해외 교육 지원",
+    "긴급구호",
+    "의류 나눔",
+    "정기후원",
+    "교회 선교 후원",
+  ],
   openGraph: {
     title: `${orgInfo.mark} | ${orgInfo.nameKo}`,
     description:
@@ -35,6 +48,11 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${orgInfo.mark} | ${orgInfo.nameKo}`,
     description: "순전한 마음에서 변화는 시작됩니다.",
+  },
+  verification: {
+    other: {
+      "naver-site-verification": "3dbde45cdd958305e6c869401bbbe8487c0f392f",
+    },
   },
 };
 

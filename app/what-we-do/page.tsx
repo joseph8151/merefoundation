@@ -9,6 +9,7 @@ import { programs } from "@/data/programs";
 export const metadata: Metadata = {
   title: "우리가 하는 일",
   description: "순전한재단 MERE의 6가지 사업 영역을 소개합니다.",
+  keywords: ["해외선교 지원", "해외 교육 지원", "긴급구호", "의료 보건 협력", "의류 나눔"],
   alternates: { canonical: "/what-we-do" },
 };
 
