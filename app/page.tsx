@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import Hero from "@/components/Hero";
-import EmergencyNoticeModal from "@/components/EmergencyNoticeModal";
+import HomeNoticeModal from "@/components/HomeNoticeModal";
 import Eyebrow from "@/components/Eyebrow";
 import Reveal from "@/components/Reveal";
 import Frame from "@/components/Frame";
@@ -88,7 +88,7 @@ const nextSteps = [
 export default function HomePage() {
   return (
     <>
-      <EmergencyNoticeModal />
+      <HomeNoticeModal />
       <Hero />
 
       {/* Faith Statement */}

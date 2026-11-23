@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import Frame from "@/components/Frame";
 import Reveal from "@/components/Reveal";
 import Eyebrow from "@/components/Eyebrow";
+import VideoEmbed from "@/components/VideoEmbed";
 import { newsItems } from "@/data/news";
 
 type Params = { slug: string };
@@ -50,11 +51,17 @@ export default async function NewsDetailPage({
       </Reveal>
 
       <Reveal delay={80}>
-        <Frame
-          src={item.image}
-          alt={item.imageAlt}
-          className="mt-10 aspect-[16/9] w-full"
-        />
+        {item.youtubeId ? (
+          <div className="mt-10">
+            <VideoEmbed video={{ youtubeId: item.youtubeId, title: item.title }} />
+          </div>
+        ) : (
+          <Frame
+            src={item.image}
+            alt={item.imageAlt}
+            className="mt-10 aspect-[16/9] w-full"
+          />
+        )}
       </Reveal>
 
       <Reveal delay={140} className="mt-10 flex flex-col gap-5 text-[16px] leading-loose text-charcoal/80">

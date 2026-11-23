@@ -14,6 +14,11 @@
 // 재난 현장 사진은 재단이 직접 게재를 요청하여 반영했으나, 출처(뉴스/공보
 // 매체 등)와 저작권이 이쪽에서 확인된 상태는 아닙니다 -- 재게재 권한을
 // 재단 측에서 직접 확인해두시길 권장합니다.
+//
+// mere-video-2026: 재단이 전달한 실제 유튜브 영상을 소개하는 글입니다.
+// youtubeId가 있으면 상세 페이지 상단에 image 대신 영상이 임베드됩니다.
+// 영상 내용을 확인할 수 없어 excerpt/body는 구체적인 내용 설명 없이 일반적
+// 문구로 작성했습니다 -- 실제 영상 내용에 맞는 설명으로 교체해주세요.
 // ---------------------------------------------------------------------------
 
 export type NewsCategory = "활동소식" | "공지사항" | "언론보도" | "행사" | "사업보고";
@@ -29,9 +34,25 @@ export type NewsItem = {
   body: string[];
   /** Optional extra photos shown in a grid below the body text. */
   gallery?: { src: string; alt: string }[];
+  /** Optional YouTube video id (the part after v= in the watch URL), embedded above the body. */
+  youtubeId?: string;
 };
 
 export const newsItems: NewsItem[] = [
+  {
+    slug: "mere-video-2026",
+    category: "활동소식",
+    title: "순전한재단 MERE 영상을 소개합니다",
+    excerpt: "순전한재단의 이야기를 영상으로 만나보세요.",
+    date: "2026-11-23",
+    image: "/images/archive/mere-video-2026-cover.jpg",
+    imageAlt: "순전한재단 MERE 영상 커버",
+    youtubeId: "r5s7ufFyxgw",
+    body: [
+      "순전한재단 MERE의 이야기를 담은 영상을 새롭게 공유합니다.",
+      "영상을 통해 재단이 걸어온 발걸음과 현장의 이야기를 더 생생하게 만나보실 수 있습니다.",
+    ],
+  },
   {
     slug: "nepal-flood-relief-2026",
     category: "공지사항",

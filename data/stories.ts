@@ -58,6 +58,21 @@ export type Story = {
 
 export const stories: Story[] = [
   {
+    slug: "faith-theological-seminary-malaysia-seminar-2026",
+    category: "언론보도",
+    title: "美 페이스신학대, 말레이시아 목회자 초청 세미나 성황리 개최",
+    excerpt:
+      "미국 페이스신학대학교의 말레이시아 목회자 초청 세미나 소식을 다룬 크리스천투데이 기사입니다. 기사 첫 사진은 순전한재단이 후원한 방한복을 입고 촬영된 모습입니다.",
+    quote: "美 페이스신학대, 말레이시아 목회자 초청 세미나 성황리 개최",
+    date: "2026",
+    image: "/images/archive/faith-theological-seminary-2026-cover.jpg",
+    imageAlt: "美 페이스신학대 말레이시아 목회자 초청 세미나 관련 보도 이미지",
+    theme: "partnership",
+    externalUrl: "https://www.christiantoday.co.kr/news/378222",
+    body: ["이 기사의 전체 내용은 크리스천투데이 원문에서 확인하실 수 있습니다."],
+    pullQuote: "美 페이스신학대, 말레이시아 목회자 초청 세미나 성황리 개최",
+  },
+  {
     slug: "deungbul-newsletter-2026-no3",
     category: "소식지",
     title: "사단법인 등불(MERE) 2026년 3호 소식지",

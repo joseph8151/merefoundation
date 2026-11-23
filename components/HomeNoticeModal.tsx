@@ -3,16 +3,16 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const STORAGE_KEY = "mere-notice-dismissed-nepal-flood-relief-2026";
+const STORAGE_KEY = "mere-notice-dismissed-mere-video-2026";
 
 /**
- * Time-limited emergency notice, shown once per visitor until dismissed.
+ * Time-limited homepage notice, shown once per visitor until dismissed.
  * Update STORAGE_KEY (and the content below) when this is replaced by a
  * different notice -- a new key means it shows again even to past visitors.
  * Remove this component from app/page.tsx entirely once the notice is no
  * longer current; there's no need to keep it mounted-but-hidden.
  */
-export default function EmergencyNoticeModal() {
+export default function HomeNoticeModal() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -79,35 +79,24 @@ export default function EmergencyNoticeModal() {
           ×
         </button>
 
-        <p className="eyebrow text-xs text-gold">긴급 기도요청</p>
+        <p className="eyebrow text-xs text-gold">NEW VIDEO</p>
         <h2 id="emergency-notice-title" className="mt-4 font-display text-2xl font-medium leading-tight text-charcoal md:text-3xl">
-          네팔 홍수 피해
+          순전한재단 MERE
           <br />
-          긴급 기도요청
+          영상을 소개합니다
         </h2>
         <p className="mt-4 text-[15px] leading-relaxed text-charcoal/75">
-          8월 26일 네팔 북부 국경지역에서 발생한 대규모 홍수로 수많은 사상자와
-          이재민이 발생했습니다. 아직 구조와 복구가 진행 중인 네팔을 위해
-          우리의 기도와 사랑을 전하고자 합니다.
+          순전한재단의 이야기를 담은 영상을 새롭게 공유합니다. 영상을 통해
+          재단이 걸어온 발걸음을 더 생생하게 만나보세요.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-4">
           <Link
-            href="/news/nepal-flood-relief-2026"
+            href="/news/mere-video-2026"
             onClick={dismiss}
             className="group inline-flex items-center gap-2 bg-forest px-6 py-3.5 text-sm font-semibold tracking-wide text-pure-white transition-colors hover:bg-gold"
           >
-            자세히 보기{" "}
-            <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-1">
-              →
-            </span>
-          </Link>
-          <Link
-            href="/contact?type=prayer"
-            onClick={dismiss}
-            className="group inline-flex items-center gap-2 border border-charcoal/20 px-6 py-3.5 text-sm font-semibold tracking-wide text-charcoal transition-colors hover:border-charcoal"
-          >
-            기도로 함께하기{" "}
+            영상 보러가기{" "}
             <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-1">
               →
             </span>
