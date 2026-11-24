@@ -116,6 +116,19 @@ export default async function StoryDetailPage({
           </p>
         </Reveal>
 
+        {story.gallery && story.gallery.length > 0 ? (
+          <Reveal delay={140} className="mb-14 grid gap-4 sm:grid-cols-2">
+            {story.gallery.map((photo) => (
+              <Frame
+                key={photo.src}
+                src={photo.src}
+                alt={photo.alt}
+                className="aspect-[4/3] w-full"
+              />
+            ))}
+          </Reveal>
+        ) : null}
+
         <Link
           href="/stories"
           className="inline-flex items-center gap-2 text-sm font-semibold text-forest hover:text-gold"

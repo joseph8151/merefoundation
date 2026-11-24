@@ -54,9 +54,55 @@ export type Story = {
    * 채널에서 확인하실 수 있습니다").
    */
   externalUrl?: string;
+  /** Optional extra photos shown in a grid on the detail page, below the pull quote. */
+  gallery?: { src: string; alt: string }[];
 };
 
 export const stories: Story[] = [
+  {
+    slug: "kazakhstan-almaty-2026",
+    category: "해외 선교 지원",
+    title: "카자흐스탄 알마티, 나눔의 현장",
+    excerpt: "카자흐스탄 알마티 지역에서 진행된 나눔 사역의 현장을 사진으로 전합니다.",
+    quote: "작은 나눔이 서로를 잇는 마음이 되었습니다.",
+    date: "2026",
+    image: "/images/archive/kazakhstan-almaty-2026-01.jpg",
+    imageAlt: "카자흐스탄 알마티 지역 교회에서 나눔 물품을 받은 아이들과 청소년들",
+    body: [
+      "카자흐스탄 알마티 지역의 교회 공동체와 함께 나눔을 전하는 시간을 가졌습니다.",
+      "현지 아이들과 청소년, 어르신들까지 함께한 이 자리에서 작은 나눔이 서로를 잇는 마음이 되었습니다.",
+    ],
+    pullQuote: "작은 나눔이 서로를 잇는 마음이 되었습니다.",
+    gallery: [
+      {
+        src: "/images/archive/kazakhstan-almaty-2026-02.jpg",
+        alt: "카자흐스탄 알마티 지역 교회에서 나눔 물품을 전달하는 모습",
+      },
+      {
+        src: "/images/archive/kazakhstan-almaty-2026-03.jpg",
+        alt: "카자흐스탄 알마티 지역 교회에서 나눔 물품을 받은 아이들과 청소년들",
+      },
+      {
+        src: "/images/archive/kazakhstan-almaty-2026-04.jpg",
+        alt: "카자흐스탄 알마티 지역에서 함께한 현지 사역자들",
+      },
+    ],
+  },
+  {
+    slug: "philippines-2026",
+    category: "해외 선교 지원",
+    title: "필리핀 후원 현장 소식",
+    excerpt: "필리핀 현지에서 진행된 나눔 사역 현장을 전합니다.",
+    quote: "작은 나눔 안에 담긴 마음이 위로와 힘이 되기를 소망합니다.",
+    date: "2026",
+    image: "/images/archive/philippines-2026-01.jpg",
+    imageAlt: "필리핀 현지에서 생활용품을 나누는 모습",
+    body: [
+      "필리핀 현지에서 생활용품과 필요한 물품을 나누는 시간을 가졌습니다.",
+      "작은 나눔이지만 그 안에 담긴 마음이 서로에게 위로와 힘이 되기를 소망합니다.",
+    ],
+    pullQuote: "작은 나눔 안에 담긴 마음이 위로와 힘이 되기를 소망합니다.",
+  },
   {
     slug: "faith-theological-seminary-malaysia-seminar-2026",
     category: "언론보도",
